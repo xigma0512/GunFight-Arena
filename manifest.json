@@ -1,0 +1,38 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "",
+        "name": "AplokGuns_PVPSystem",
+        "uuid": "6381b69f-665e-4180-a248-3960cb9f2520",
+        "version": [
+            0,
+            0,
+            1
+        ],
+        "min_engine_version": [
+            1,
+            20,
+            50
+        ]
+    },
+    "modules": [
+        {
+            "description": "使用JavaScript編寫 可做為學習之素材",
+            "type": "script",
+            "language": "javascript",
+            "uuid": "760888da-34ae-4ace-9130-9393848ad4cc",
+            "version": [
+                0,
+                0,
+                1
+            ],
+            "entry": "scripts/index.js"
+        }
+    ],
+    "dependencies": [
+        {
+            "module_name": "@minecraft/server",
+            "version": "1.16.0"
+        }
+    ]
+}
