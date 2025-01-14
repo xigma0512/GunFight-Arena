@@ -1,30 +1,19 @@
-import { Entity, Vector3, world } from "@minecraft/server";
+import { Entity, world } from "@minecraft/server";
+import { PropertyDataType } from "../declare/types";
 
 abstract class Property {
-    set(identifier: string, value?: boolean | number | string | Vector3) { }
     get(identifier: string) { }
-    getAll() { }
+    update(identifier: string, value?: PropertyDataType) { }
 }
 
-class WorldProperty extends Property {
-
-    set(identifier: string, value?: boolean | number | string | Vector3) { world.setDynamicProperty(identifier, value) }
-
+class WorldProperty implements Property {
     get(identifier: string) { return world.getDynamicProperty(identifier) }
-
-    getAll() { return world.getDynamicPropertyIds() }
-
+    update(identifier: string, value?: PropertyDataType) { world.setDynamicProperty(identifier, value) }
 }
 
-class EntityProperty extends Property {
-
-    constructor(private target: Entity) { super() }
-
-    set(identifier: string, value?: boolean | number | string | Vector3) { this.target.setDynamicProperty(identifier, value) }
-
+class EntityProperty implements Property {
+    constructor(private target: Entity) { }
     get(identifier: string) { return this.target.getDynamicProperty(identifier) }
-
-    getAll() { return this.target.getDynamicPropertyIds() }
-
+    update(identifier: string, value?: PropertyDataType) { this.target.setDynamicProperty(identifier, value) }
 }
 export { WorldProperty, EntityProperty }
