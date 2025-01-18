@@ -19,7 +19,7 @@ class WorldPropertyManager {
         }
     }
     properties = () => this.propertyTable
-    getProperty = (propertyId: keyof typeof this.propertyTable) => this.propertyTable[propertyId]
+    get = (propertyId: keyof typeof this.propertyTable) => this.propertyTable[propertyId]
 }
 
 class EntityPropertyManager {
