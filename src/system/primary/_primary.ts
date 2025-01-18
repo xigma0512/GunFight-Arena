@@ -1,5 +1,5 @@
-import { saturation } from "./status/natural_regeneration";
-import { status_detect } from "./status/status_detect";
+import { saturation } from "./saturation";
+import { status_detect } from "./status_detect";
 
 let tickingTime = -1
 const primary = () => {
