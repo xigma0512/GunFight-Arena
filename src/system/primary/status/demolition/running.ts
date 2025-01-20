@@ -2,7 +2,7 @@ import { world } from "@minecraft/server"
 import { PropertyManager } from "../../../../property/_manager"
 import { Status, Team } from "../../../../declare/enums"
 import config from "../../../../config";
-import { PTeamScore } from "../../../../property/world/team_score";
+import PTeamScore from "../../../../property/world/team_score";
 import { changeStatus } from "../../../../utils/changeStatus";
 
 const running = (tickingTime: number) => {

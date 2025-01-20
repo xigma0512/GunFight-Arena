@@ -1,5 +1,5 @@
 import { world } from "@minecraft/server"
-import { Status, Team } from "../../../../declare/enums"
+import { Status } from "../../../../declare/enums"
 
 import { changeStatus } from "../../../../utils/changeStatus"
 
