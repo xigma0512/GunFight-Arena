@@ -1,8 +1,8 @@
 import { world } from "@minecraft/server"
 
-const saturation = () => {
+const effect = () => {
     world.getAllPlayers().forEach(player => {
         player.addEffect('saturation', 20, { amplifier: 1, showParticles: false })
     })
 }
-export { saturation }
+export { effect }
