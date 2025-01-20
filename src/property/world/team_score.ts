@@ -8,7 +8,7 @@ interface ITeamScore {
     blue: number;
 }
 
-class PTeamScore implements IProperty {
+export default class PTeamScore implements IProperty {
 
     readonly propertyId = "team_score"
 
@@ -33,4 +33,3 @@ class PTeamScore implements IProperty {
         this.update(JSON.stringify(scoreTable))
     }
 }
-export { PTeamScore }

@@ -3,7 +3,7 @@ import { WorldProperty } from "../_dynamicProperty";
 import { IProperty } from "../../declare/types";
 import { GameMode, Status } from "../../declare/enums";
 
-class PGameMode implements IProperty {
+export default class PGameMode implements IProperty {
 
     readonly propertyId = "game_mode"
 

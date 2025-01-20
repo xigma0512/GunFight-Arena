@@ -2,7 +2,7 @@ import { Entity } from "@minecraft/server"
 import { IProperty } from "../../../declare/types"
 import { EntityProperty } from "../../_dynamicProperty"
 
-class PMainWeapon implements IProperty {
+export default class PMainWeapon implements IProperty {
 
     readonly propertyId = "main_weapon"
 
@@ -16,4 +16,3 @@ class PMainWeapon implements IProperty {
     get value() { return this.dp.get(this.propertyId) as number }
     update = (value: number) => this.dp.update(this.propertyId, value)
 }
-export { PMainWeapon }

@@ -1,13 +1,13 @@
 import { Entity } from "@minecraft/server";
 import { IProperty } from "../declare/types";
 // World Property
-import { PTeamScore } from "./world/team_score";
-import { PGameStatus } from "./world/game_status";
+import PTeamScore from "./world/team_score";
+import PGameStatus from "./world/game_status";
+import PGameMode from "./world/game_mode";
 // Entity Property
-import { PTeam } from "./entity/team";
-import { PMainWeapon } from "./entity/weapon/main_weapon";
-import { PPistol } from "./entity/weapon/pistol";
-import { PGameMode } from "./world/game_mode";
+import PTeam from "./entity/team";
+import PMainWeapon from "./entity/weapon/main_weapon";
+import PPistol from "./entity/weapon/pistol";
 
 class WorldPropertyManager {
     private propertyTable: Record<string, IProperty>;

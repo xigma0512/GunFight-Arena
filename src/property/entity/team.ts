@@ -4,7 +4,7 @@ import { Team } from "../../declare/enums"
 
 import { IProperty } from "../../declare/types"
 
-class PTeam implements IProperty {
+export default class PTeam implements IProperty {
 
     readonly propertyId = "team"
 
@@ -17,5 +17,3 @@ class PTeam implements IProperty {
     get value() { return this.dp.get(this.propertyId) as Team }
     update = (value: Team) => this.dp.update(this.propertyId, value)
 }
-
-export { PTeam }

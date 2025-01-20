@@ -3,7 +3,7 @@ import { WorldProperty } from "../_dynamicProperty";
 import { IProperty } from "../../declare/types";
 import { Status } from "../../declare/enums";
 
-class PGameStatus implements IProperty {
+export default class PGameStatus implements IProperty {
 
     readonly propertyId = "game_status"
 
@@ -15,4 +15,3 @@ class PGameStatus implements IProperty {
     get value() { return this.dp.get(this.propertyId) as Status }
     update = (value: Status) => this.dp.update(this.propertyId, value)
 }
-export { PGameStatus }
