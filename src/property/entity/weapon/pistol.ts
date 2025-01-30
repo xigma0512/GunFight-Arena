@@ -14,5 +14,5 @@ export default class PPistol implements IProperty {
     }
 
     get value() { return this.dp.get(this.propertyId) as number }
-    update = (value: number) => this.dp.update(this.propertyId, value)
+    update = (value = 100) => this.dp.update(this.propertyId, value)
 }

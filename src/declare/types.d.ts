@@ -5,5 +5,5 @@ declare type PropertyDataType = string | number | boolean | Vector3 | undefined
 declare interface IProperty {
     readonly propertyId: string;
     get value(): PropertyDataType
-    update(value: PropertyDataType): void
+    update(value?: PropertyDataType): void
 }

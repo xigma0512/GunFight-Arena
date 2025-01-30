@@ -15,5 +15,5 @@ export default class PTeam implements IProperty {
         if (this.dp.get(this.propertyId) === undefined) this.dp.update(this.propertyId, Team.None)
     }
     get value() { return this.dp.get(this.propertyId) as Team }
-    update = (value: Team) => this.dp.update(this.propertyId, value)
+    update = (value = Team.None) => this.dp.update(this.propertyId, value)
 }
