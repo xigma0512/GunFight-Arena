@@ -7,3 +7,8 @@ declare interface IProperty {
     get value(): PropertyDataType
     update(value?: PropertyDataType): void
 }
+
+declare abstract class IStateHandler {
+    update(): void;
+    exit(_?: any): void;
+}
