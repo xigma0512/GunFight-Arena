@@ -11,20 +11,9 @@ import { EntityEquippableComponent, EquipmentSlot, HudElement } from "@minecraft
 
 export default function realTimeSystenRun() {
     world.getPlayers().forEach(onlinePlayer => {
-        hold_detect(onlinePlayer)
-        showInfoScreen(onlinePlayer)
-        gun_choose(onlinePlayer);
+        hold_detect(onlinePlayer);
+        showInfoScreen(onlinePlayer);
     });
-}
-
-
-function gun_choose(player: Player) {
-    const [main_weapon, pistol] = [
-        world.scoreboard.getObjective('main_weapon'),
-        world.scoreboard.getObjective('pistol')
-    ]
-    PropertyManager.entity(player).get('main_weapon').update(main_weapon?.getScore(player))
-    PropertyManager.entity(player).get('pistol').update(pistol?.getScore(player))
 }
 
 
@@ -58,14 +47,13 @@ const showInfoScreen = (player: Player) => {
         'In Battle.    ',
         'Game Over.    '
     ]
-    const pstatus = PropertyManager.world().get('game_status');
     const pteam = PropertyManager.world().get('team_score') as PTeamScore
     const [blueTeamScore, redTeamScore] = [pteam.getTeamScore(Team.Blue), pteam.getTeamScore(Team.Red)]
 
     const rawMessage = {
         "rawtext": [
             { "text": "      §l§dGunfight Arena§r      \n\n" },
-            { "text": `§eStatus: ${statusList[pstatus.value as number]}\n` },
+            { "text": `§eStatus: ${statusList[Demolition.instance.state as number]}\n` },
             { "text": `§aTime: ${formatTime(Demolition.instance.time)}§r\n` },
             { "text": `§fScore: §b${blueTeamScore} §f| §c${redTeamScore}` }
         ]
