@@ -27,7 +27,7 @@ export const respawnPlayer = (player: Player) => {
     tp2TeamSpawn(player, team);
     palive.update(true);
     player.addEffect('health_boost', 2000000, { amplifier: 9, showParticles: false });
-    player.addEffect('instant_health', 1, { amplifier: 99 });
+    player.addEffect('instant_health', 2, { amplifier: 99 });
 
     const item = new ItemStack('feather');
     item.lockMode = ItemLockMode.slot;
