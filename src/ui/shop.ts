@@ -13,7 +13,7 @@ export function shop(player: Player) {
     system.run(() => form.show(player).then(res => {
         if (res.canceled) return - 1;
         const result = res.selection as number;
-        PropertyManager.entity(player).get(result >= 100 ? 'main_weapon' : 'pistol').update(result);
+        PropertyManager.entity(player).get(result < 8 ? 'main_weapon' : 'pistol').update(result);
         player.sendMessage(`You choose weapon ${ItemTable.weaponNameTable[result]}`);
     }));
 }
