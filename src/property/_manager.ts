@@ -6,8 +6,8 @@ import PGameMode from "./world/game_mode";
 // Entity Property
 import PTeam from "./entity/team";
 import PAlive from "./entity/alive";
-import PMainWeapon from "./entity/weapon/main_weapon";
-import PPistol from "./entity/weapon/pistol";
+import PMainWeapon from "./entity/main_weapon";
+import PPistol from "./entity/pistol";
 
 class WorldPropertyManager {
     private propertyTable: Record<string, IProperty>;
