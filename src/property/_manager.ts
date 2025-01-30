@@ -2,7 +2,6 @@ import { Entity } from "@minecraft/server";
 import { IProperty } from "../declare/types";
 // World Property
 import PTeamScore from "./world/team_score";
-import PGameStatus from "./world/game_status";
 import PGameMode from "./world/game_mode";
 // Entity Property
 import PTeam from "./entity/team";
@@ -14,7 +13,6 @@ class WorldPropertyManager {
     constructor() {
         this.propertyTable = {
             "team_score": new PTeamScore,
-            "game_status": new PGameStatus,
             "game_mode": new PGameMode
         }
     }
