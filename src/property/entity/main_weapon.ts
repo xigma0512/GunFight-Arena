@@ -1,6 +1,6 @@
 import { Entity } from "@minecraft/server"
-import { IProperty } from "../../../declare/types"
-import { EntityProperty } from "../../_dynamicProperty"
+import { IProperty } from "../../declare/types"
+import { EntityProperty } from "../_dynamicProperty"
 
 export default class PMainWeapon implements IProperty {
 
@@ -14,5 +14,5 @@ export default class PMainWeapon implements IProperty {
     }
 
     get value() { return this.dp.get(this.propertyId) as number }
-    update = (value = 1) => this.dp.update(this.propertyId, value)
+    update = (value = 0) => this.dp.update(this.propertyId, value)
 }
