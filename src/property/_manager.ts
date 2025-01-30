@@ -5,6 +5,7 @@ import PTeamScore from "./world/team_score";
 import PGameMode from "./world/game_mode";
 // Entity Property
 import PTeam from "./entity/team";
+import PAlive from "./entity/alive";
 import PMainWeapon from "./entity/weapon/main_weapon";
 import PPistol from "./entity/weapon/pistol";
 
@@ -25,6 +26,7 @@ class EntityPropertyManager {
     constructor(private entity: Entity) {
         this.propertyTable = {
             "team": new PTeam(this.entity),
+            "alive": new PAlive(this.entity),
             "main_weapon": new PMainWeapon(this.entity),
             "pistol": new PPistol(this.entity)
         }
