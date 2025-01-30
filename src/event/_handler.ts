@@ -1,13 +1,13 @@
 import entityHealthChange from "./after/entityHealthChange";
+import itemUseOn from "./after/itemUseOn";
 import playerSpawn from "./after/playerSpawn";
 import worldInit from "./after/worldInit";
-import onChat from "./before/onChat";
 
 export default function eventListener() {
     [
         playerSpawn,
         worldInit,
         entityHealthChange,
-        onChat
+        itemUseOn
     ].forEach(ev => ev.subscribe())
 }
