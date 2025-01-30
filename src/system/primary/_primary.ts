@@ -1,10 +1,10 @@
 import { effect } from "./effects";
-import { status_detect } from "./status_detect";
+import { statue_manager } from "./status_manager";
 
 let tickingTime = -1
 const primary = () => {
     if (tickingTime > 0) tickingTime--;
-    status_detect(tickingTime)
+    statue_manager(tickingTime)
     effect();
 }
 
