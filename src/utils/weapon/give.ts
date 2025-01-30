@@ -1,17 +1,21 @@
-import { EnchantmentType, EntityEquippableComponent, EquipmentSlot, ItemEnchantableComponent, world } from "@minecraft/server"
-import {
-    Container,
-    ItemStack,
-    EntityInventoryComponent,
-    ItemLockMode,
-    Player
-} from "@minecraft/server"
-
 import { ItemTable } from "./table"
 import { Team } from "../../declare/enums"
 
 import config from "../../config"
 import { PropertyManager } from "../../property/_manager"
+
+import { Player, world } from "@minecraft/server"
+import {
+    Container,
+    ItemStack,
+    EntityInventoryComponent,
+    ItemLockMode,
+    EnchantmentType,
+    EntityEquippableComponent,
+    EquipmentSlot,
+    ItemEnchantableComponent
+} from "@minecraft/server"
+
 
 type WeaponIds = keyof typeof ItemTable.weapon
 
@@ -32,12 +36,12 @@ const giveWeapon = (target: Player, mainId: WeaponIds, pistolId: WeaponIds) => {
         if (itemStack.typeId == "gabrielaplok:awp")
             itemStack = getSpecialItem(config.special_item.awp)
 
-        itemStack.lockMode = ItemLockMode.inventory
+        itemStack.lockMode = ItemLockMode.slot
         inventory.container?.setItem(slot, itemStack)
     })
 
-    const itemStack = new ItemStack("gabrielaplok:m67_grenade", 2)
-    itemStack.lockMode = ItemLockMode.inventory
+    const itemStack = new ItemStack("gabrielaplok:m67_grenade", 3)
+    itemStack.lockMode = ItemLockMode.slot
     inventory.container?.setItem(2, itemStack)
 }
 
@@ -65,5 +69,5 @@ const giveArmor = (target: Player, team: Team) => {
 export const giveEquipment = (target: Player) => {
     giveWeapon(target, PropertyManager.entity(target).get('main_weapon').value as number, PropertyManager.entity(target).get('pistol').value as number);
     giveArmor(target, PropertyManager.entity(target).get('team').value as number);
-    target.sendMessage("send equipment");
+    target.sendMessage("Your weapons and gear have been delivered.");
 }
