@@ -1,7 +1,5 @@
 import eventListener from "./event/_handler";
-import { run } from "./system/run";
-import { test } from "./utils/test";
+import { runInterval } from "./system/_run";
 
 eventListener();
-run()
-test()
+runInterval()
