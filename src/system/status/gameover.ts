@@ -2,19 +2,24 @@ import { IStateHandler } from "../../declare/types"
 import Demolition from "./_demolition"
 import { resetPlayerData } from "../../utils/_utils"
 
-export default class GameOverHanlder extends Demolition implements IStateHandler {
+export default class GameOverHanlder implements IStateHandler {
 
-    constructor() { super(); }
+    private static _instance: GameOverHanlder;
+    static get instance() { return (this._instance || (this._instance = new this())); }
 
     update() {
-        this.players.forEach(pl => {
-            pl.onScreenDisplay.setActionBar(`Back to the lobby in ${this.time} seconds.`)
+        const demolition = Demolition.instance;
+
+        demolition.players.forEach(pl => {
+            pl.onScreenDisplay.setActionBar(`Back to the lobby in ${demolition.time} seconds.`)
         })
-        if (this.time <= 0) this.exit();
+        if (demolition.time <= 0) this.exit();
     }
 
     exit() {
-        this.players.forEach(pl => resetPlayerData(pl));
+        const demolition = Demolition.instance;
+
+        demolition.players.forEach(pl => resetPlayerData(pl));
     }
 
 }

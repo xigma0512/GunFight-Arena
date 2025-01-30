@@ -7,23 +7,33 @@ import { Status, Team } from "../../declare/enums";
 
 import { world, Player } from "@minecraft/server";
 
-export default class WaitingHanlder extends Demolition implements IStateHandler {
+export default class WaitingHanlder implements IStateHandler {
 
-    constructor() { super(); }
+    private static _instance: WaitingHanlder;
+    static get instance() { return (this._instance || (this._instance = new this())); }
 
     update() {
-        for (const p of this.players) {
-            p.onScreenDisplay.setActionBar(`Waiting for more players...(${this.players.length}/10)`);
+        const demolition = Demolition.instance;
+
+        for (const p of demolition.players) {
+            p.onScreenDisplay.setActionBar(`Waiting for more players...(${demolition.players.length}/10)`);
+            p.addEffect('regeneration', 1, { amplifier: 254, showParticles: false });
+            p.addEffect('absorption', 1, { amplifier: 254, showParticles: false });
         }
-        if (this.players.length > world.getAllPlayers().length) this.exit();
+
+        if (demolition.players.length >= world.getAllPlayers().length) {
+            for (const p of demolition.players) p.sendMessage("\nAll players are ready. Game Start.\n");
+            this.exit();
+        }
     }
 
     exit() {
+        const demolition = Demolition.instance;
 
-        randomTeam(this.players);
-        this.time = 20;
+        randomTeam(demolition.players);
+        demolition.time = 30;
 
-        this.players.forEach(pl => {
+        demolition.players.forEach(pl => {
             pl.sendMessage('§l§oCredits:§r\n');
             pl.sendMessage('§f- §cGame Design §bby §7@xigma0512\n');
             pl.sendMessage('§f- §cGun Models §bby §7@GabrielAplok\n');
@@ -32,7 +42,7 @@ export default class WaitingHanlder extends Demolition implements IStateHandler 
             respawnPlayer(pl);
         });
 
-        this.state = Status.Preparing;
+        demolition.state = Status.Preparing;
     }
 
 }

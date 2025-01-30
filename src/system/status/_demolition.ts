@@ -1,12 +1,12 @@
 import { IStateHandler } from "../../declare/types";
 import WaitingHanlder from "./waiting"
+import PreparingHandler from "./preparing";
+import RunningHandler from "./running";
+import GameOverHanlder from "./gameover";
 
 import { Status } from "../../declare/enums";
 
 import { Player } from "@minecraft/server";
-import PreparingHandler from "./preparing";
-import RunningHandler from "./running";
-import GameOverHanlder from "./gameover";
 
 export default class Demolition {
 
@@ -15,21 +15,20 @@ export default class Demolition {
 
     private _state: Status;
     private _time: number;
-    private _handlers: IStateHandler[];
-
-    protected players: Player[];
+    private _handlers: IStateHandler[] = [];
+    private _players: Player[];
 
     constructor() {
         this._state = Status.Waiting;
         this._time = -1;
-        this._handlers = [
-            new WaitingHanlder(),
-            new PreparingHandler(),
-            new RunningHandler(),
-            new GameOverHanlder()
-        ];
+        this._players = [];
 
-        this.players = [];
+        this._handlers = [
+            WaitingHanlder.instance,
+            PreparingHandler.instance,
+            RunningHandler.instance,
+            GameOverHanlder.instance
+        ];
     }
 
     tick() {
@@ -39,7 +38,20 @@ export default class Demolition {
 
     get state() { return this._state; }
     get time() { return this._time; }
-    protected set state(s: Status) { this._state = s; }
-    protected set time(t: number) { this._time = t; }
+    get players() { return this._players; }
+
+    set state(s: Status) { this._state = s; }
+    set time(t: number) { this._time = t; }
+
+    addPlayer(player: Player) {
+        const index = this.players.indexOf(player);
+        if (index == -1) this.players.push(player);
+    }
+
+    removePlayer(player: Player) {
+        const index = this.players.indexOf(player);
+        if (index == -1) return;
+        this.players.splice(index, 1);
+    }
 
 }
