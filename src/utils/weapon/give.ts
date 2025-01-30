@@ -11,6 +11,7 @@ import { ItemTable } from "./table"
 import { Team } from "../../declare/enums"
 
 import config from "../../config"
+import { PropertyManager } from "../../property/_manager"
 
 type WeaponIds = keyof typeof ItemTable.weapon
 
@@ -33,9 +34,11 @@ const giveWeapon = (target: Player, mainId: WeaponIds, pistolId: WeaponIds) => {
 
         itemStack.lockMode = ItemLockMode.inventory
         inventory.container?.setItem(slot, itemStack)
-
-        target.sendMessage(JSON.stringify([id, amount, slot]))
     })
+
+    const itemStack = new ItemStack("gabrielaplok:m67_grenade", 2)
+    itemStack.lockMode = ItemLockMode.inventory
+    inventory.container?.setItem(2, itemStack)
 }
 
 const giveArmor = (target: Player, team: Team) => {
@@ -58,4 +61,9 @@ const giveArmor = (target: Player, team: Team) => {
         ][i], itemStack)
     })
 }
-export { giveWeapon, giveArmor }
+
+export const giveEquipment = (target: Player) => {
+    giveWeapon(target, PropertyManager.entity(target).get('main_weapon').value as number, PropertyManager.entity(target).get('pistol').value as number);
+    giveArmor(target, PropertyManager.entity(target).get('team').value as number);
+    target.sendMessage("send equipment");
+}
