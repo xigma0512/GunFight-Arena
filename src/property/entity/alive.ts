@@ -1,6 +1,7 @@
-import { Entity } from "@minecraft/server";
-import { IProperty } from "../../declare/types";
 import { EntityProperty } from "../_dynamicProperty";
+import { IProperty } from "../../declare/types";
+
+import { Entity } from "@minecraft/server";
 
 export default class PAlive implements IProperty {
 
@@ -13,5 +14,5 @@ export default class PAlive implements IProperty {
         if (this.dp.get(this.propertyId) === undefined) this.dp.update(this.propertyId, true)
     }
     get value() { return this.dp.get(this.propertyId) as boolean }
-    update = (value: boolean) => this.dp.update(this.propertyId, value)
+    update = (value = false) => this.dp.update(this.propertyId, value);
 }

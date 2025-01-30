@@ -1,8 +1,8 @@
-import { Entity } from "@minecraft/server"
 import { EntityProperty } from "../_dynamicProperty"
+import { IProperty } from "../../declare/types"
 import { Team } from "../../declare/enums"
 
-import { IProperty } from "../../declare/types"
+import { Entity } from "@minecraft/server"
 
 export default class PTeam implements IProperty {
 
@@ -15,5 +15,5 @@ export default class PTeam implements IProperty {
         if (this.dp.get(this.propertyId) === undefined) this.dp.update(this.propertyId, Team.None)
     }
     get value() { return this.dp.get(this.propertyId) as Team }
-    update = (value = Team.None) => this.dp.update(this.propertyId, value)
+    update = (value = Team.None) => this.dp.update(this.propertyId, value);
 }
