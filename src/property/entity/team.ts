@@ -12,5 +12,5 @@ export default class PTeam implements IProperty {
             this.entity.setDynamicProperty(this.propertyId, Team.None);
     }
     get value() { return this.entity.getDynamicProperty(this.propertyId) as Team }
-    update = (value = Team.None) => this.entity.setDynamicProperty(this.propertyId, Team.None);
+    update = (value = Team.None) => this.entity.setDynamicProperty(this.propertyId, value);
 }
