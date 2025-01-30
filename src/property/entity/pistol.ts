@@ -1,18 +1,15 @@
 import { Entity } from "@minecraft/server"
 import { IProperty } from "../../declare/types"
-import { EntityProperty } from "../_dynamicProperty"
 
 export default class PPistol implements IProperty {
 
     readonly propertyId = "pistol"
 
-    private dp: EntityProperty;
-
     constructor(private entity: Entity) {
-        this.dp = new EntityProperty(entity)
-        if (this.dp.get(this.propertyId) === undefined) this.dp.update(this.propertyId, 8)
+        if (this.entity.getDynamicProperty(this.propertyId) === undefined)
+            this.entity.setDynamicProperty(this.propertyId, 8);
     }
 
-    get value() { return this.dp.get(this.propertyId) as number }
-    update = (value = 8) => this.dp.update(this.propertyId, value);
+    get value() { return this.entity.getDynamicProperty(this.propertyId) as number }
+    update = (value = 8) => this.entity.setDynamicProperty(this.propertyId, value);
 }

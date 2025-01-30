@@ -1,4 +1,3 @@
-import { EntityProperty } from "../_dynamicProperty"
 import { IProperty } from "../../declare/types"
 import { Team } from "../../declare/enums"
 
@@ -8,12 +7,10 @@ export default class PTeam implements IProperty {
 
     readonly propertyId = "team"
 
-    private dp: EntityProperty
-
     constructor(private entity: Entity) {
-        this.dp = new EntityProperty(this.entity)
-        if (this.dp.get(this.propertyId) === undefined) this.dp.update(this.propertyId, Team.None)
+        if (this.entity.getDynamicProperty(this.propertyId) === undefined)
+            this.entity.setDynamicProperty(this.propertyId, Team.None);
     }
-    get value() { return this.dp.get(this.propertyId) as Team }
-    update = (value = Team.None) => this.dp.update(this.propertyId, value);
+    get value() { return this.entity.getDynamicProperty(this.propertyId) as Team }
+    update = (value = Team.None) => this.entity.setDynamicProperty(this.propertyId, Team.None);
 }
