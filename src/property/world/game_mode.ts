@@ -1,7 +1,7 @@
 import { WorldProperty } from "../_dynamicProperty";
 
 import { IProperty } from "../../declare/types";
-import { GameMode, Status } from "../../declare/enums";
+import { EGameMode } from "../../declare/enums";
 
 export default class PGameMode implements IProperty {
 
@@ -10,9 +10,9 @@ export default class PGameMode implements IProperty {
     private dp = new WorldProperty()
 
     constructor() {
-        if (this.dp.get(this.propertyId) === undefined) this.dp.update(this.propertyId, GameMode.Demolition)
+        if (this.dp.get(this.propertyId) === undefined) this.dp.update(this.propertyId, EGameMode.Demolition)
     }
-    get value() { return this.dp.get(this.propertyId) as GameMode }
-    update = (value: GameMode) => this.dp.update(this.propertyId, value)
+    get value() { return this.dp.get(this.propertyId) as EGameMode }
+    update = (value: EGameMode) => this.dp.update(this.propertyId, value)
 }
 export { PGameMode }

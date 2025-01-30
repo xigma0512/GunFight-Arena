@@ -5,7 +5,7 @@ export enum Status {
     GameOver
 }
 
-export enum GameMode {
+export enum EGameMode {
     DeathMatch,
     Demolition // 爆破模式
 }
