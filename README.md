@@ -43,5 +43,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - [ ] 裝包/拆包
 - [ ] 開放自訂設定，可以自行選擇地圖
 - [ ] 為商店的選項增加圖片
+- [ ] 隱藏玩家名牌
+- [ ] 自定義觀察者 (可飛行但不可穿牆)
 - [ ] 經濟系統，用來購買槍枝或道具
 - [ ] 新增更多模式
