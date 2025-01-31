@@ -1,6 +1,6 @@
 import { IStateHandler } from "../../../declare/types";
 import Demolition from "./_handler";
-import { giveEquipment } from "../../utils/weapon/give";
+import Equipment from "../../equipment/equipment";
 
 import { InputPermissionCategory } from "@minecraft/server";
 import { States } from "../../../declare/enums";
@@ -20,7 +20,7 @@ export default class PreparingHandler implements IStateHandler {
     exit() {
         this.demolition.time = 600;
         this.demolition.players.forEach(pl => {
-            giveEquipment(pl);
+            Equipment.send(pl);
             pl.inputPermissions.setPermissionCategory(InputPermissionCategory.Movement, true);
 
             pl.playSound('random.levelup');

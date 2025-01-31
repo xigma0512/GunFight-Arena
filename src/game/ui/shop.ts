@@ -1,6 +1,6 @@
 import { Player, system } from "@minecraft/server";
 import { ActionFormData } from "@minecraft/server-ui";
-import { ItemTable } from "../../core/utils/weapon/table";
+import { ItemTable } from "../../core/equipment/table";
 import { PropertyManager } from "../property/_manager";
 
 export function shop(player: Player) {
