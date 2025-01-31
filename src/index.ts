@@ -1,5 +1,5 @@
-import eventListener from "./event/_handler";
-import { runInterval } from "./system/_run";
+import eventListener from "./game/event/_handler";
+import { runInterval } from "./core/system/_run";
 
 eventListener();
 runInterval()
