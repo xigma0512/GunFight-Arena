@@ -2,12 +2,13 @@ export enum Status {
     Waiting,
     Preparing,
     Running,
-    GameOver
+    GameOver,
+    Sleeping
 }
 
-export enum EGameMode {
+export enum Mode {
+    Demolition, // 爆破模式
     DeathMatch,
-    Demolition // 爆破模式
 }
 
 export enum Team {
