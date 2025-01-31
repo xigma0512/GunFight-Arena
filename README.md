@@ -33,8 +33,9 @@
 
 ## 📜 貢獻
 
-**👤Author**: [xigma0512](https://github.com/xigma0512) \
-**🎨AplokGun Addon**: [MCPEDL](https://mcpedl.com/aplok-guns/), developed by [GabrielAplok](https://github.com/gabriel-aplok/)
+**👤Author**: [@xigma0512](https://github.com/xigma0512) \
+**🎨AplokGun Addon**: [Aplok Guns](https://mcpedl.com/aplok-guns/), developed by [@GabrielAplok](https://github.com/gabriel-aplok/)\
+**🌍Map**: [CS:GO Dust II](https://mcpedl.com/cs-s-dust-ii/) Creating by @Codre & Porting by @AzozGamer936
 
 ## 🏛️ License
 This project is licensed under the MIT License. See the LICENSE file for details.
