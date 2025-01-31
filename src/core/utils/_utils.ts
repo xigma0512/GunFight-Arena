@@ -1,11 +1,13 @@
-import { EntityInventoryComponent, GameMode, InputPermissionCategory, ItemLockMode, ItemStack, Player } from "@minecraft/server";
 import { PropertyManager } from "../../game/property/_manager";
-
-import { Mode, States, Team } from "../../declare/enums";
-import config from "../../config";
 import Demolition from "../modes/demolition/_handler";
 import PTeamScore from "../../game/property/world/team_score";
 
+import { Mode, States, Team } from "../../declare/enums";
+import config from "../../config";
+
+import { ItemStack, Player } from "@minecraft/server";
+import { ItemLockMode, InputPermissionCategory, GameMode } from "@minecraft/server"
+import { EntityInventoryComponent } from "@minecraft/server"
 
 export const resetProp = () => {
     PropertyManager.world().get('game_mode').update(Mode.Demolition);
@@ -40,7 +42,7 @@ export const respawnPlayer = (player: Player) => {
     setGameMode(player, 'adventure');
     tp2TeamSpawn(player, team);
     palive.update(true);
-    player.addEffect('health_boost', 2000000, { amplifier: 4, showParticles: false });
+    player.addEffect('health_boost', 2000000, { amplifier: 9, showParticles: false });
     player.addEffect('instant_health', 2, { amplifier: 99 });
 
     const item = new ItemStack('feather');
