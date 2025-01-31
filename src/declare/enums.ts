@@ -1,9 +1,11 @@
-export enum Status {
-    Waiting,
-    Preparing,
-    Running,
-    GameOver,
-    Sleeping
+export namespace States {
+    export enum Demolition {
+        Waiting,
+        Preparing,
+        Running,
+        GameOver,
+        Sleeping
+    }
 }
 
 export enum Mode {
