@@ -12,14 +12,12 @@ export default class WaitingHanlder implements IStateHandler {
     private get demolition() { return Demolition.instance; }
 
     update() {
-        for (const p of this.demolition.players) {
+        for (const p of world.getAllPlayers()) {
             p.onScreenDisplay.setActionBar(`Waiting for more players...(${this.demolition.players.length}/10)`);
-            p.addEffect('regeneration', 1, { amplifier: 254, showParticles: false });
-            p.addEffect('absorption', 1, { amplifier: 254, showParticles: false });
+            p.addEffect('regeneration', 30, { amplifier: 254, showParticles: false });
+            p.addEffect('absorption', 30, { amplifier: 254, showParticles: false });
         }
-
         if (this.demolition.players.length >= world.getAllPlayers().length) this.exit();
-
     }
 
     exit() {
