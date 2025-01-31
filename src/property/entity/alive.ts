@@ -11,5 +11,5 @@ export default class PAlive implements IProperty {
             this.entity.setDynamicProperty(this.propertyId, true);
     }
     get value() { return this.entity.getDynamicProperty(this.propertyId) as boolean }
-    update = (value = false) => this.entity.setDynamicProperty(this.propertyId, value);
+    update = (value = true) => this.entity.setDynamicProperty(this.propertyId, value);
 }
