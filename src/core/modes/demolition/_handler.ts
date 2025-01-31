@@ -2,6 +2,7 @@ import WaitingHanlder from "./waiting"
 import PreparingHandler from "./preparing";
 import RunningHandler from "./running";
 import GameOverHanlder from "./gameover";
+import SleepingHanlder from "./sleeping";
 
 import { States } from "../../../declare/enums";
 
@@ -22,7 +23,8 @@ export default class Demolition extends ModeHandler {
             new WaitingHanlder,
             new PreparingHandler,
             new RunningHandler,
-            new GameOverHanlder
+            new GameOverHanlder,
+            new SleepingHanlder,
         ]);
         this._state = States.Demolition.Waiting;
     }
