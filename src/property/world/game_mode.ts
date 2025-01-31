@@ -1,5 +1,5 @@
 import { IProperty } from "../../declare/types";
-import { EGameMode } from "../../declare/enums";
+import { Mode } from "../../declare/enums";
 import { world } from "@minecraft/server";
 
 export default class PGameMode implements IProperty {
@@ -8,9 +8,9 @@ export default class PGameMode implements IProperty {
 
     constructor() {
         if (world.getDynamicProperty(this.propertyId) === undefined)
-            world.setDynamicProperty(this.propertyId, EGameMode.Demolition)
+            world.setDynamicProperty(this.propertyId, Mode.Demolition)
     }
-    get value() { return world.getDynamicProperty(this.propertyId) as EGameMode }
-    update = (value = EGameMode.Demolition) => world.setDynamicProperty(this.propertyId, value);
+    get value() { return world.getDynamicProperty(this.propertyId) as Mode }
+    update = (value = Mode.Demolition) => world.setDynamicProperty(this.propertyId, value);
 }
 export { PGameMode }
