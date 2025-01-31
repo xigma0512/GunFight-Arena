@@ -40,6 +40,8 @@
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## 📌 TODO
-- [ ] 新增裝包/拆包
-- [ ] 為商店的選項新增圖片
+- [ ] 裝包/拆包
+- [ ] 開放自訂設定，可以自行選擇地圖
+- [ ] 為商店的選項增加圖片
+- [ ] 經濟系統，用來購買槍枝或道具
 - [ ] 新增更多模式
