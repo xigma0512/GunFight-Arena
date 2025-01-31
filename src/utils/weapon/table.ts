@@ -10,9 +10,9 @@ abstract class ItemTable {
         6: "awp",
         7: "mp5a5",
 
-        100: "deagle",
-        101: "glock17",
-        102: "glock18c"
+        8: "deagle",
+        9: "glock17",
+        10: "glock18c"
     };
 
     // [item_id, amount, hotbar_slotId]
@@ -58,17 +58,17 @@ abstract class ItemTable {
             ["gabrielaplok:mp5a5_mag", 10, 8]
         ],
         // deagle
-        100: [
+        8: [
             ["gabrielaplok:deagle", 1, 1],
             ["gabrielaplok:deagle_mag", 10, 7]
         ],
         // glock17
-        101: [
+        9: [
             ["gabrielaplok:glock17", 1, 1],
             ["gabrielaplok:glock17_mag", 10, 7]
         ],
         // glock18c
-        102: [
+        10: [
             ["gabrielaplok:glock18", 1, 1],
             ["gabrielaplok:glock18_mag", 10, 7]
         ],
