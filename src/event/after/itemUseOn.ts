@@ -6,7 +6,6 @@ export default abstract class itemUseOn {
     static subscribe = () => {
         return world.beforeEvents.itemUse.subscribe(ev => {
             if (ev.itemStack.typeId === "minecraft:feather") shop(ev.source);
-            ev.source.sendMessage(ev.itemStack.typeId)
         })
     }
     static unsubscribe = (ev: (args: ItemUseBeforeEvent) => void) => world.beforeEvents.itemUse.unsubscribe(ev)
