@@ -1,9 +1,9 @@
 import { Entity } from "@minecraft/server"
 import { IProperty } from "../../../declare/types"
 
-export default class PPistol implements IProperty {
+export default class PSecondaryWeapon implements IProperty {
 
-    readonly propertyId = "pistol"
+    readonly propertyId = "secondary_weapon"
 
     constructor(private entity: Entity) {
         if (this.entity.getDynamicProperty(this.propertyId) === undefined)

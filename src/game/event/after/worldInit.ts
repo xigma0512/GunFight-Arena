@@ -9,7 +9,7 @@ export default abstract class worldInit {
             resetProp();
 
             if (world.scoreboard.getObjective('main_weapon') === undefined) world.scoreboard.addObjective('main_weapon');
-            if (world.scoreboard.getObjective('pistol') === undefined) world.scoreboard.addObjective('pistol');
+            if (world.scoreboard.getObjective('secondary_weapon') === undefined) world.scoreboard.addObjective('secondary_weapon');
             if (world.scoreboard.getObjective('team') === undefined) world.scoreboard.addObjective('team', 'TEAM');
 
             world.scoreboard.setObjectiveAtDisplaySlot(DisplaySlotId.List, { 'objective': world.scoreboard.getObjective('team') as ScoreboardObjective })

@@ -25,11 +25,11 @@ function getSpecialItem(slot: number) {
     return container.getItem(slot) as ItemStack
 }
 
-const giveWeapon = (target: Player, mainId: WeaponIds, pistolId: WeaponIds) => {
+const giveWeapon = (target: Player, mainId: WeaponIds, secondaryId: WeaponIds) => {
 
     const inventory = target.getComponent(EntityInventoryComponent.componentId) as EntityInventoryComponent;
 
-    const weaponInfo = ItemTable.weapon[mainId].concat(ItemTable.weapon[pistolId])
+    const weaponInfo = ItemTable.weapon[mainId].concat(ItemTable.weapon[secondaryId])
     weaponInfo.forEach(item => {
         const [id, amount, slot] = item
         let itemStack = new ItemStack(id, amount)
@@ -67,7 +67,7 @@ const giveArmor = (target: Player, team: Team) => {
 }
 
 export const giveEquipment = (target: Player) => {
-    giveWeapon(target, PropertyManager.entity(target).get('main_weapon').value as number, PropertyManager.entity(target).get('pistol').value as number);
+    giveWeapon(target, PropertyManager.entity(target).get('main_weapon').value as number, PropertyManager.entity(target).get('secondary_weapon').value as number);
     giveArmor(target, PropertyManager.entity(target).get('team').value as number);
     target.sendMessage("Your weapons and gear have been delivered.");
 }

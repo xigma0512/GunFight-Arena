@@ -7,7 +7,7 @@ import PGameMode from "./world/game_mode";
 import PTeam from "./entity/team";
 import PAlive from "./entity/alive";
 import PMainWeapon from "./entity/main_weapon";
-import PPistol from "./entity/pistol";
+import PSecondaryWeapon from "./entity/secondary_weapon";
 
 class WorldPropertyManager {
     private propertyTable: Record<string, IProperty>;
@@ -28,7 +28,7 @@ class EntityPropertyManager {
             "team": new PTeam(this.entity),
             "alive": new PAlive(this.entity),
             "main_weapon": new PMainWeapon(this.entity),
-            "pistol": new PPistol(this.entity)
+            "secondary_weapon": new PSecondaryWeapon(this.entity)
         }
     }
     properties = () => this.propertyTable
