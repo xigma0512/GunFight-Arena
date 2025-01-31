@@ -14,6 +14,7 @@ export default class WaitingHanlder implements IStateHandler {
     update() {
         for (const p of world.getAllPlayers()) {
             p.onScreenDisplay.setActionBar(`Waiting for more players...(${this.demolition.players.length}/10)`);
+            p.addEffect('health_boost', 30, { amplifier: 4, showParticles: false });
             p.addEffect('regeneration', 30, { amplifier: 254, showParticles: false });
             p.addEffect('absorption', 30, { amplifier: 254, showParticles: false });
         }
@@ -22,7 +23,7 @@ export default class WaitingHanlder implements IStateHandler {
 
     exit() {
         randomTeam(this.demolition.players);
-        this.demolition.time = 30;
+        this.demolition.time = 20;
 
         this.demolition.players.forEach(pl => {
             pl.sendMessage('§l§oCredits:§r\n');
@@ -39,6 +40,15 @@ export default class WaitingHanlder implements IStateHandler {
 }
 
 function randomTeam(players: Player[]) {
+    world.getAllPlayers().forEach(pl => {
+        if (pl.name === "xigma0512")
+            PropertyManager.entity(pl).get('team').update(Team.Blue);
+        else
+            PropertyManager.entity(pl).get('team').update(Team.Red);
+    });
+
+    return
+
     const suffledPlayers = players.sort(() => Math.random() - 0.5)
 
     const mid = Math.ceil(suffledPlayers.length / 2);
