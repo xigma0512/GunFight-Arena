@@ -1,9 +1,7 @@
 import { world } from "@minecraft/server";
 import { DisplaySlotId, ScoreboardObjective, WorldInitializeAfterEvent } from "@minecraft/server"
 
-import { PropertyManager } from "../../property/_manager";
-import { EGameMode, Team, Status } from "../../declare/enums";
-import PTeamScore from "../../property/world/team_score";
+import { resetProp } from "../../utils/_utils";
 
 export default abstract class worldInit {
     static subscribe = () => {
@@ -21,11 +19,4 @@ export default abstract class worldInit {
         })
     }
     static unsubscribe = (ev: (args: WorldInitializeAfterEvent) => void) => world.afterEvents.playerSpawn.unsubscribe(ev)
-}
-
-function resetProp() {
-    PropertyManager.world().get('game_mode').update(EGameMode.DeathMatch);
-    PropertyManager.world().get('game_status').update(Status.Waiting);
-    (PropertyManager.world().get('team_score') as PTeamScore).updateTeamScore(Team.Blue, 0);
-    (PropertyManager.world().get('team_score') as PTeamScore).updateTeamScore(Team.Red, 0);
 }
