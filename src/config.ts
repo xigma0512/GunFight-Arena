@@ -1,5 +1,4 @@
 export default {
-    revival_time: 100,
     special_item: {
         container_position: { x: -66, y: 25, z: -538 },
         awp: 0,
@@ -16,6 +15,6 @@ export default {
             { x: -25, y: 30, z: -550 },
             { x: -25, y: 30, z: -550 }
         ],
-        winningScore: 5
+        winningScore: 6
     }
 }
