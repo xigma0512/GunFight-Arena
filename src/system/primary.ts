@@ -1,9 +1,10 @@
-import Demolition from "./status/_demolition";
+import Demolition from "../modes/demolition/_handler";
 
 import { PropertyManager } from "../property/_manager";
 
 import { Mode } from "../declare/enums";
 import { world } from "@minecraft/server";
+import ModeManager from "../modes/_manager";
 
 export default function primarySystemRun() {
     mode_manager();
@@ -12,10 +13,8 @@ export default function primarySystemRun() {
 }
 
 function mode_manager() {
-    const gameMode = PropertyManager.world().get('game_mode').value
-    switch (gameMode) {
-        case Mode.Demolition: Demolition.instance.tick(); break;
-    }
+    const gameMode = PropertyManager.world().get('game_mode').value as Mode
+    ModeManager.getMode(gameMode).tick();
 }
 
 function giveEffect() {

@@ -1,5 +1,5 @@
 import { PlayerLeaveBeforeEvent, world } from "@minecraft/server"
-import Demolition from "../../gamemode/demolition/_handler"
+import Demolition from "../../modes/demolition/_handler"
 
 abstract class playerLeave {
     static subscribe = () => {

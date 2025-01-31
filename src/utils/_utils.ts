@@ -1,15 +1,15 @@
 import { EntityInventoryComponent, GameMode, InputPermissionCategory, ItemLockMode, ItemStack, Player } from "@minecraft/server";
 import { PropertyManager } from "../property/_manager";
 
-import { Mode, Status, Team } from "../declare/enums";
+import { Mode, States, Team } from "../declare/enums";
 import config from "../config";
-import Demolition from "../gamemode/demolition/_handler";
+import Demolition from "../modes/demolition/_handler";
 import PTeamScore from "../property/world/team_score";
 
 
 export const resetProp = () => {
     PropertyManager.world().get('game_mode').update(Mode.Demolition);
-    Demolition.instance.state = Status.Waiting;
+    Demolition.instance.state = States.Demolition.Waiting;
     (PropertyManager.world().get('team_score') as PTeamScore).updateTeamScore(Team.Blue, 0);
     (PropertyManager.world().get('team_score') as PTeamScore).updateTeamScore(Team.Red, 0);
 }

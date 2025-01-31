@@ -1,4 +1,4 @@
-import Demolition from "./status/_demolition";
+import Demolition from "../modes/demolition/_handler";
 
 
 import { PropertyManager } from "../property/_manager";
