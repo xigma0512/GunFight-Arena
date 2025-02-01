@@ -1,7 +1,7 @@
 {
     "format_version": 2,
     "header": {
-        "name": "GunFight-Arena",
+        "name": "GunFight-Arena BP",
         "uuid": "6381b69f-665e-4180-a248-3960cb9f2520",
         "version": [
             1,
@@ -45,6 +45,14 @@
         {
             "module_name": "@minecraft/server-ui",
             "version": "1.4.0-beta"
+        },
+        {
+            "uuid": "e2b29834-9e80-42c1-8604-fde1e5033160",
+            "version": [
+                1,
+                0,
+                0
+            ]
         }
     ]
 }
