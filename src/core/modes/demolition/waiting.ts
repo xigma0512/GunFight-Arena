@@ -15,7 +15,7 @@ export default class WaitingHanlder implements IStateHandler {
         for (const p of world.getAllPlayers()) {
             p.onScreenDisplay.setActionBar(`Waiting for more players...(${this.demolition.players.length}/10)`);
             p.addEffect('health_boost', 30, { amplifier: 4, showParticles: false });
-            p.addEffect('regeneration', 30, { amplifier: 254, showParticles: false });
+            p.addEffect('instant_health', 30, { amplifier: 254, showParticles: false });
             p.addEffect('absorption', 30, { amplifier: 254, showParticles: false });
         }
         if (this.demolition.players.length >= world.getAllPlayers().length) this.exit();
@@ -23,7 +23,6 @@ export default class WaitingHanlder implements IStateHandler {
 
     exit() {
         randomTeam(this.demolition.players);
-        this.demolition.time = 20;
 
         this.demolition.players.forEach(pl => {
             pl.sendMessage('§l§oCredits:§r\n');
@@ -34,20 +33,21 @@ export default class WaitingHanlder implements IStateHandler {
             Utils.respawnPlayer(pl);
         });
 
+        this.demolition.time = 20;
         this.demolition.state = States.Demolition.Preparing;
     }
 
 }
 
 function randomTeam(players: Player[]) {
-    world.getAllPlayers().forEach(pl => {
-        if (pl.name === "xigma0512")
-            Property.entity(pl).get('team').update(Team.Blue);
-        else
-            Property.entity(pl).get('team').update(Team.Red);
-    });
+    // world.getAllPlayers().forEach(pl => {
+    //     if (pl.name === "xigma0512")
+    //         Property.entity(pl).get('team').update(Team.Blue);
+    //     else
+    //         Property.entity(pl).get('team').update(Team.Red);
+    // });
 
-    return
+    // return
 
     const suffledPlayers = players.sort(() => Math.random() - 0.5)
 

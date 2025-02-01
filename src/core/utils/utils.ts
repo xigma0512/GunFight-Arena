@@ -83,6 +83,8 @@ export namespace Utils {
 
         Property.entity(player).get('team').update(Team.None);
         tp2TeamSpawn(player);
+
+        player.nameTag = player.name;
         player.removeTag('inGame');
 
         for (const [_, propObject] of Object.entries(Property.entity(player).properties())) {
@@ -100,6 +102,8 @@ export namespace Utils {
 
         player.addEffect('health_boost', 2000000, { amplifier: 9, showParticles: false });
         player.addEffect('instant_health', 2, { amplifier: 99 });
+
+        player.nameTag = "";
 
         const item = new ItemStack('feather');
         item.lockMode = ItemLockMode.slot;

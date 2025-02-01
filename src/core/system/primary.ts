@@ -25,7 +25,7 @@ function giveEffect() {
 
 function inGame_detect() {
     for (const pl of world.getAllPlayers()) {
-        if (pl.hasTag('inGame')) return Demolition.instance.addPlayer(pl);
-        if (!pl.hasTag('inGame')) return Demolition.instance.removePlayer(pl);
+        if (pl.hasTag('inGame')) Demolition.instance.addPlayer(pl);
+        if (!pl.hasTag('inGame')) Demolition.instance.removePlayer(pl);
     }
 }

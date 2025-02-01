@@ -52,10 +52,9 @@ export default class RunningHandler implements IStateHandler {
         this.demolition.players.forEach(pl => {
             Utils.clearInventory(pl);
             Utils.setGameMode(pl, "spectator");
-
-            pl.sendMessage('§l§a- GAMEOVER -')
-            pl.sendMessage(`§l${(winnerTeam == Team.Blue ? "§bBlue Team" : "§cRed Team")} §eis the winner!`)
         });
+        Utils.broadcastMessage('§l§a- GAMEOVER -', 'message');
+        Utils.broadcastMessage(`§l${(winnerTeam == Team.Blue ? "§bBlue Team" : "§cRed Team")} §eis the winner!`, 'message')
 
         this.demolition.time = 15;
         this.demolition.state = States.Demolition.GameOver;
