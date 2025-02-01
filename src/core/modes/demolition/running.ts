@@ -1,4 +1,4 @@
-import { IStateHandler } from "../../../declare/types";
+import { IState } from "../../../declare/types";
 import Demolition from "./_handler";
 import Property from "../../../game/property/_handler";
 import PTeamScore from "../../../game/property/world/team_score";
@@ -9,26 +9,26 @@ import config from "../../../config";
 import { Player, system } from "@minecraft/server";
 import { Utils } from "../../utils/utils";
 
-export default class RunningHandler implements IStateHandler {
+export default class Running implements IState {
 
-    private get demolition() { return Demolition.instance; }
+    private get base() { return Demolition.instance; }
 
     update() {
         const teamPlayers = (t: Team) =>
-            this.demolition.players.filter(p => Property.entity(p).get('team').value === t);
+            this.base.players.filter(p => Property.entity(p).get('team').value === t);
 
         const [blueTeamPlayers, redTeamPlayers] = [teamPlayers(Team.Blue), teamPlayers(Team.Red)];
 
-        if (this.demolition.time <= 595) {
+        if (this.base.time <= 595) {
             if (blueTeamPlayers.length == 0) return this.exit(Team.Red);
             else if (redTeamPlayers.length == 0) return this.exit(Team.Blue);
 
-            if (getTeamAlive(Team.Blue, this.demolition.players) <= 0) this.nextRound(Team.Red);
-            else if (getTeamAlive(Team.Red, this.demolition.players) <= 0) this.nextRound(Team.Blue);
+            if (getTeamAlive(Team.Blue, this.base.players) <= 0) this.nextRound(Team.Red);
+            else if (getTeamAlive(Team.Red, this.base.players) <= 0) this.nextRound(Team.Blue);
         }
 
-        if (this.demolition.time <= 0) {
-            this.demolition.players.forEach(p => p.sendMessage("Time is Over."));
+        if (this.base.time <= 0) {
+            this.base.players.forEach(p => p.sendMessage("Time is Over."));
             this.nextRound(Team.Blue);
         }
     }
@@ -41,23 +41,23 @@ export default class RunningHandler implements IStateHandler {
         Utils.broadcastMessage(`§l${(winnerTeam == Team.Blue ? "§bBlue Team" : "§cRed Team")} §fwin this round.`, 'message');
         Utils.broadcastSound("random.anvil_break");
 
-        this.demolition.time = 5;
-        this.demolition.state = States.Demolition.Sleeping;
+        this.base.time = 5;
+        this.base.state = States.Demolition.Sleeping;
     }
 
     exit(winnerTeam: Team) {
         if (winnerTeam == undefined)
             return console.warn("winner should not be undefined");
 
-        this.demolition.players.forEach(pl => {
+        this.base.players.forEach(pl => {
             Utils.clearInventory(pl);
             Utils.setGameMode(pl, "spectator");
         });
         Utils.broadcastMessage('§l§a- GAMEOVER -', 'message');
         Utils.broadcastMessage(`§l${(winnerTeam == Team.Blue ? "§bBlue Team" : "§cRed Team")} §eis the winner!`, 'message')
 
-        this.demolition.time = 15;
-        this.demolition.state = States.Demolition.GameOver;
+        this.base.time = 15;
+        this.base.state = States.Demolition.GameOver;
     }
 
 }

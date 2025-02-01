@@ -1,22 +1,22 @@
 import { States } from "../../../declare/enums";
-import { IStateHandler } from "../../../declare/types"
+import { IState } from "../../../declare/types"
 import { Utils } from "../../utils/utils";
 import Demolition from "./_handler";
 
-export default class SleepingHanlder implements IStateHandler {
+export default class Sleeping implements IState {
 
-    private get demolition() { return Demolition.instance; }
+    private get base() { return Demolition.instance; }
 
     update() {
-        for (const player of this.demolition.players)
-            player.onScreenDisplay.setActionBar(`Next Round will start in ${this.demolition.time} seconds.`);
-        if (this.demolition.time <= 0) this.exit();
+        for (const player of this.base.players)
+            player.onScreenDisplay.setActionBar(`Next Round will start in ${this.base.time} seconds.`);
+        if (this.base.time <= 0) this.exit();
     }
 
     exit() {
-        this.demolition.time = 20;
-        this.demolition.players.forEach(pl => Utils.respawnPlayer(pl));
+        this.base.time = 20;
+        this.base.players.forEach(pl => Utils.respawnPlayer(pl));
 
-        this.demolition.state = States.Demolition.Preparing;
+        this.base.state = States.Demolition.Preparing;
     }
 }

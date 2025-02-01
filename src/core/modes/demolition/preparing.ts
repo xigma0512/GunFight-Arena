@@ -1,4 +1,4 @@
-import { IStateHandler } from "../../../declare/types";
+import { IState } from "../../../declare/types";
 import Demolition from "./_handler";
 import Equipment from "../../equipment/equipment";
 
@@ -7,20 +7,20 @@ import { Utils } from "../../utils/utils";
 import { ItemStack, world } from "@minecraft/server";
 import config from "../../../config";
 
-export default class PreparingHandler implements IStateHandler {
+export default class Preparing implements IState {
 
-    private get demolition() { return Demolition.instance; }
+    private get base() { return Demolition.instance; }
 
     update() {
-        this.demolition.players.forEach(player => {
-            player.onScreenDisplay.setActionBar(`Round Starts in ${this.demolition.time} sec(s).\nUse feather to open the shop.`)
-            if (this.demolition.time <= 5) player.playSound('note.harp');
+        this.base.players.forEach(player => {
+            player.onScreenDisplay.setActionBar(`Round Starts in ${this.base.time} sec(s).\nUse feather to open the shop.`)
+            if (this.base.time <= 5) player.playSound('note.harp');
         })
-        if (this.demolition.time <= 0) this.exit();
+        if (this.base.time <= 0) this.exit();
     }
 
     exit() {
-        this.demolition.players.forEach(pl => {
+        this.base.players.forEach(pl => {
             Equipment.send(pl);
             Utils.setMovement(pl, true);
         });
@@ -33,7 +33,7 @@ export default class PreparingHandler implements IStateHandler {
             );
         } catch { }
 
-        this.demolition.time = 600;
-        this.demolition.state = States.Demolition.Running;
+        this.base.time = 600;
+        this.base.state = States.Demolition.Running;
     }
 }

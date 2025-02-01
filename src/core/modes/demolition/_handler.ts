@@ -7,10 +7,10 @@ import BombPlantedHandler from "./bombPlanted";
 
 import { States } from "../../../declare/enums";
 
-import { ModeHandler } from "../modeHandler";
+import ModeHandlerBase from "../base/_handler";
 import { Entity } from "@minecraft/server";
 
-export default class Demolition extends ModeHandler {
+export default class Demolition extends ModeHandlerBase {
 
     private static _instance: Demolition;
     static get instance() { return (this._instance || (this._instance = new this())); }

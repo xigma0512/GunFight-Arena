@@ -8,7 +8,7 @@ declare interface IProperty {
     update(value?: PropertyDataType): void
 }
 
-declare interface IStateHandler {
+declare interface IState {
     update(): void;
     exit(_?: any): void;
 }
