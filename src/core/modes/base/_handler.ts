@@ -1,12 +1,12 @@
-import { IStateHandler } from "../../declare/types";
+import { IState } from "../../../declare/types";
 
 import { Player } from "@minecraft/server";
 
-export class ModeHandler {
+export default class ModeHandlerBase {
     constructor(
         private _time: number,
         private _players: Player[],
-        private readonly _handlers: IStateHandler[]
+        private readonly _handlers: IState[]
     ) { }
 
     get time() { return this._time; }
