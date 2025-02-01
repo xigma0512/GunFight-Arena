@@ -1,5 +1,4 @@
-import { PropertyManager } from "../../game/property/_manager";
-import Demolition from "../modes/demolition/_handler";
+import Property from "../../game/property/_handler";
 import PTeamScore from "../../game/property/world/team_score";
 
 import { Mode, States, Team } from "../../declare/enums";

@@ -1,6 +1,6 @@
 import Demolition from "../modes/demolition/_handler";
 
-import { PropertyManager } from "../../game/property/_manager";
+import Property from "../../game/property/_handler";
 
 import { Mode } from "../../declare/enums";
 import { world } from "@minecraft/server";
@@ -13,7 +13,7 @@ export default function primarySystemRun() {
 }
 
 function mode_manager() {
-    const gameMode = PropertyManager.world().get('game_mode').value as Mode
+    const gameMode = Property.world().get('game_mode').value as Mode
     ModeManager.getMode(gameMode).tick();
 }
 

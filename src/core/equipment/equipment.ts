@@ -1,6 +1,6 @@
 import config from "../../config";
 import { Team } from "../../declare/enums";
-import { PropertyManager } from "../../game/property/_manager";
+import Property from "../../game/property/_handler";
 import { ItemTable } from "./table";
 
 import { ItemStack, Player, world } from "@minecraft/server"
@@ -55,7 +55,7 @@ export default abstract class Equipment {
     }
 
     static send(player: Player) {
-        const prop = PropertyManager.entity(player);
+        const prop = Property.entity(player);
         this.sendWeapon(player, prop.get('main_weapon').value as number, prop.get('secondary_weapon').value as number);
         this.sendArmor(player, prop.get('team').value as number);
         player.sendMessage("Your weapons and gear have been delivered.");

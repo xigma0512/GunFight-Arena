@@ -1,7 +1,7 @@
 import Demolition from "../modes/demolition/_handler";
 
 
-import { PropertyManager } from "../../game/property/_manager";
+import Property from "../../game/property/_handler";
 import PTeamScore from "../../game/property/world/team_score";
 
 import { Team } from "../../declare/enums";
@@ -47,7 +47,7 @@ const showInfoScreen = (player: Player) => {
         'In Battle.    ',
         'Game Over.    '
     ]
-    const pteam = PropertyManager.world().get('team_score') as PTeamScore
+    const pteam = Property.world().get('team_score') as PTeamScore
     const [blueTeamScore, redTeamScore] = [pteam.getTeamScore(Team.Blue), pteam.getTeamScore(Team.Red)]
 
     const rawMessage = {

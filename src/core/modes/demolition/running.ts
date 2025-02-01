@@ -1,7 +1,6 @@
 import { IStateHandler } from "../../../declare/types";
 import Demolition from "./_handler";
-import { PropertyManager } from "../../../game/property/_manager";
-import { clearInventory, respawnPlayer, setGameMode } from "../../utils/_utils";
+import Property from "../../../game/property/_handler";
 import PTeamScore from "../../../game/property/world/team_score";
 
 import { States, Team } from "../../../declare/enums";
@@ -34,7 +33,7 @@ export default class RunningHandler implements IStateHandler {
     }
 
     private nextRound(winnerTeam: Team) {
-        const pteam = PropertyManager.world().get("team_score") as PTeamScore
+        const pteam = Property.world().get("team_score") as PTeamScore
         pteam.updateTeamScore(winnerTeam, pteam.getTeamScore(winnerTeam) + 1);
         if (pteam.getTeamScore(winnerTeam) >= config.demolition.winningScore) return this.exit(winnerTeam);
 
@@ -72,8 +71,8 @@ export default class RunningHandler implements IStateHandler {
 function getTeamAlive(team: Team, players: Player[]) {
     let result = 0;
     for (const pl of players) {
-        const pt = PropertyManager.entity(pl).get('team').value as Team;
-        const palive = PropertyManager.entity(pl).get('alive').value as boolean;
+        const pt = Property.entity(pl).get('team').value as Team;
+        const palive = Property.entity(pl).get('alive').value as boolean;
 
         if (pt == team && palive) result++;
     }

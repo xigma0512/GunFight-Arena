@@ -1,15 +1,20 @@
-import { Entity } from "@minecraft/server";
+import { Entity, World } from "@minecraft/server";
 import { IProperty } from "../../declare/types";
+
 // World Property
 import PTeamScore from "./world/team_score";
 import PGameMode from "./world/game_mode";
+
 // Entity Property
 import PTeam from "./entity/team";
 import PAlive from "./entity/alive";
 import PMainWeapon from "./entity/main_weapon";
 import PSecondaryWeapon from "./entity/secondary_weapon";
 
-class WorldPropertyManager {
+class WorldProperty {
+    private static _instance: WorldProperty;
+    static get instance() { return (this._instance || (this._instance = new this())); }
+
     private propertyTable: Record<string, IProperty>;
     constructor() {
         this.propertyTable = {
@@ -21,7 +26,7 @@ class WorldPropertyManager {
     get = (propertyId: keyof typeof this.propertyTable) => this.propertyTable[propertyId]
 }
 
-class EntityPropertyManager {
+class EntityProperty {
     private propertyTable: Record<string, IProperty>;
     constructor(private entity: Entity) {
         this.propertyTable = {
@@ -35,10 +40,7 @@ class EntityPropertyManager {
     get = (propertyId: keyof typeof this.propertyTable) => this.propertyTable[propertyId]
 }
 
-
-abstract class PropertyManager {
-    static world = () => new WorldPropertyManager
-    static entity = (entity: Entity) => new EntityPropertyManager(entity)
+export default abstract class Property {
+    static world() { return WorldProperty.instance; }
+    static entity(entity: Entity) { return new EntityProperty(entity); }
 }
-
-export { PropertyManager }

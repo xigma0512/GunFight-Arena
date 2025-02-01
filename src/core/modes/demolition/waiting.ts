@@ -1,7 +1,6 @@
 import { IStateHandler } from "../../../declare/types";
 import Demolition from "./_handler";
-import { respawnPlayer } from "../../utils/_utils";
-import { PropertyManager } from "../../../game/property/_manager";
+import Property from "../../../game/property/_handler";
 
 import { States, Team } from "../../../declare/enums";
 
@@ -42,9 +41,9 @@ export default class WaitingHanlder implements IStateHandler {
 function randomTeam(players: Player[]) {
     world.getAllPlayers().forEach(pl => {
         if (pl.name === "xigma0512")
-            PropertyManager.entity(pl).get('team').update(Team.Blue);
+            Property.entity(pl).get('team').update(Team.Blue);
         else
-            PropertyManager.entity(pl).get('team').update(Team.Red);
+            Property.entity(pl).get('team').update(Team.Red);
     });
 
     return
@@ -55,13 +54,13 @@ function randomTeam(players: Player[]) {
 
     const red = suffledPlayers.slice(mid);
     red.forEach(p => {
-        PropertyManager.entity(p).get('team').update(Team.Red)
+        Property.entity(p).get('team').update(Team.Red)
         world.scoreboard.getObjective('team')?.setScore(p, 1)
     });
 
     const blue = suffledPlayers.slice(0, mid);
     blue.forEach(p => {
-        PropertyManager.entity(p).get('team').update(Team.Blue)
+        Property.entity(p).get('team').update(Team.Blue)
         world.scoreboard.getObjective('team')?.setScore(p, 2)
     });
 }
