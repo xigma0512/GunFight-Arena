@@ -18,8 +18,8 @@ export default abstract class Equipment {
     private static sendWeapon(player: Player, mainId: number, secondaryId: number) {
         const inventory = player.getComponent('inventory') as EntityInventoryComponent;
 
-        const weaponInfo = ItemTable.weapon[mainId].concat(ItemTable.weapon[secondaryId])
-        weaponInfo.forEach(item => {
+        const equipmentInfo = ItemTable.weapon[mainId].concat(ItemTable.weapon[secondaryId])
+        equipmentInfo.forEach(item => {
             const [id, amount, slot] = item
             let itemStack = new ItemStack(id, amount)
             if (itemStack.typeId == "gabrielaplok:awp")
@@ -27,11 +27,7 @@ export default abstract class Equipment {
 
             itemStack.lockMode = ItemLockMode.slot
             inventory.container?.setItem(slot, itemStack)
-        })
-
-        const itemStack = new ItemStack("gabrielaplok:m67_grenade", 3)
-        itemStack.lockMode = ItemLockMode.slot
-        inventory.container?.setItem(2, itemStack)
+        });
     }
 
     private static sendArmor(player: Player, team: Team) {
@@ -54,10 +50,25 @@ export default abstract class Equipment {
         })
     }
 
+    private static sendTeamEquipment(player: Player, team: Team) {
+        const inventory = player.getComponent('inventory') as EntityInventoryComponent;
+
+        const itemStack = new ItemStack("gabrielaplok:m67_grenade", 3);
+        itemStack.lockMode = ItemLockMode.slot
+        inventory.container?.setItem(2, itemStack)
+
+        if (team == Team.Blue) {
+            const itemStack = new ItemStack("gunfight_arena:wire_stripper", 1);
+            itemStack.lockMode = ItemLockMode.slot
+            inventory.container?.setItem(3, itemStack)
+        }
+    }
+
     static send(player: Player) {
         const prop = Property.entity(player);
         this.sendWeapon(player, prop.get('main_weapon').value as number, prop.get('secondary_weapon').value as number);
-        this.sendArmor(player, prop.get('team').value as number);
+        this.sendArmor(player, prop.get('team').value as Team);
+        this.sendTeamEquipment(player, prop.get('team').value as Team)
         player.sendMessage("Your weapons and gear have been delivered.");
     }
 
