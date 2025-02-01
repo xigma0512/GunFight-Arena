@@ -2,7 +2,7 @@ import { world } from "@minecraft/server";
 import { EntityHealthChangedAfterEvent, Player } from "@minecraft/server"
 
 import Property from "../../property/_handler";
-import { Utils } from "../../../core/utils/_utils";
+import { Utils } from "../../../core/utils/utils";
 
 abstract class entityHealthChange {
     static subscribe = () => {

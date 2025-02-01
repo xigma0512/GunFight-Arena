@@ -5,7 +5,7 @@ import Property from "../../../game/property/_handler";
 import { States, Team } from "../../../declare/enums";
 
 import { world, Player } from "@minecraft/server";
-import { Utils } from "../../utils/_utils";
+import { Utils } from "../../utils/utils";
 
 export default class WaitingHanlder implements IStateHandler {
 

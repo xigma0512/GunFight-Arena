@@ -3,7 +3,7 @@ import Demolition from "./_handler";
 import Equipment from "../../equipment/equipment";
 
 import { States } from "../../../declare/enums";
-import { Utils } from "../../utils/_utils";
+import { Utils } from "../../utils/utils";
 
 export default class PreparingHandler implements IStateHandler {
 

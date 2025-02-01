@@ -1,7 +1,7 @@
 import { IStateHandler } from "../../../declare/types"
 import Demolition from "./_handler"
 import { States } from "../../../declare/enums";
-import { Utils } from "../../utils/_utils";
+import { Utils } from "../../utils/utils";
 
 export default class GameOverHanlder implements IStateHandler {
 

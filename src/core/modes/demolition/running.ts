@@ -7,7 +7,7 @@ import { States, Team } from "../../../declare/enums";
 import config from "../../../config";
 
 import { Player, system } from "@minecraft/server";
-import { Utils } from "../../utils/_utils";
+import { Utils } from "../../utils/utils";
 
 export default class RunningHandler implements IStateHandler {
 

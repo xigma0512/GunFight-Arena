@@ -1,6 +1,6 @@
 import { world } from "@minecraft/server";
 import { HudElement, PlayerSpawnAfterEvent } from "@minecraft/server"
-import { Utils } from "../../../core/utils/_utils";
+import { Utils } from "../../../core/utils/utils";
 
 export default abstract class playerSpawn {
     static subscribe = () => {
