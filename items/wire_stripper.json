@@ -10,7 +10,7 @@
         "components": {
             "minecraft:icon": "wire_stripper",
             "minecraft:use_modifiers": {
-                "use_duration": 8,
+                "use_duration": 5,
                 "movement_modifier": 0
             },
             "minecraft:max_stack_size": {
