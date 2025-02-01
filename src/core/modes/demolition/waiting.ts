@@ -14,9 +14,7 @@ export default class Waiting implements IState {
     update() {
         for (const p of world.getAllPlayers()) {
             p.onScreenDisplay.setActionBar(`Waiting for more players...(${this.base.players.length}/10)`);
-            p.addEffect('health_boost', 30, { amplifier: 4, showParticles: false });
-            p.addEffect('instant_health', 30, { amplifier: 254, showParticles: false });
-            p.addEffect('absorption', 30, { amplifier: 254, showParticles: false });
+            p.addEffect('instant_health', 30, { amplifier: 255, showParticles: false });
         }
         if (this.base.players.length >= world.getAllPlayers().length) this.exit();
     }
@@ -40,15 +38,6 @@ export default class Waiting implements IState {
 }
 
 function randomTeam(players: Player[]) {
-    // world.getAllPlayers().forEach(pl => {
-    //     if (pl.name === "xigma0512")
-    //         Property.entity(pl).get('team').update(Team.Blue);
-    //     else
-    //         Property.entity(pl).get('team').update(Team.Red);
-    // });
-
-    // return
-
     const suffledPlayers = players.sort(() => Math.random() - 0.5)
 
     const mid = Math.ceil(suffledPlayers.length / 2);
