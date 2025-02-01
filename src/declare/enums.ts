@@ -4,7 +4,12 @@ export namespace States {
         Preparing,
         Running,
         GameOver,
-        Sleeping
+        Sleeping,
+        BombPlanted
+    }
+
+    export enum DeathMatch {
+
     }
 }
 
