@@ -1,13 +1,12 @@
 {
     "format_version": 2,
     "header": {
-        "description": "",
-        "name": "GunArea",
+        "name": "GunFight-Arena",
         "uuid": "6381b69f-665e-4180-a248-3960cb9f2520",
         "version": [
+            1,
             0,
-            0,
-            1
+            0
         ],
         "min_engine_version": [
             1,
@@ -16,6 +15,15 @@
         ]
     },
     "modules": [
+        {
+            "type": "data",
+            "uuid": "66de9f75-307f-4b7d-aaa9-bead9ee0fa0f",
+            "version": [
+                1,
+                0,
+                0
+            ]
+        },
         {
             "description": "使用JavaScript編寫 可做為學習之素材",
             "type": "script",
