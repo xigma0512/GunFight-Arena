@@ -12,9 +12,10 @@ export default {
             red_team: { x: -133, y: 33, z: -476 }
         },
         bomb_point: [
-            { x: -25, y: 30, z: -550 },
-            { x: -25, y: 30, z: -550 }
+            { x: -16, y: 29, z: -502 },
+            { x: -21, y: 32, z: -414 }
         ],
-        winningScore: 6
+        bomb_point_scale: 5,
+        winningScore: 5
     }
 }
