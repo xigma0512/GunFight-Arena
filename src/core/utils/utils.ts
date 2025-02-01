@@ -39,7 +39,7 @@ export namespace Utils {
         player.getComponent('inventory')?.container?.clearAll();
         const equipmentSlot = [
             EquipmentSlot.Head,
-            EquipmentSlot.Body,
+            EquipmentSlot.Chest,
             EquipmentSlot.Legs,
             EquipmentSlot.Feet
         ];
