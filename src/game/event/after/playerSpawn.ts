@@ -1,6 +1,6 @@
 import { world } from "@minecraft/server";
 import { HudElement, PlayerSpawnAfterEvent } from "@minecraft/server"
-import { resetPlayerData } from "../../../core/utils/_utils";
+import { Utils } from "../../../core/utils/_utils";
 
 export default abstract class playerSpawn {
     static subscribe = () => {
@@ -8,7 +8,7 @@ export default abstract class playerSpawn {
             const player = ev.player
             if (ev.initialSpawn) {
                 player.onScreenDisplay.setHudVisibility(0, [HudElement.ItemText, HudElement.StatusEffects, HudElement.Armor]);
-                resetPlayerData(player);
+                Utils.resetPlayerData(player);
             }
         })
     }

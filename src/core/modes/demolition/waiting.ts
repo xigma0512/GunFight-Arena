@@ -5,6 +5,7 @@ import Property from "../../../game/property/_handler";
 import { States, Team } from "../../../declare/enums";
 
 import { world, Player } from "@minecraft/server";
+import { Utils } from "../../utils/_utils";
 
 export default class WaitingHanlder implements IStateHandler {
 
@@ -30,7 +31,7 @@ export default class WaitingHanlder implements IStateHandler {
             pl.sendMessage('§f- §cGun Models §bby §7@GabrielAplok\n');
             pl.sendMessage('§f- §cMap §bCreating by §7@_Codre_\n');
             pl.sendMessage('        §bPorting by §7@AzozGamer936');
-            respawnPlayer(pl);
+            Utils.respawnPlayer(pl);
         });
 
         this.demolition.state = States.Demolition.Preparing;

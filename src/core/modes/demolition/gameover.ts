@@ -1,7 +1,7 @@
 import { IStateHandler } from "../../../declare/types"
 import Demolition from "./_handler"
-import { resetPlayerData, resetProp } from "../../utils/_utils"
 import { States } from "../../../declare/enums";
+import { Utils } from "../../utils/_utils";
 
 export default class GameOverHanlder implements IStateHandler {
 
@@ -15,8 +15,11 @@ export default class GameOverHanlder implements IStateHandler {
     }
 
     exit() {
-        this.demolition.players.forEach(pl => resetPlayerData(pl));
-        resetProp();
+        this.demolition.players.forEach(pl => {
+            Utils.resetPlayerData(pl)
+            Utils.tp2TeamSpawn(pl);
+        });
+        Utils.resetGameData();
         this.demolition.state = States.Demolition.Waiting;
     }
 

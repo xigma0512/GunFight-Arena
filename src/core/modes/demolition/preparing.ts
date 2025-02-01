@@ -21,7 +21,7 @@ export default class PreparingHandler implements IStateHandler {
         this.demolition.time = 600;
         this.demolition.players.forEach(pl => {
             Equipment.send(pl);
-            pl.inputPermissions.setPermissionCategory(InputPermissionCategory.Movement, true);
+
 
             pl.playSound('random.levelup');
         });
