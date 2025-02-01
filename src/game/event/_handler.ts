@@ -1,4 +1,5 @@
 import entityHealthChange from "./after/entityHealthChange";
+import itemCompleteUse from "./after/itemCompleteUse";
 import itemUse from "./after/itemUse";
 import playerSpawn from "./after/playerSpawn";
 import worldInit from "./after/worldInit";
@@ -10,6 +11,7 @@ export default function eventListener() {
         worldInit,
         entityHealthChange,
         itemUse,
-        playerLeave
+        playerLeave,
+        itemCompleteUse
     ].forEach(ev => ev.subscribe())
 }
