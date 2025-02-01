@@ -25,10 +25,10 @@ export default class PTeamScore implements IProperty {
         return -1;
     }
 
-    updateTeamScore(t: Team, value: number) {
+    updateTeamScore(t: Team, newValue: number = 0) {
         const scoreTable = JSON.parse(this.value) as ITeamScore
-        if (t == Team.Red) scoreTable.red = value
-        if (t == Team.Blue) scoreTable.blue = value
+        if (t == Team.Red) scoreTable.red = newValue
+        if (t == Team.Blue) scoreTable.blue = newValue
         this.update(JSON.stringify(scoreTable))
     }
 }
