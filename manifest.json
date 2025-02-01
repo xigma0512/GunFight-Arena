@@ -2,6 +2,7 @@
     "format_version": 2,
     "header": {
         "name": "GunFight-Arena BP",
+        "description": "FPS Game in Minecraft Bedrock Edition",
         "uuid": "6381b69f-665e-4180-a248-3960cb9f2520",
         "version": [
             1,
@@ -30,9 +31,9 @@
             "language": "javascript",
             "uuid": "760888da-34ae-4ace-9130-9393848ad4cc",
             "version": [
+                1,
                 0,
-                0,
-                1
+                0
             ],
             "entry": "scripts/index.js"
         }
