@@ -16,6 +16,7 @@ export default {
             { x: -21, y: 32, z: -414 }
         ],
         bomb_point_scale: 5,
+        bomb_timer: 40,
         winningScore: 5
     }
 }
