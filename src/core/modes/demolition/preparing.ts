@@ -4,6 +4,8 @@ import Equipment from "../../equipment/equipment";
 
 import { States } from "../../../declare/enums";
 import { Utils } from "../../utils/utils";
+import { ItemStack, world } from "@minecraft/server";
+import config from "../../../config";
 
 export default class PreparingHandler implements IStateHandler {
 
@@ -18,13 +20,20 @@ export default class PreparingHandler implements IStateHandler {
     }
 
     exit() {
-        this.demolition.time = 600;
         this.demolition.players.forEach(pl => {
             Equipment.send(pl);
             Utils.setMovement(pl, true);
-
-            pl.playSound('random.levelup');
         });
+        Utils.broadcastSound('random.levelup');
+
+        try {
+            world.getDimension('overworld').spawnItem(
+                new ItemStack("gunfight_arena:c4"),
+                config.demolition.spawn_point.red_team
+            );
+        } catch { }
+
+        this.demolition.time = 600;
         this.demolition.state = States.Demolition.Running;
     }
 }
