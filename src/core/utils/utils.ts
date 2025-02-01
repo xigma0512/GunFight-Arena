@@ -4,12 +4,27 @@ import PTeamScore from "../../game/property/world/team_score";
 import { Mode, States, Team } from "../../declare/enums";
 import config from "../../config";
 
-import { EquipmentSlot, ItemStack, Player } from "@minecraft/server";
+import { EquipmentSlot, ItemStack, Player, world } from "@minecraft/server";
 import { ItemLockMode, InputPermissionCategory, GameMode } from "@minecraft/server"
 import ModeManager from "../modes/_manager";
 
 
 export namespace Utils {
+
+    export function broadcastMessage(msg: string, type: 'message' | 'actionbar') {
+        for (const player of world.getAllPlayers()) {
+            switch (type) {
+                case 'message': player.sendMessage(msg); break;
+                case 'actionbar': player.onScreenDisplay.setActionBar(msg); break;
+            }
+        }
+    }
+
+    export function broadcastSound(soundId: string) {
+        for (const player of world.getAllPlayers()) {
+            player.playSound(soundId);
+        }
+    }
 
     export function setMovement(player: Player, state: boolean) {
         [
@@ -67,6 +82,7 @@ export namespace Utils {
         Property.entity(player).get('alive').update();
 
         Property.entity(player).get('team').update(Team.None);
+        tp2TeamSpawn(player);
         player.removeTag('inGame');
 
         for (const [_, propObject] of Object.entries(Property.entity(player).properties())) {
