@@ -38,18 +38,11 @@ export default class RunningHandler implements IStateHandler {
         pteam.updateTeamScore(winnerTeam, pteam.getTeamScore(winnerTeam) + 1);
         if (pteam.getTeamScore(winnerTeam) >= config.demolition.winningScore) return this.exit(winnerTeam);
 
-        this.demolition.players.forEach(pl => {
-            pl.sendMessage(`§l${(winnerTeam == Team.Blue ? "§bBlue Team" : "§cRed Team")} §fwin this round.`);
-            pl.playSound("random.anvil_break");
-        });
+        Utils.broadcastMessage(`§l${(winnerTeam == Team.Blue ? "§bBlue Team" : "§cRed Team")} §fwin this round.`, 'message');
+        Utils.broadcastSound("random.anvil_break");
 
+        this.demolition.time = 5;
         this.demolition.state = States.Demolition.Sleeping;
-        system.runTimeout(() => {
-            this.demolition.time = 20;
-            this.demolition.players.forEach(pl => Utils.respawnPlayer(pl));
-
-            this.demolition.state = States.Demolition.Preparing;
-        }, 100);
     }
 
     exit(winnerTeam: Team) {
