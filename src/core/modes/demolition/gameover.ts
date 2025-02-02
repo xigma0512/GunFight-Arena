@@ -22,8 +22,7 @@ export default class GameOver implements IState {
 
     exit() {
         this.base.players.forEach(pl => {
-            Utils.resetPlayerData(pl)
-            Utils.tp2TeamSpawn(pl);
+            Utils.resetPlayerData(pl);
         });
         Utils.resetGameData();
 
