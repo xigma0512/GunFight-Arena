@@ -17,7 +17,7 @@ abstract class entityDie {
                 Utils.broadcastMessage(`§l§4DEAD ${teamTag(deadEntityTeam)}${deadEntity.name}`, 'message');
             } else {
                 const killerTeam = Property.entity(killer).get('team').value as Team
-                Utils.broadcastMessage(`§l${teamTag(killerTeam)}${killer.name}  §4︻╦̵̵͇̿̿̿̿══╤─  ${teamTag(deadEntityTeam)}${deadEntity.name}`, 'message');
+                Utils.broadcastMessage(`§l${teamTag(killerTeam)}${killer.name}  §4KILLED  ${teamTag(deadEntityTeam)}${deadEntity.name}`, 'message');
             }
         })
     }
