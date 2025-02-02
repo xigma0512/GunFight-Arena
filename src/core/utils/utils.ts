@@ -46,6 +46,30 @@ export namespace Utils {
         for (const slot of equipmentSlot) player.getComponent('equippable')?.setEquipment(slot, undefined);
     }
 
+    export function setGameMode(player: Player, mode: 'creative' | 'survival' | 'adventure' | 'spectator') {
+        player.setGameMode({
+            'creative': GameMode.creative,
+            'survival': GameMode.survival,
+            'adventure': GameMode.adventure,
+            'spectator': GameMode.spectator
+        }[mode]);
+    }
+
+    export function getTeamAlive(team: Team, players: Player[]) {
+        let result = 0;
+        for (const pl of players) {
+            const pt = Property.entity(pl).get('team').value as Team;
+            const palive = Property.entity(pl).get('alive').value as boolean;
+
+            if (pt == team && palive) result++;
+        }
+        return result;
+    }
+
+    export function getTeamPlayers(team: Team, players: Player[]) {
+        return players.filter(pl => Property.entity(pl).get('team').value === team);
+    }
+
     export function tp2TeamSpawn(player: Player) {
         const team = Property.entity(player).get('team').value as Team;
 
@@ -57,15 +81,6 @@ export namespace Utils {
                 player.teleport(config.lobby_spawn);
                 break;
         }
-    }
-
-    export function setGameMode(player: Player, mode: 'creative' | 'survival' | 'adventure' | 'spectator') {
-        player.setGameMode({
-            'creative': GameMode.creative,
-            'survival': GameMode.survival,
-            'adventure': GameMode.adventure,
-            'spectator': GameMode.spectator
-        }[mode]);
     }
 
     export function resetGameData() {

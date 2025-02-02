@@ -23,18 +23,26 @@ export default class Running implements IState {
         const teamPlayers = (t: Team) =>
             this.base.players.filter(p => Property.entity(p).get('team').value === t);
 
-        const [blueTeamPlayers, redTeamPlayers] = [teamPlayers(Team.Blue), teamPlayers(Team.Red)];
+        if (this.base.timer <= 0) {
+            Utils.broadcastMessage("Round Time Is Over.", 'message');
+            this.nextRound(Team.Blue);
+        }
+
+        const [blueTeamPlayers, redTeamPlayers] = [
+            Utils.getTeamPlayers(Team.Blue, this.base.players),
+            Utils.getTeamPlayers(Team.Red, this.base.players)
+        ];
 
         if (blueTeamPlayers.length == 0) return this.exit(Team.Red);
         else if (redTeamPlayers.length == 0) return this.exit(Team.Blue);
 
-        if (getTeamAlive(Team.Blue, this.base.players) <= 0) this.nextRound(Team.Red);
-        else if (getTeamAlive(Team.Red, this.base.players) <= 0) this.nextRound(Team.Blue);
+        const [blueTeamAlive, redTeamAlive] = [
+            Utils.getTeamAlive(Team.Blue, this.base.players),
+            Utils.getTeamAlive(Team.Red, this.base.players)
+        ];
 
-        if (this.base.timer <= 0) {
-            this.base.players.forEach(p => p.sendMessage("Time is Over."));
-            this.nextRound(Team.Blue);
-        }
+        if (blueTeamAlive <= 0) return this.nextRound(Team.Red);
+        else if (redTeamAlive <= 0) return this.nextRound(Team.Blue);
     }
 
     private nextRound(winnerTeam: Team) {
@@ -62,15 +70,4 @@ export default class Running implements IState {
         this.base.getState(States.Demolition.GameOver).entry();
     }
 
-}
-
-function getTeamAlive(team: Team, players: Player[]) {
-    let result = 0;
-    for (const pl of players) {
-        const pt = Property.entity(pl).get('team').value as Team;
-        const palive = Property.entity(pl).get('alive').value as boolean;
-
-        if (pt == team && palive) result++;
-    }
-    return result;
 }

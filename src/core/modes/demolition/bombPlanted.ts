@@ -29,6 +29,16 @@ export default class BombPlanted implements IState {
         health.setCurrentValue(damagePerSec * this.base.timer);
 
         if (this.base.timer <= 0) this.exit(Team.Red);
+
+        const [blueTeamPlayers, redTeamPlayers] = [
+            Utils.getTeamPlayers(Team.Blue, this.base.players),
+            Utils.getTeamPlayers(Team.Red, this.base.players)
+        ];
+
+        if (blueTeamPlayers.length == 0) return this.exit(Team.Red);
+        else if (redTeamPlayers.length == 0) return this.exit(Team.Blue);
+
+        if (Utils.getTeamAlive(Team.Blue, this.base.players) <= 0) return this.exit(Team.Red);
     }
 
     exit(winnerTeam: Team) {
