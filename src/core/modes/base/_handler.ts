@@ -1,19 +1,20 @@
+import { States } from "../../../declare/enums";
 import { IState } from "../../../declare/types";
 
 import { Player } from "@minecraft/server";
 
 export default class ModeHandlerBase {
     constructor(
-        private _time: number,
+        private _timer: number,
         private _players: Player[],
-        private readonly _handlers: IState[]
+        private readonly _states: IState[]
     ) { }
 
-    get time() { return this._time; }
+    get timer() { return this._timer; }
     get players() { return this._players; }
-    get handlers() { return this._handlers; }
+    getState(state: States.Demolition) { return this._states[state]; }
 
-    set time(t: number) { this._time = t; }
+    setTimer(t: number) { this._timer = t; }
 
     addPlayer(player: Player) {
         const index = this.players.indexOf(player);
