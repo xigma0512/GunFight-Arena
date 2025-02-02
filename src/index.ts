@@ -1,4 +1,4 @@
-import eventListener from "./game/event/_handler";
+import eventListener from "./game/event/_listener";
 import { runInterval } from "./core/system/_run";
 import { system } from "@minecraft/server";
 
