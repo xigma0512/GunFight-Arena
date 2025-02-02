@@ -38,12 +38,12 @@ function summonC4(player: Player) {
         return;
     }
 
-    Demolition.instance.setBomb(world.getDimension("overworld").spawnEntity("gunfight_arena:c4", player.location));
+    const bomb = world.getDimension("overworld").spawnEntity("gunfight_arena:c4", player.location);
+    Demolition.instance.registerBomb(bomb);
 
     Utils.broadcastMessage(`§l§cBomb Has Been Planted §fBy §e${player.name}.`, 'message');
     Utils.broadcastSound('random.fuse');
-    Demolition.instance.time = config.demolition.bomb_timer;
-    Demolition.instance.state = States.Demolition.BombPlanted;
+    Demolition.instance.getState(States.Demolition.BombPlanted).entry();
 }
 
 function defuseC4(player: Player) {
@@ -60,8 +60,8 @@ function defuseC4(player: Player) {
     }
 
     bomb.kill();
-    Demolition.instance.setBomb(undefined);
+    Demolition.instance.unRegisterBomb();
     Utils.broadcastMessage(`§l§aBomb has Been Defused §fBy §e${player.name}.`, 'message');
     Utils.broadcastSound('mob.ravager.celebrate');
-    Demolition.instance.handlers[States.Demolition.BombPlanted].exit(Team.Blue);
+    Demolition.instance.getState(States.Demolition.BombPlanted).exit(Team.Blue);
 }

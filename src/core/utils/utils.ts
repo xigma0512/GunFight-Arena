@@ -70,7 +70,7 @@ export namespace Utils {
 
     export function resetGameData() {
         Property.world().get('game_mode').update(Mode.Demolition);
-        ModeManager.getMode(Mode.Demolition).state = States.Demolition.Waiting;
+        ModeManager.getMode(Mode.Demolition).setCurrentState(States.Demolition.Waiting);
         (Property.world().get('team_score') as PTeamScore).updateTeamScore(Team.Blue);
         (Property.world().get('team_score') as PTeamScore).updateTeamScore(Team.Red);
     }
@@ -82,6 +82,7 @@ export namespace Utils {
         Property.entity(player).get('alive').update();
 
         Property.entity(player).get('team').update(Team.None);
+        ModeManager.getMode(Property.world().get('game_mode').value as number).removePlayer(player);
         tp2TeamSpawn(player);
 
         player.nameTag = player.name;

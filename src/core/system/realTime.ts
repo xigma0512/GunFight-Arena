@@ -53,8 +53,8 @@ const showInfoScreen = (player: Player) => {
     const rawMessage = {
         "rawtext": [
             { "text": "      §l§dGunfight Arena§r      \n\n" },
-            { "text": `§eStatus: ${statusList[Demolition.instance.state as number]}\n` },
-            { "text": `§aTime: ${formatTime(Demolition.instance.time)}§r\n` },
+            { "text": `§eStatus: ${statusList[Demolition.instance.getCurrentState() as number]}\n` },
+            { "text": `§aTime: ${formatTime(Demolition.instance.timer)}§r\n` },
             { "text": `§fScore: §b${blueTeamScore} §f| §c${redTeamScore}` }
         ]
     }
