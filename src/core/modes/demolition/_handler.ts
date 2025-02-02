@@ -15,14 +15,8 @@ export default class Demolition extends ModeHandlerBase {
     private static _instance: Demolition;
     static get instance() { return (this._instance || (this._instance = new this())); }
 
-    private _state: States.Demolition;
+    private _currentState: States.Demolition;
     private _c4: Entity | undefined;
-
-    get state() { return this._state; }
-    set state(s: States.Demolition) { this._state = s; }
-
-    getBomb() { return this._c4; }
-    setBomb(entity: Entity | undefined) { this._c4 = entity; }
 
     constructor() {
         super(-1, [], [
@@ -33,12 +27,19 @@ export default class Demolition extends ModeHandlerBase {
             new SleepingHanlder,
             new BombPlantedHandler
         ]);
-        this._state = States.Demolition.Waiting;
+        this._currentState = States.Demolition.Waiting;
     }
 
+    getCurrentState() { return this._currentState; }
+    setCurrentState(state: States.Demolition) { this._currentState = state; }
+
+    getBomb() { return this._c4; }
+    registerBomb(entity: Entity) { this._c4 = entity; }
+    unRegisterBomb() { this._c4 = undefined; }
+
     override tick() {
-        this.handlers[this.state].update();
-        this.time--;
+        this.getState(this._currentState).update();
+        this.setTimer(this.timer - 1);
     }
 
 }
