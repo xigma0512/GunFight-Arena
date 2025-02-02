@@ -47,6 +47,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - [x] 自定義擊殺訊息 (ex. `[RED] Steve KILL [BLUE] Alex`)
 - [ ] 增加更多聲音/提示/粒子效果，給予玩家遊戲內的必要資訊 (ex. 炸彈包音效、移動時的腳步聲)
 - [ ] 顯示目前存活玩家
+- [ ] 遊戲回合數過半，攻守交換
 - [ ] 新增煙霧彈
 - [ ] 開放自訂設定，可以自行選擇地圖
 - [ ] 遊戲戰績紀錄
@@ -56,6 +57,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## 🛠️ 已知問題
 - [x] 炸彈包會受到子彈/爆炸傷害
+- [ ] 炸彈包會飄浮在空中
 - [ ] 裝包後，全隊死亡後不會進入結算
 - [ ] 攜帶炸彈包的人死亡，炸彈包不會掉落
 - [ ] 炸彈包的Boss bar顯示距離不夠遠，導致有些時候看不到炸彈包
