@@ -59,5 +59,5 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - [x] 炸彈包會受到子彈/爆炸傷害
 - [x] 炸彈包會飄浮在空中
 - [ ] 裝包後，全隊死亡後不會進入結算
-- [ ] 攜帶炸彈包的人死亡，炸彈包不會掉落
+- [x] 攜帶炸彈包的人死亡，炸彈包不會掉落
 - [ ] 炸彈包的Boss bar顯示距離不夠遠，導致有些時候看不到炸彈包
