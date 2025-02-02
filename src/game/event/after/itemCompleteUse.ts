@@ -6,10 +6,11 @@ import { Mode, States, Team } from "../../../declare/enums";
 import { ItemCompleteUseAfterEvent, ItemStack, Player, system, Vector3, world } from "@minecraft/server";
 import config from "../../../config";
 
-abstract class itemCompleteUse {
+export default abstract class itemCompleteUse {
     static subscribe = () => {
         return world.afterEvents.itemCompleteUse.subscribe(ev => {
             if (Property.world().get('game_mode').value != Mode.Demolition) return;
+
             const item = ev.itemStack;
             if (item.typeId === "gunfight_arena:c4") summonC4(ev.source);
             if (item.typeId === "gunfight_arena:wire_stripper") defuseC4(ev.source);
@@ -17,7 +18,6 @@ abstract class itemCompleteUse {
     }
     static unsubscribe = (ev: (args: ItemCompleteUseAfterEvent) => void) => world.afterEvents.itemCompleteUse.unsubscribe(ev)
 }
-export default itemCompleteUse;
 
 
 const distance = (from: Vector3, to: Vector3) =>

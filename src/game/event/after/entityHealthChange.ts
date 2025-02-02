@@ -4,7 +4,7 @@ import { EntityHealthChangedAfterEvent, Player } from "@minecraft/server"
 import Property from "../../property/_handler";
 import { Utils } from "../../../core/utils/utils";
 
-abstract class entityHealthChange {
+export default abstract class entityHealthChange {
     static subscribe = () => {
         return world.afterEvents.entityHealthChanged.subscribe(ev => {
 
@@ -23,7 +23,6 @@ abstract class entityHealthChange {
     }
     static unsubscribe = (ev: (args: EntityHealthChangedAfterEvent) => void) => world.afterEvents.entityHealthChanged.unsubscribe(ev)
 }
-export default entityHealthChange
 
 
 function playerDead(player: Player, location: Vector3) {

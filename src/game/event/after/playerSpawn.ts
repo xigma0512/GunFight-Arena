@@ -7,7 +7,11 @@ export default abstract class playerSpawn {
         return world.afterEvents.playerSpawn.subscribe(ev => {
             const player = ev.player
             if (ev.initialSpawn) {
-                player.onScreenDisplay.setHudVisibility(0, [HudElement.ItemText, HudElement.StatusEffects, HudElement.Armor]);
+                player.onScreenDisplay.setHudVisibility(0, [
+                    HudElement.ItemText,
+                    HudElement.StatusEffects,
+                    HudElement.Armor
+                ]);
                 Utils.resetPlayerData(player);
             }
         })

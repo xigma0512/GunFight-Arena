@@ -12,6 +12,7 @@ export default abstract class worldInit {
             world.gameRules.showDeathMessages = false;
             world.gameRules.showTags = false;
             world.gameRules.keepInventory = true;
+
             console.warn("world initialize");
         })
     }
