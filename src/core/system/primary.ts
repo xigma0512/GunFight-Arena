@@ -24,8 +24,9 @@ function giveEffect() {
 }
 
 function inGame_detect() {
+    const gamemode = Property.world().get('game_mode').value as Mode
     for (const pl of world.getAllPlayers()) {
-        if (pl.hasTag('inGame')) Demolition.instance.addPlayer(pl);
-        if (!pl.hasTag('inGame')) Demolition.instance.removePlayer(pl);
+        if (pl.hasTag('inGame')) ModeManager.getMode(gamemode).addPlayer(pl);
+        if (!pl.hasTag('inGame')) ModeManager.getMode(gamemode).removePlayer(pl);
     }
 }
