@@ -12,6 +12,12 @@ import { Utils } from "../../utils/utils";
 export default class Running implements IState {
 
     private get base() { return Demolition.instance; }
+    readonly STATE_ID = States.Demolition.Running;
+
+    entry() {
+        this.base.setTimer(120);
+        this.base.setCurrentState(this.STATE_ID);
+    }
 
     update() {
         const teamPlayers = (t: Team) =>
@@ -19,15 +25,13 @@ export default class Running implements IState {
 
         const [blueTeamPlayers, redTeamPlayers] = [teamPlayers(Team.Blue), teamPlayers(Team.Red)];
 
-        if (this.base.time <= 595) {
-            if (blueTeamPlayers.length == 0) return this.exit(Team.Red);
-            else if (redTeamPlayers.length == 0) return this.exit(Team.Blue);
+        if (blueTeamPlayers.length == 0) return this.exit(Team.Red);
+        else if (redTeamPlayers.length == 0) return this.exit(Team.Blue);
 
-            if (getTeamAlive(Team.Blue, this.base.players) <= 0) this.nextRound(Team.Red);
-            else if (getTeamAlive(Team.Red, this.base.players) <= 0) this.nextRound(Team.Blue);
-        }
+        if (getTeamAlive(Team.Blue, this.base.players) <= 0) this.nextRound(Team.Red);
+        else if (getTeamAlive(Team.Red, this.base.players) <= 0) this.nextRound(Team.Blue);
 
-        if (this.base.time <= 0) {
+        if (this.base.timer <= 0) {
             this.base.players.forEach(p => p.sendMessage("Time is Over."));
             this.nextRound(Team.Blue);
         }
@@ -41,8 +45,7 @@ export default class Running implements IState {
         Utils.broadcastMessage(`§l${(winnerTeam == Team.Blue ? "§bBlue Team" : "§cRed Team")} §fwin this round.`, 'message');
         Utils.broadcastSound("random.anvil_break");
 
-        this.base.time = 5;
-        this.base.state = States.Demolition.Sleeping;
+        this.base.getState(States.Demolition.Sleeping).entry();
     }
 
     exit(winnerTeam: Team) {
@@ -56,8 +59,7 @@ export default class Running implements IState {
         Utils.broadcastMessage('§l§a- GAMEOVER -', 'message');
         Utils.broadcastMessage(`§l${(winnerTeam == Team.Blue ? "§bBlue Team" : "§cRed Team")} §eis the winner!`, 'message')
 
-        this.base.time = 15;
-        this.base.state = States.Demolition.GameOver;
+        this.base.getState(States.Demolition.GameOver).entry();
     }
 
 }

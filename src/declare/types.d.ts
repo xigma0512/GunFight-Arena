@@ -9,6 +9,8 @@ declare interface IProperty {
 }
 
 declare interface IState {
+    readonly STATE_ID: number;
+    entry(): void;
     update(): void;
     exit(_?: any): void;
 }

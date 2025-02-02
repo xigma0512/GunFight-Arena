@@ -10,13 +10,19 @@ import config from "../../../config";
 export default class Preparing implements IState {
 
     private get base() { return Demolition.instance; }
+    readonly STATE_ID = States.Demolition.Preparing;
+
+    entry() {
+        this.base.setTimer(20);
+        this.base.setCurrentState(this.STATE_ID);
+    }
 
     update() {
         this.base.players.forEach(player => {
-            player.onScreenDisplay.setActionBar(`Round Starts in ${this.base.time} sec(s).\nUse feather to open the shop.`)
-            if (this.base.time <= 5) player.playSound('note.harp');
+            player.onScreenDisplay.setActionBar(`Round Starts in ${this.base.timer} sec(s).\nUse feather to open the shop.`)
+            if (this.base.timer <= 5) player.playSound('note.harp');
         })
-        if (this.base.time <= 0) this.exit();
+        if (this.base.timer <= 0) this.exit();
     }
 
     exit() {
@@ -33,7 +39,6 @@ export default class Preparing implements IState {
             );
         } catch { }
 
-        this.base.time = 600;
-        this.base.state = States.Demolition.Running;
+        this.base.getState(States.Demolition.Running).entry();
     }
 }

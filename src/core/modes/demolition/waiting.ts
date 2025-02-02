@@ -10,6 +10,12 @@ import { Utils } from "../../utils/utils";
 export default class Waiting implements IState {
 
     private get base() { return Demolition.instance; }
+    readonly STATE_ID = States.Demolition.Waiting;
+
+    entry() {
+        this.base.setTimer(-1);
+        this.base.setCurrentState(this.STATE_ID);
+    }
 
     update() {
         for (const p of world.getAllPlayers()) {
@@ -31,8 +37,7 @@ export default class Waiting implements IState {
             Utils.respawnPlayer(pl);
         });
 
-        this.base.time = 20;
-        this.base.state = States.Demolition.Preparing;
+        this.base.getState(States.Demolition.Preparing).entry();
     }
 
 }

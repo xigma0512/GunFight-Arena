@@ -13,6 +13,12 @@ import { EntityHealthComponent } from "@minecraft/server";
 export default class BombPlanted implements IState {
 
     private get base() { return Demolition.instance; }
+    readonly STATE_ID = States.Demolition.BombPlanted;
+
+    entry() {
+        this.base.setTimer(40);
+        this.base.setCurrentState(this.STATE_ID);
+    }
 
     update() {
         const bomb = this.base.getBomb();
@@ -20,9 +26,9 @@ export default class BombPlanted implements IState {
 
         const health = bomb.getComponent('health') as EntityHealthComponent;
         const damagePerSec = health.effectiveMax / config.demolition.bomb_timer;
-        health.setCurrentValue(damagePerSec * this.base.time);
+        health.setCurrentValue(damagePerSec * this.base.timer);
 
-        if (this.base.time <= 0) this.exit(Team.Red);
+        if (this.base.timer <= 0) this.exit(Team.Red);
     }
 
     exit(winnerTeam: Team) {
@@ -30,10 +36,10 @@ export default class BombPlanted implements IState {
         pteam.updateTeamScore(winnerTeam, pteam.getTeamScore(winnerTeam) + 1);
 
         if (pteam.getTeamScore(winnerTeam) >= config.demolition.winningScore)
-            return this.base.handlers[States.Demolition.Running].exit(winnerTeam);
+            return this.base.getState(States.Demolition.Running).exit(winnerTeam);
 
         Utils.broadcastMessage(`§l${(winnerTeam == Team.Blue ? "§bBlue Team" : "§cRed Team")} §fwin this round.`, 'message');
-        this.base.time = 5;
-        this.base.state = States.Demolition.Sleeping;
+
+        this.base.getState(States.Demolition.Sleeping).entry();
     }
 }
