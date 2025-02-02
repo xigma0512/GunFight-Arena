@@ -60,4 +60,6 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - [x] 炸彈包會飄浮在空中
 - [x] 裝包後，全隊死亡後不會進入結算
 - [x] 攜帶炸彈包的人死亡，炸彈包不會掉落
+- [ ] 防守方的玩家可以撿起炸彈包
+- [ ] 回合結束後，掉落在地上的炸彈包不會消失
 - [ ] 炸彈包的Boss bar顯示距離不夠遠，導致有些時候看不到炸彈包
