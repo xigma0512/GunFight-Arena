@@ -44,7 +44,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - [x] 隱藏玩家名牌
 - [x] 裝包/拆包
 - [ ] 自定義觀察者 (可飛行但不可穿牆)
-- [ ] 自定義擊殺訊息 (ex. `[RED] Steve KILL [BLUE] Alex`)
+- [x] 自定義擊殺訊息 (ex. `[RED] Steve KILL [BLUE] Alex`)
 - [ ] 增加更多聲音/提示/粒子效果，給予玩家遊戲內的必要資訊 (ex. 炸彈包音效、移動時的腳步聲)
 - [ ] 顯示目前存活玩家
 - [ ] 新增煙霧彈
