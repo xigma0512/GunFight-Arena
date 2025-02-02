@@ -1,3 +1,4 @@
+import entityDie from "./after/entityDie";
 import entityHealthChange from "./after/entityHealthChange";
 import itemCompleteUse from "./after/itemCompleteUse";
 import itemUse from "./after/itemUse";
@@ -7,12 +8,15 @@ import playerLeave from "./before/playerLeave";
 
 export default function eventListener() {
     const events = [
-        playerSpawn,
         worldInit,
-        entityHealthChange,
-        itemUse,
+
+        playerSpawn,
         playerLeave,
-        itemCompleteUse
+        itemUse,
+        itemCompleteUse,
+
+        entityHealthChange,
+        entityDie
     ];
     for (const ev of events) {
         ev.subscribe();
