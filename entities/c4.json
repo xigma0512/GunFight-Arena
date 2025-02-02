@@ -36,6 +36,10 @@
                     "deals_damage": false,
                     "damage_modifier": -100
                 }
+            },
+            "minecraft:physics": {
+                "has_gravity": true,
+                "has_collision": true
             }
         },
         "events": {}
