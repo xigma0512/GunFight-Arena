@@ -28,4 +28,4 @@ export default {
         },
         winningScore: 5
     }
-}
+} as const
