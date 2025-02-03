@@ -1,6 +1,6 @@
+import runTask from "./core/system/runTask";
 import eventListener from "./game/event/_listener";
-import { runInterval } from "./core/system/_run";
 import { system } from "@minecraft/server";
 
 eventListener();
-system.runTimeout(() => runInterval(), 100);
+system.runTimeout(runTask, 100);
