@@ -13,10 +13,10 @@
 ### 2️⃣ 使用
 
 ```
-/tag <target> add inGame    # 加入遊戲
-/tag <target> remove inGame # 離開遊戲
+/function join_queue # 加入遊戲
+/function left_queue # 離開遊戲
+/function game_start # 開始遊戲
 ```
-遊戲將會在所有玩家都加入遊戲後自動開始。
 
 ## 🎮遊戲玩法
 
