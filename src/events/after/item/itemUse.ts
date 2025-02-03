@@ -1,6 +1,6 @@
 import { world } from "@minecraft/server";
 import { ItemUseBeforeEvent } from "@minecraft/server"
-import { shop } from "../../ui/shop";
+import { shop } from "../../../ui/shop";
 
 export default abstract class itemUse {
     static subscribe = () => {

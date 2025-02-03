@@ -1,7 +1,7 @@
 import { EntityDieAfterEvent, Player, world } from "@minecraft/server"
-import Property from "../../property/_handler"
-import { Team } from "../../declare/enums";
-import { BroadcastUtils } from "../../utils/broadcast";
+import Property from "../../../property/_handler"
+import { Team } from "../../../declare/enums";
+import { BroadcastUtils } from "../../../utils/broadcast";
 
 export default abstract class entityDie {
     static subscribe = () => {

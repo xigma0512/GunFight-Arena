@@ -1,10 +1,10 @@
-import Property from "../../property/_handler";
-import Demolition from "../../game/modes/demolition/_handler";
-import { Mode, States, Team } from "../../declare/enums";
+import Property from "../../../property/_handler";
+import Demolition from "../../../game/modes/demolition/_handler";
+import { Mode, States, Team } from "../../../declare/enums";
 
 import { ItemCompleteUseAfterEvent, ItemStack, Player, system, Vector3, world } from "@minecraft/server";
-import config from "../../config";
-import { BroadcastUtils } from "../../utils/broadcast";
+import config from "../../../config";
+import { BroadcastUtils } from "../../../utils/broadcast";
 
 export default abstract class itemCompleteUse {
     static subscribe = () => {

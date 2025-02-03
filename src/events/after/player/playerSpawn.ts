@@ -1,4 +1,4 @@
-import { ResetUtils } from "../../utils/reset";
+import { ResetUtils } from "../../../utils/reset";
 
 import { world } from "@minecraft/server";
 import { HudElement, PlayerSpawnAfterEvent } from "@minecraft/server"

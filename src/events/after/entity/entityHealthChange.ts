@@ -1,8 +1,8 @@
 import { Container, ItemStack, Vector3, world } from "@minecraft/server";
 import { EntityHealthChangedAfterEvent, Player } from "@minecraft/server"
 
-import Property from "../../property/_handler";
-import { PlayerUtils } from "../../utils/player";
+import Property from "../../../property/_handler";
+import { PlayerUtils } from "../../../utils/player";
 
 export default abstract class entityHealthChange {
     static subscribe = () => {
