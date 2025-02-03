@@ -9,7 +9,7 @@ import { Player } from "@minecraft/server";
 export namespace ResetUtils {
     export function inGameData() {
         Property.world().get('game_mode').update(Mode.Demolition);
-        ModeManager.getMode(Mode.Demolition).setCurrentState(States.Demolition.Waiting);
+        ModeManager.getMode(Mode.Demolition).setCurrentState(States.Demolition.Idle);
         (Property.world().get('team_score') as PTeamScore).updateTeamScore(Team.Blue);
         (Property.world().get('team_score') as PTeamScore).updateTeamScore(Team.Red);
     }
