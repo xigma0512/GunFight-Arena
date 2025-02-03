@@ -16,7 +16,7 @@ export default class Running implements IState {
     readonly STATE_ID = States.Demolition.Running;
 
     entry() {
-        this.base.setTimer(120);
+        this.base.setTimer(config.demolition.timer.running);
         this.base.setCurrentState(this.STATE_ID);
     }
 
