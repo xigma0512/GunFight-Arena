@@ -4,11 +4,12 @@ import PTeamScore from "../../../game/property/world/team_score";
 
 import config from "../../../config";
 
-import { Utils } from "../../utils/utils";
 import { IState } from "../../../declare/types"
 import { States, Team } from "../../../declare/enums";
 
 import { EntityHealthComponent } from "@minecraft/server";
+import { TeamUtils } from "../../utils/team";
+import { BroadcastUtils } from "../../utils/broadcast";
 
 export default class BombPlanted implements IState {
 
@@ -16,7 +17,7 @@ export default class BombPlanted implements IState {
     readonly STATE_ID = States.Demolition.BombPlanted;
 
     entry() {
-        this.base.setTimer(40);
+        this.base.setTimer(config.demolition.timer.bombPlanted);
         this.base.setCurrentState(this.STATE_ID);
     }
 
@@ -25,20 +26,20 @@ export default class BombPlanted implements IState {
         if (bomb === undefined) return;
 
         const health = bomb.getComponent('health') as EntityHealthComponent;
-        const damagePerSec = health.effectiveMax / config.demolition.bomb_timer;
+        const damagePerSec = health?.effectiveMax / config.demolition.timer.bombPlanted;
         health.setCurrentValue(damagePerSec * this.base.timer);
 
         if (this.base.timer <= 0) this.exit(Team.Red);
 
         const [blueTeamPlayers, redTeamPlayers] = [
-            Utils.getTeamPlayers(Team.Blue, this.base.players),
-            Utils.getTeamPlayers(Team.Red, this.base.players)
+            TeamUtils.getPlayers(Team.Blue, this.base.players),
+            TeamUtils.getPlayers(Team.Red, this.base.players)
         ];
 
         if (blueTeamPlayers.length == 0) return this.exit(Team.Red);
         else if (redTeamPlayers.length == 0) return this.exit(Team.Blue);
 
-        if (Utils.getTeamAlive(Team.Blue, this.base.players) <= 0) return this.exit(Team.Red);
+        if (TeamUtils.getAlive(Team.Blue, this.base.players) <= 0) return this.exit(Team.Red);
     }
 
     exit(winnerTeam: Team) {
@@ -48,8 +49,8 @@ export default class BombPlanted implements IState {
         if (pteam.getTeamScore(winnerTeam) >= config.demolition.winningScore)
             return this.base.getState(States.Demolition.Running).exit(winnerTeam);
 
-        Utils.broadcastMessage(`§l${(winnerTeam == Team.Blue ? "§bBlue Team" : "§cRed Team")} §fwin this round.`, 'message');
+        BroadcastUtils.message(`§l${(winnerTeam == Team.Blue ? "§bBlue Team" : "§cRed Team")} §fwin this round.`, 'message');
 
-        this.base.getState(States.Demolition.Sleeping).entry();
+        this.base.getState(States.Demolition.Waiting).entry();
     }
 }

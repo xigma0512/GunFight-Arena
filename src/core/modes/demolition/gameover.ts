@@ -1,7 +1,10 @@
-import { IState } from "../../../declare/types"
 import Demolition from "./_handler"
+import { ResetUtils } from "../../utils/reset";
+
+import config from "../../../config";
+
+import { IState } from "../../../declare/types"
 import { States } from "../../../declare/enums";
-import { Utils } from "../../utils/utils";
 
 export default class GameOver implements IState {
 
@@ -9,7 +12,7 @@ export default class GameOver implements IState {
     readonly STATE_ID = States.Demolition.GameOver;
 
     entry() {
-        this.base.setTimer(10);
+        this.base.setTimer(config.demolition.timer.gameover);
         this.base.setCurrentState(this.STATE_ID);
     }
 
@@ -22,11 +25,11 @@ export default class GameOver implements IState {
 
     exit() {
         this.base.players.forEach(pl => {
-            Utils.resetPlayerData(pl);
+            ResetUtils.playerData(pl);
         });
-        Utils.resetGameData();
+        ResetUtils.inGameData();
 
-        this.base.getState(States.Demolition.Waiting).entry();
+        this.base.getState(States.Demolition.Idle).entry();
     }
 
 }

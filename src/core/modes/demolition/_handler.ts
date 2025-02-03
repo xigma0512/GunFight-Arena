@@ -1,13 +1,13 @@
-import WaitingHanlder from "./waiting"
-import PreparingHandler from "./preparing";
-import RunningHandler from "./running";
-import GameOverHanlder from "./gameover";
-import SleepingHanlder from "./sleeping";
-import BombPlantedHandler from "./bombPlanted";
+import Idle from "./idle"
+import Preparation from "./preparation";
+import Running from "./running";
+import GameOver from "./gameover";
+import Waiting from "./waiting";
+import BombPlanted from "./bombPlanted";
 
 import { States } from "../../../declare/enums";
 
-import ModeHandlerBase from "../base/_handler";
+import ModeHandlerBase from "../baseHandler";
 import { Entity } from "@minecraft/server";
 
 export default class Demolition extends ModeHandlerBase {
@@ -20,12 +20,12 @@ export default class Demolition extends ModeHandlerBase {
 
     constructor() {
         super(-1, [], [
-            new WaitingHanlder,
-            new PreparingHandler,
-            new RunningHandler,
-            new GameOverHanlder,
-            new SleepingHanlder,
-            new BombPlantedHandler
+            new Idle,
+            new Preparation,
+            new Running,
+            new BombPlanted,
+            new Waiting,
+            new GameOver,
         ]);
         this._currentState = States.Demolition.Waiting;
     }

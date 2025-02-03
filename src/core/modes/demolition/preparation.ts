@@ -1,19 +1,22 @@
-import { IState } from "../../../declare/types";
 import Demolition from "./_handler";
 import Equipment from "../../equipment/equipment";
 
-import { States } from "../../../declare/enums";
-import { Utils } from "../../utils/utils";
-import { ItemStack, world } from "@minecraft/server";
-import config from "../../../config";
+import { BroadcastUtils } from "../../utils/broadcast";
+import { PlayerUtils } from "../../utils/player";
 
-export default class Preparing implements IState {
+import config from "../../../config";
+import { IState } from "../../../declare/types";
+import { States } from "../../../declare/enums";
+
+import { ItemStack, world } from "@minecraft/server";
+
+export default class Preparation implements IState {
 
     private get base() { return Demolition.instance; }
-    readonly STATE_ID = States.Demolition.Preparing;
+    readonly STATE_ID = States.Demolition.Preparation;
 
     entry() {
-        this.base.setTimer(20);
+        this.base.setTimer(config.demolition.timer.preparation);
         this.base.setCurrentState(this.STATE_ID);
     }
 
@@ -28,14 +31,13 @@ export default class Preparing implements IState {
     exit() {
         this.base.players.forEach(pl => {
             Equipment.send(pl);
-            Utils.setMovement(pl, true);
+            PlayerUtils.setMovement(pl, true);
         });
-        Utils.broadcastSound('random.levelup');
-
+        BroadcastUtils.sound('random.levelup');
         try {
             world.getDimension('overworld').spawnItem(
                 new ItemStack("gunfight_arena:c4"),
-                config.demolition.spawn_point.red_team
+                config.demolition.bomb.spawn_point
             );
         } catch { }
 
