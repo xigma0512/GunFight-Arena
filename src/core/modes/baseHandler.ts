@@ -1,5 +1,5 @@
-import { States } from "../../../declare/enums";
-import { IState } from "../../../declare/types";
+import { States } from "../../declare/enums";
+import { IState } from "../../declare/types";
 
 import { Player } from "@minecraft/server";
 
