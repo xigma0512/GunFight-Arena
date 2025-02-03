@@ -6,15 +6,15 @@ import PTeamScore from "../property/world/team_score";
 
 import { Player } from "@minecraft/server";
 
-export namespace ResetUtils {
-    export function inGameData() {
+export abstract class ResetUtils {
+    static inGameData() {
         Property.world().get('game_mode').update(Mode.Demolition);
         ModeManager.getMode(Mode.Demolition).setCurrentState(States.Demolition.Idle);
         (Property.world().get('team_score') as PTeamScore).updateTeamScore(Team.Blue);
         (Property.world().get('team_score') as PTeamScore).updateTeamScore(Team.Red);
     }
 
-    export function playerData(player: Player) {
+    static playerData(player: Player) {
         PlayerUtils.clearInventory(player);
         PlayerUtils.setMovement(player, true);
         PlayerUtils.setGameMode(player, 'adventure');

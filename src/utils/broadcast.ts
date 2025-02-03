@@ -1,7 +1,7 @@
 import { world } from "@minecraft/server";
 
-export namespace BroadcastUtils {
-    export function message(msg: string, type: 'message' | 'actionbar') {
+export abstract class BroadcastUtils {
+    static message(msg: string, type: 'message' | 'actionbar') {
         for (const player of world.getAllPlayers()) {
             switch (type) {
                 case 'message': player.sendMessage(msg); break;
@@ -10,7 +10,7 @@ export namespace BroadcastUtils {
         }
     }
 
-    export function sound(soundId: string) {
+    static sound(soundId: string) {
         for (const player of world.getAllPlayers()) {
             player.playSound(soundId);
         }

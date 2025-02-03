@@ -4,8 +4,8 @@ import config from "../config";
 import { Player, ItemStack } from "@minecraft/server";
 import { InputPermissionCategory, EquipmentSlot, GameMode, ItemLockMode } from "@minecraft/server";
 
-export namespace PlayerUtils {
-    export function setMovement(player: Player, state: boolean) {
+export abstract class PlayerUtils {
+    static setMovement(player: Player, state: boolean) {
         [
             InputPermissionCategory.MoveForward,
             InputPermissionCategory.MoveBackward,
@@ -14,7 +14,7 @@ export namespace PlayerUtils {
         ].forEach(inputPermission => player.inputPermissions.setPermissionCategory(inputPermission, state));
     }
 
-    export function clearInventory(player: Player) {
+    static clearInventory(player: Player) {
         player.getComponent('inventory')?.container?.clearAll();
         const equipmentSlot = [
             EquipmentSlot.Head,
@@ -25,7 +25,7 @@ export namespace PlayerUtils {
         for (const slot of equipmentSlot) player.getComponent('equippable')?.setEquipment(slot, undefined);
     }
 
-    export function setGameMode(player: Player, mode: 'creative' | 'survival' | 'adventure' | 'spectator') {
+    static setGameMode(player: Player, mode: 'creative' | 'survival' | 'adventure' | 'spectator') {
         player.setGameMode({
             'creative': GameMode.creative,
             'survival': GameMode.survival,
@@ -34,7 +34,7 @@ export namespace PlayerUtils {
         }[mode]);
     }
 
-    export function tp2Spawn(player: Player) {
+    static tp2Spawn(player: Player) {
         const team = Property.entity(player).get('team').value as Team;
 
         switch (team) {
@@ -47,13 +47,13 @@ export namespace PlayerUtils {
         }
     }
 
-    export function respawn(player: Player) {
-        clearInventory(player);
-        setMovement(player, false);
-        setGameMode(player, 'adventure');
+    static respawn(player: Player) {
+        this.clearInventory(player);
+        this.setMovement(player, false);
+        this.setGameMode(player, 'adventure');
         Property.entity(player).get('alive').update();
 
-        tp2Spawn(player);
+        this.tp2Spawn(player);
 
         player.addEffect('health_boost', 2000000, { amplifier: 9, showParticles: false });
         player.addEffect('instant_health', 2, { amplifier: 99 });
