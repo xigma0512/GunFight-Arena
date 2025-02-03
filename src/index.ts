@@ -1,5 +1,5 @@
-import runTask from "./core/task/runTask";
-import eventListener from "./game/event/_listener";
+import runTask from "./system/task/runTask";
+import eventListener from "./events/_listener";
 import { system } from "@minecraft/server";
 
 eventListener();
