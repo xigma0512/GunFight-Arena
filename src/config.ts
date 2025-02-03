@@ -8,11 +8,11 @@ export default {
     lobby_spawn: { x: -25, y: 30, z: -550 },
     demolition: {
         timer: {
-            preparing: 20,
+            preparation: 20,
             running: 120,
             bombPlanted: 50,
+            waiting: 5,
             gameover: 5,
-            sleeping: 5,
         },
         bomb: {
             spawn_point: { x: -21, y: 32, z: -414 },
