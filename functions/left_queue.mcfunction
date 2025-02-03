@@ -1,0 +1,1 @@
+scriptevent "gunfight_arena:left_queue"

@@ -23,7 +23,6 @@ export default class Idle implements IState {
             p.onScreenDisplay.setActionBar(`Waiting for more players...(${this.base.players.length}/10)`);
             p.addEffect('instant_health', 30, { amplifier: 255, showParticles: false });
         }
-        if (this.base.players.length >= world.getAllPlayers().length) this.exit();
     }
 
     exit() {

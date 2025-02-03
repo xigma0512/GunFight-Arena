@@ -17,14 +17,6 @@ namespace PrimaryTask {
             player.addEffect('saturation', 30, { amplifier: 1, showParticles: false });
         }
     }
-
-    export function GamePlayerDetect() {
-        const gamemode = Property.world().get('game_mode').value as Mode
-        for (const pl of world.getAllPlayers()) {
-            if (pl.hasTag('inGame')) ModeManager.getMode(gamemode).addPlayer(pl);
-            if (!pl.hasTag('inGame')) ModeManager.getMode(gamemode).removePlayer(pl);
-        }
-    }
 }
 
 namespace RealTimeTask {
@@ -65,7 +57,6 @@ export default function runTask() {
     const tasks: Array<[() => void, number]> = [
         [PrimaryTask.GameTick, 20],
         [PrimaryTask.PlayerEffect, 20],
-        [PrimaryTask.GamePlayerDetect, 20],
 
         [RealTimeTask.HandItemDetect, 1],
         [RealTimeTask.UpdateInfoScreen, 1]

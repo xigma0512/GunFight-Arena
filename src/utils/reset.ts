@@ -25,7 +25,6 @@ export namespace ResetUtils {
         PlayerUtils.tp2Spawn(player);
 
         player.nameTag = player.name;
-        player.removeTag('inGame');
 
         for (const [_, propObject] of Object.entries(Property.entity(player).properties())) {
             propObject.update();
