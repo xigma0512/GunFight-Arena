@@ -8,6 +8,9 @@
             }
         },
         "components": {
+            "minecraft:display_name": {
+                "value": "C4"
+            },
             "minecraft:icon": "c4",
             "minecraft:use_modifiers": {
                 "use_duration": 3,
