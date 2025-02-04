@@ -1,6 +1,7 @@
 import Demolition from "./_handler";
 import Property from "../../../property/_handler";
 import PTeamScore from "../../../property/world/team_score";
+import { DroppedBombHandler } from "../../bomb/droppedBomb";
 
 import { BroadcastUtils } from "../../../utils/broadcast";
 import { PlayerUtils } from "../../../utils/player";
@@ -16,6 +17,8 @@ export default class Running implements IState {
     readonly STATE_ID = States.Demolition.Running;
 
     entry() {
+        DroppedBombHandler.instance.summon(config.demolition.bomb.spawn_point);
+
         this.base.setTimer(config.demolition.timer.running);
         this.base.setCurrentState(this.STATE_ID);
     }
