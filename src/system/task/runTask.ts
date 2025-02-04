@@ -4,8 +4,7 @@ import Property from "../../property/_handler";
 import ModeManager from "../../game/modes/_manager";
 
 import { Mode } from "../../declare/enums";
-import { EquipmentSlot, HudElement, Player, world } from "@minecraft/server";
-
+import { EquipmentSlot, HudElement, world } from "@minecraft/server";
 namespace PrimaryTask {
     export function GameTick() {
         const gameMode = Property.world().get('game_mode').value as Mode;
@@ -24,7 +23,7 @@ namespace RealTimeTask {
         for (const player of world.getAllPlayers()) {
             const handItem = player.getComponent('equippable')?.getEquipment(EquipmentSlot.Mainhand)
 
-            if (handItem == undefined) return;
+            if (handItem === undefined) continue;
 
             const heavyItems = [
                 { id: 'gabrielaplok:awp', amplifier: 0 },
