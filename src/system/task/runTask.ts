@@ -2,9 +2,11 @@ import { Task } from "./task";
 
 import Property from "../../property/_handler";
 import ModeManager from "../../game/modes/_manager";
+import { DroppedBombHandler } from "../../game/bomb/droppedBomb";
 
 import { Mode } from "../../declare/enums";
 import { EquipmentSlot, HudElement, world } from "@minecraft/server";
+
 namespace PrimaryTask {
     export function GameTick() {
         const gameMode = Property.world().get('game_mode').value as Mode;
@@ -46,6 +48,16 @@ namespace RealTimeTask {
             );
         }
     }
+
+    export function RotateDroppedBomb() {
+        const bomb = DroppedBombHandler.instance.getBomb();
+        if (bomb === undefined) return;
+
+        const rotate = bomb.getRotation();
+        rotate.y += 20;
+        bomb.setRotation(rotate);
+    }
+
     export function UpdateInfoScreen() {
 
     }
@@ -58,6 +70,7 @@ export default function runTask() {
         [PrimaryTask.PlayerEffect, 20],
 
         [RealTimeTask.HandItemDetect, 1],
+        [RealTimeTask.RotateDroppedBomb, 4],
         [RealTimeTask.UpdateInfoScreen, 1]
     ];
 
