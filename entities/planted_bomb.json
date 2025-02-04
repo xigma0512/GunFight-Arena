@@ -2,7 +2,7 @@
     "format_version": "1.20.80",
     "minecraft:entity": {
         "description": {
-            "identifier": "gunfight_arena:c4",
+            "identifier": "gunfight_arena:planted_bomb",
             "is_spawnable": true,
             "is_summonable": true,
             "is_experimental": false
