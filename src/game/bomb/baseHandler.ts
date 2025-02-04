@@ -7,7 +7,11 @@ export abstract class BombHandlerBase {
 
     getBomb() { return this._bomb; }
 
+    kill() {
+        this._bomb?.remove();
+        this._bomb = undefined;
+    }
+
     summon?(arg?: any): Result;
     remove?(arg?: any): Result;
-
 }
