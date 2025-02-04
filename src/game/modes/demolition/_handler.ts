@@ -8,7 +8,6 @@ import BombPlanted from "./bombPlanted";
 import { States } from "../../../declare/enums";
 
 import ModeHandlerBase from "../baseHandler";
-import { Entity } from "@minecraft/server";
 
 export default class Demolition extends ModeHandlerBase {
 
@@ -16,7 +15,6 @@ export default class Demolition extends ModeHandlerBase {
     static get instance() { return (this._instance || (this._instance = new this())); }
 
     private _currentState: States.Demolition;
-    private _c4: Entity | undefined;
 
     constructor() {
         super(-1, [], [
@@ -32,10 +30,6 @@ export default class Demolition extends ModeHandlerBase {
 
     getCurrentState() { return this._currentState; }
     setCurrentState(state: States.Demolition) { this._currentState = state; }
-
-    getBomb() { return this._c4; }
-    registerBomb(entity: Entity) { this._c4 = entity; }
-    unRegisterBomb() { this._c4 = undefined; }
 
     override tick() {
         this.getState(this._currentState).update();
