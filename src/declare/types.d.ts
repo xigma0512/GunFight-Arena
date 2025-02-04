@@ -2,6 +2,8 @@ import { Vector3 } from "@minecraft/server";
 
 declare type PropertyDataType = string | number | boolean | Vector3 | undefined
 
+declare type Result = [boolean, string]
+
 declare interface IProperty {
     readonly propertyId: string;
     get value(): PropertyDataType
