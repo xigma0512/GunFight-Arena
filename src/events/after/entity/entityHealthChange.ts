@@ -1,8 +1,10 @@
-import { Container, ItemStack, Vector3, world } from "@minecraft/server";
+import { Container, Vector3, world } from "@minecraft/server";
 import { EntityHealthChangedAfterEvent, Player } from "@minecraft/server"
+import { DroppedBombHandler } from "../../../game/bomb/droppedBomb";
 
 import Property from "../../../property/_handler";
 import { PlayerUtils } from "../../../utils/player";
+import { BroadcastUtils } from "../../../utils/broadcast";
 
 export default abstract class entityHealthChange {
     static subscribe = () => {
@@ -33,11 +35,15 @@ function playerDead(player: Player, location: Vector3) {
     for (let slotIndex = 0; slotIndex < container.size; slotIndex++) {
         const item = container.getItem(slotIndex);
         if (item === undefined) continue;
-        if (item.typeId === "gunfight_arena:c4") {
-            world.getDimension('overworld').spawnItem(new ItemStack("gunfight_arena:c4"), location);
-            return;
-        }
+        if (item.typeId === "gunfight_arena:c4") return dropBomb(player);
     }
-
     player.sendMessage("You've been eliminated. You will Respawn in next round.");
+}
+
+function dropBomb(player: Player) {
+    const [result, _] = DroppedBombHandler.instance.summon(player.location);
+
+    if (!result) return;
+
+    BroadcastUtils.message("§cThe Bomb Carrier was killed, Bomb Dropped.", 'message');
 }

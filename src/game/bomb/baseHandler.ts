@@ -1,12 +1,13 @@
-import { Entity, Vector3 } from "@minecraft/server";
+import { Entity, Player } from "@minecraft/server";
+import { Result } from "../../declare/types";
 
 export abstract class BombHandlerBase {
 
-    protected _bomb: Entity | undefined;
+    protected _bomb: Entity | undefined = undefined;
 
     getBomb() { return this._bomb; }
 
-    summon?(location: Vector3): void;
-    remove?(): void;
+    summon?(arg?: any): Result;
+    remove?(arg?: any): Result;
 
 }

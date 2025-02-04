@@ -1,15 +1,16 @@
 import Demolition from "./_handler";
 import Property from "../../../property/_handler";
 import PTeamScore from "../../../property/world/team_score";
+import { PlantedBombHandler } from "../../bomb/plantedBomb";
 
 import config from "../../../config";
 
 import { IState } from "../../../declare/types"
 import { States, Team } from "../../../declare/enums";
-
-import { EntityHealthComponent } from "@minecraft/server";
 import { TeamUtils } from "../../../utils/team";
 import { BroadcastUtils } from "../../../utils/broadcast";
+
+import { EntityHealthComponent } from "@minecraft/server";
 
 export default class BombPlanted implements IState {
 
@@ -22,7 +23,7 @@ export default class BombPlanted implements IState {
     }
 
     update() {
-        const bomb = this.base.getBomb();
+        const bomb = PlantedBombHandler.instance.getBomb();
         if (bomb === undefined) return;
 
         const health = bomb.getComponent('health') as EntityHealthComponent;
