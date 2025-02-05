@@ -2,9 +2,10 @@ import { Task } from "./task";
 
 import Property from "../../property/_handler";
 import ModeManager from "../../game/modes/_manager";
+import { DroppedBombHandler } from "../../game/bomb/droppedBomb";
 
 import { Mode } from "../../declare/enums";
-import { EquipmentSlot, HudElement, Player, world } from "@minecraft/server";
+import { EquipmentSlot, HudElement, world } from "@minecraft/server";
 
 namespace PrimaryTask {
     export function GameTick() {
@@ -24,7 +25,7 @@ namespace RealTimeTask {
         for (const player of world.getAllPlayers()) {
             const handItem = player.getComponent('equippable')?.getEquipment(EquipmentSlot.Mainhand)
 
-            if (handItem == undefined) return;
+            if (handItem === undefined) continue;
 
             const heavyItems = [
                 { id: 'gabrielaplok:awp', amplifier: 0 },
@@ -47,6 +48,16 @@ namespace RealTimeTask {
             );
         }
     }
+
+    export function RotateDroppedBomb() {
+        const bomb = DroppedBombHandler.instance.getBomb();
+        if (bomb === undefined) return;
+
+        const rotate = bomb.getRotation();
+        rotate.y += 20;
+        bomb.setRotation(rotate);
+    }
+
     export function UpdateInfoScreen() {
 
     }
@@ -59,6 +70,7 @@ export default function runTask() {
         [PrimaryTask.PlayerEffect, 20],
 
         [RealTimeTask.HandItemDetect, 1],
+        [RealTimeTask.RotateDroppedBomb, 4],
         [RealTimeTask.UpdateInfoScreen, 1]
     ];
 

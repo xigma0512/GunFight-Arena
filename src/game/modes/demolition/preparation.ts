@@ -7,8 +7,9 @@ import { PlayerUtils } from "../../../utils/player";
 import config from "../../../config";
 import { IState } from "../../../declare/types";
 import { States } from "../../../declare/enums";
+import { DroppedBombHandler } from "../../bomb/droppedBomb";
+import { PlantedBombHandler } from "../../bomb/plantedBomb";
 
-import { ItemStack, world } from "@minecraft/server";
 
 export default class Preparation implements IState {
 
@@ -16,6 +17,9 @@ export default class Preparation implements IState {
     readonly STATE_ID = States.Demolition.Preparation;
 
     entry() {
+        DroppedBombHandler.instance.kill();
+        PlantedBombHandler.instance.kill();
+
         this.base.setTimer(config.demolition.timer.preparation);
         this.base.setCurrentState(this.STATE_ID);
     }
@@ -34,12 +38,6 @@ export default class Preparation implements IState {
             PlayerUtils.setMovement(pl, true);
         });
         BroadcastUtils.sound('random.levelup');
-        try {
-            world.getDimension('overworld').spawnItem(
-                new ItemStack("gunfight_arena:c4"),
-                config.demolition.bomb.spawn_point
-            );
-        } catch { }
 
         this.base.getState(States.Demolition.Running).entry();
     }

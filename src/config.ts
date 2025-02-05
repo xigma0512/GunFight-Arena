@@ -15,7 +15,7 @@ export default {
             gameover: 5,
         },
         bomb: {
-            spawn_point: { x: -21, y: 32, z: -414 },
+            spawn_point: { x: -128, y: 33, z: -476 },
             bomb_point: {
                 A: { x: -16, y: 29, z: -502 },
                 B: { x: -21, y: 32, z: -414 }
