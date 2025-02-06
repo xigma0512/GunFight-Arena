@@ -2,7 +2,7 @@
 
 [[中文](README.md) | **English**]
 
-> [!WARN]
+> [!WARNING]
 > This English version was written using translation software. Please understand if there are any inaccuracies. 
 
 > [!NOTE]  
@@ -19,7 +19,7 @@
 2. Open the `.mcworld` file to import it into the game.  
 3. Ensure that **Experimental Features** are enabled in the world settings. 
 
-> [!WARN]  
+> [!WARNING]  
 > The current version does not yet support custom maps. However, you can edit the contents of `src/config.ts` and install it on another map by modifying the information inside. In theory, it should work.  \  
 > If needed, I will provide annotations for the `config` contents in the future.  
 
