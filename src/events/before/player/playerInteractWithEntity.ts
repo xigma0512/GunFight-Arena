@@ -1,6 +1,6 @@
 import { Player, PlayerInteractWithEntityBeforeEvent, system, world } from "@minecraft/server";
-import { DroppedBombHandler } from "../../game/bomb/droppedBomb";
-import { BroadcastUtils } from "../../utils/broadcast";
+import { DroppedBombHandler } from "../../../game/bomb/droppedBomb";
+import { BroadcastUtils } from "../../../utils/broadcast";
 
 export default abstract class playerInteractWithEntity {
     static subscribe = () => {
