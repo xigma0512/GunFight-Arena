@@ -7,6 +7,7 @@ import itemUse from "./before/item/itemUse";
 
 import playerSpawn from "./after/player/playerSpawn";
 import playerInteractWithEntity from "./before/player/playerInteractWithEntity"
+import playerLeave from "./before/player/playerLeave";
 
 import worldInit from "./after/worldInit";
 import ScriptMessage from "./after/scriptMessage";
@@ -22,6 +23,7 @@ export default function eventListener() {
 
         playerSpawn,
         playerInteractWithEntity,
+        playerLeave,
 
         worldInit,
         ScriptMessage,
