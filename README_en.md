@@ -46,8 +46,9 @@
 
 ## 📜 Contributions  
 
-**👤 Author**: [@xigma0512](https://github.com/xigma0512)  
-**🎨 AplokGun Addon**: [Aplok Guns](https://mcpedl.com/aplok-guns/), developed by [@GabrielAplok](https://github.com/gabriel-aplok/)  
+**👤 Author**: [@xigma0512](https://github.com/xigma0512) \
+**🎨 AplokGun Addon**: [Aplok Guns](https://mcpedl.com/aplok-guns/), developed by [@GabrielAplok](https://github.com/gabriel-aplok/)\
+**⭐Personal Sidebar Scoreboard**: [@MonkeyChan](https://www.youtube.com/@MonkeyChan118 )\
 **🌍 Map**: [CS:GO Dust II](https://mcpedl.com/cs-s-dust-ii/) Created by @Codre & Ported by @AzozGamer936  
 
 ## 🏛️ License  
