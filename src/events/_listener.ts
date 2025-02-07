@@ -3,10 +3,10 @@ import entityHealthChange from "./after/entity/entityHealthChange";
 import entitySpawn from "./after/entity/entitySpawn";
 
 import itemCompleteUse from "./after/item/itemCompleteUse";
-import itemUse from "./after/item/itemUse";
+import itemUse from "./before/item/itemUse";
 
 import playerSpawn from "./after/player/playerSpawn";
-import playerInteractWithEntity from "./before/playerInteractWithEntity"
+import playerInteractWithEntity from "./before/player/playerInteractWithEntity"
 
 import worldInit from "./after/worldInit";
 import ScriptMessage from "./after/scriptMessage";
