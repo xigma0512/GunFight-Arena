@@ -20,14 +20,14 @@ export default abstract class entityHealthChange {
                 z: player.location.z,
                 dimension: player.dimension
             });
-            if (ev.newValue <= 0) playerDead(player, player.location);
+            if (ev.newValue <= 0) playerDead(player);
         })
     }
     static unsubscribe = (ev: (args: EntityHealthChangedAfterEvent) => void) => world.afterEvents.entityHealthChanged.unsubscribe(ev)
 }
 
 
-function playerDead(player: Player, location: Vector3) {
+function playerDead(player: Player) {
     PlayerUtils.setGameMode(player, 'spectator');
     Property.entity(player).get('alive').update(false);
 
