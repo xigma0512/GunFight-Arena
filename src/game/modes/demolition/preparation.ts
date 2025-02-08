@@ -18,11 +18,6 @@ export default class Preparation implements IState {
     readonly STATE_ID = States.Demolition.Preparation;
 
     entry() {
-        DroppedBombHandler.instance.kill();
-        PlantedBombHandler.instance.kill();
-        world.getDimension('overworld').getEntities({type: "gunfight_arena:dropped_bomb"}).forEach(entity => entity.remove());
-        world.getDimension('overworld').getEntities({type: "gunfight_arena:planted_bomb"}).forEach(entity => entity.remove());
-
         this.base.setTimer(config.demolition.timer.preparation);
         this.base.setCurrentState(this.STATE_ID);
     }
@@ -36,6 +31,11 @@ export default class Preparation implements IState {
     }
 
     exit() {
+        DroppedBombHandler.instance.kill();
+        PlantedBombHandler.instance.kill();
+        world.getDimension('overworld').getEntities({type: "gunfight_arena:dropped_bomb"}).forEach(entity => entity.kill());
+        world.getDimension('overworld').getEntities({type: "gunfight_arena:planted_bomb"}).forEach(entity => entity.kill());
+
         this.base.players.forEach(pl => {
             Equipment.send(pl);
             PlayerUtils.setMovement(pl, true);
