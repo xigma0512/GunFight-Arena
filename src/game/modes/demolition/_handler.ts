@@ -25,7 +25,7 @@ export default class Demolition extends ModeHandlerBase {
             new Waiting,
             new GameOver,
         ]);
-        this._currentState = States.Demolition.Waiting;
+        this._currentState = States.Demolition.Idle;
     }
 
     getCurrentState() { return this._currentState; }
