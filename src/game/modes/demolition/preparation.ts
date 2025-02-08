@@ -9,6 +9,7 @@ import { IState } from "../../../declare/types";
 import { States } from "../../../declare/enums";
 import { DroppedBombHandler } from "../../bomb/droppedBomb";
 import { PlantedBombHandler } from "../../bomb/plantedBomb";
+import { world } from "@minecraft/server";
 
 
 export default class Preparation implements IState {
@@ -19,6 +20,8 @@ export default class Preparation implements IState {
     entry() {
         DroppedBombHandler.instance.kill();
         PlantedBombHandler.instance.kill();
+        world.getDimension('overworld').getEntities({type: "gunfight_arena:dropped_bomb"}).forEach(entity => entity.remove());
+        world.getDimension('overworld').getEntities({type: "gunfight_arena:planted_bomb"}).forEach(entity => entity.remove());
 
         this.base.setTimer(config.demolition.timer.preparation);
         this.base.setCurrentState(this.STATE_ID);
