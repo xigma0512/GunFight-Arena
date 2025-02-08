@@ -1,10 +1,15 @@
 import Demolition from "./_handler";
-
-import { PlayerUtils } from "../../../utils/player";
+import Property from "../../../property/_handler";
 
 import config from "../../../config";
+
+import { PlayerUtils } from "../../../utils/player";
+import PTeamScore from "../../../property/world/team_score";
 import { IState } from "../../../declare/types"
-import { States } from "../../../declare/enums";
+import { States, Team } from "../../../declare/enums";
+
+import { Player } from "@minecraft/server";
+import { BroadcastUtils } from "../../../utils/broadcast";
 
 export default class Waiting implements IState {
 
@@ -23,8 +28,27 @@ export default class Waiting implements IState {
     }
 
     exit() {
+        const teamScore = Property.world().get('team_score') as PTeamScore;
+        if (teamScore.getTeamScore(Team.Red) + teamScore.getTeamScore(Team.Blue) === config.demolition.winningScore - 1) 
+            swapTeam(this.base.players);
+
         this.base.players.forEach(pl => PlayerUtils.respawn(pl));
 
         this.base.getState(States.Demolition.Preparation).entry();
     }
+}
+
+function swapTeam(players: Player[]) {
+    for (const pl of players) {
+        const origin = Property.entity(pl).get('team').value as Team;
+        Property.entity(pl).get('team').update((origin === Team.Blue ? Team.Red : (origin === Team.Red ? Team.Blue : Team.None)));
+    }
+    const pteam = Property.world().get('team_score') as PTeamScore;
+    const [blueTeamScore, redTeamScore] = [pteam.getTeamScore(Team.Blue), pteam.getTeamScore(Team.Red)];
+    pteam.updateTeamScore(Team.Blue, redTeamScore);
+    pteam.updateTeamScore(Team.Red, blueTeamScore);
+
+    BroadcastUtils.message("§f---\n", "message");
+    BroadcastUtils.message("§eSwitching Sides\n", "message");
+    BroadcastUtils.message("§f---", "message");
 }
