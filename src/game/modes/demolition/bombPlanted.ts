@@ -10,7 +10,7 @@ import { States, Team } from "../../../declare/enums";
 import { TeamUtils } from "../../../utils/team";
 import { BroadcastUtils } from "../../../utils/broadcast";
 
-import { EntityHealthComponent } from "@minecraft/server";
+import { EntityHealthComponent, world } from "@minecraft/server";
 
 export default class BombPlanted implements IState {
 
@@ -25,13 +25,18 @@ export default class BombPlanted implements IState {
     update() {
         const bomb = PlantedBombHandler.instance.getBomb();
         if (bomb === undefined) return;
+        const location = bomb.location;
 
         const health = bomb.getComponent('health') as EntityHealthComponent;
         const damagePerSec = health?.effectiveMax / config.demolition.timer.bombPlanted;
         health.setCurrentValue(damagePerSec * this.base.timer);
+        bomb.nameTag = `§c${this.base.timer}`;
 
-        if (this.base.timer <= 0) this.exit(Team.Red);
-
+        if (this.base.timer <= 0) {
+            BroadcastUtils.particle("minecraft:huge_explosion_emitter", bomb.location);
+            BroadcastUtils.sound("random.explode", {pitch:0.6});
+            this.exit(Team.Red);
+        }
         const [blueTeamPlayers, redTeamPlayers] = [
             TeamUtils.getPlayers(Team.Blue, this.base.players),
             TeamUtils.getPlayers(Team.Red, this.base.players)
@@ -41,10 +46,14 @@ export default class BombPlanted implements IState {
         else if (redTeamPlayers.length == 0) return this.exit(Team.Blue);
 
         if (TeamUtils.getAlive(Team.Blue, this.base.players) <= 0) return this.exit(Team.Red);
+
+        location.y += 0.3;
+        BroadcastUtils.particle("minecraft:explosion_particle", location);
+        world.getDimension("overworld").playSound("block.click", location, {pitch: 2, volume:5});
     }
 
     exit(winnerTeam: Team) {
-        const pteam = Property.world().get("team_score") as PTeamScore
+        const pteam = Property.world().get("team_score") as PTeamScore;
         pteam.updateTeamScore(winnerTeam, pteam.getTeamScore(winnerTeam) + 1);
 
         if (pteam.getTeamScore(winnerTeam) >= config.demolition.winningScore)

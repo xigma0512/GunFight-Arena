@@ -37,6 +37,10 @@
                     "damage_modifier": -100
                 }
             },
+            "minecraft:nameable": {
+                "allow_name_tag_renaming": false,
+                "always_show": true
+            },
             "minecraft:physics": {
                 "has_gravity": true,
                 "has_collision": true
