@@ -1,10 +1,12 @@
-import { Container, Vector3, world } from "@minecraft/server";
+import { Container, world } from "@minecraft/server";
 import { EntityHealthChangedAfterEvent, Player } from "@minecraft/server"
 import { DroppedBombHandler } from "../../../game/bomb/droppedBomb";
 
 import Property from "../../../property/_handler";
 import { PlayerUtils } from "../../../utils/player";
 import { BroadcastUtils } from "../../../utils/broadcast";
+import { States } from "../../../declare/enums";
+import Demolition from "../../../game/modes/demolition/_handler";
 
 export default abstract class entityHealthChange {
     static subscribe = () => {
@@ -20,7 +22,10 @@ export default abstract class entityHealthChange {
                 z: player.location.z,
                 dimension: player.dimension
             });
-            if (ev.newValue <= 0) playerDead(player);
+            if (ev.newValue <= 0) {
+                if (Demolition.instance.getCurrentState() === States.Demolition.Idle) return;
+                playerDead(player);
+            }
         })
     }
     static unsubscribe = (ev: (args: EntityHealthChangedAfterEvent) => void) => world.afterEvents.entityHealthChanged.unsubscribe(ev)
