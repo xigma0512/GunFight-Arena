@@ -1,5 +1,6 @@
 import { Entity, Player } from "@minecraft/server";
 import { Result } from "../../declare/types";
+import { ConsoleUtils } from "../../utils/console";
 
 export abstract class BombHandlerBase {
 
@@ -8,7 +9,7 @@ export abstract class BombHandlerBase {
     getBomb() { return this._bomb; }
 
     kill() {
-        this._bomb?.remove();
+        try { this._bomb?.remove(); } catch (e: any) { ConsoleUtils.error(e); }
         this._bomb = undefined;
     }
 
