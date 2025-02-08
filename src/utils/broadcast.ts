@@ -1,4 +1,4 @@
-import { world } from "@minecraft/server";
+import { MolangVariableMap, PlayerSoundOptions, Vector3, world } from "@minecraft/server";
 
 export abstract class BroadcastUtils {
     static message(msg: string, type: 'message' | 'actionbar') {
@@ -10,9 +10,13 @@ export abstract class BroadcastUtils {
         }
     }
 
-    static sound(soundId: string) {
+    static sound(soundId: string, option?: PlayerSoundOptions) {
         for (const player of world.getAllPlayers()) {
-            player.playSound(soundId);
+            player.playSound(soundId, option);
         }
+    }
+
+    static particle(particleId: string, location: Vector3, options?: MolangVariableMap) {
+        world.getDimension('overworld').spawnParticle(particleId, location, options);
     }
 }
