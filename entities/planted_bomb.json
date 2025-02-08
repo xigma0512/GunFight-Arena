@@ -27,7 +27,7 @@
             },
             "minecraft:boss": {
                 "hud_range": 1000,
-                "name": "C4",
+                "name": "§d§lThe Bomb Has Been Planted.",
                 "should_darken_sky": false
             },
             "minecraft:damage_sensor": {
