@@ -25,7 +25,7 @@ export default class Preparation implements IState {
     update() {
         this.base.players.forEach(player => {
             player.onScreenDisplay.setActionBar(`Round Starts in ${this.base.timer} sec(s).\nUse feather to open the shop.`)
-            if (this.base.timer <= 5) player.playSound('note.harp');
+            BroadcastUtils.sound("block.click", {pitch: 2, volume:5});
         })
         if (this.base.timer <= 0) this.exit();
     }
