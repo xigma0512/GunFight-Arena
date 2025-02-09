@@ -16,3 +16,27 @@ declare interface IState {
     update(): void;
     exit(_?: any): void;
 }
+
+declare interface ITeamScore {
+    red: number;
+    blue: number;
+}
+
+declare interface ITempStat {
+    kills: number;
+    deaths: number;
+
+    planted: number;
+    defused: number;
+}
+
+declare interface ITotalStat {
+    kills: number;
+    deaths: number;
+
+    planted: number;
+    defused: number;
+    
+    wins: number;
+    losts: number;
+}
