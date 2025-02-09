@@ -36,8 +36,7 @@ export default class Idle implements IState {
         BroadcastUtils.message('§l§oCredits:§r\n', 'message');
         BroadcastUtils.message('§f- §cGame Design §bby §7@xigma0512\n', 'message');
         BroadcastUtils.message('§f- §cGun Models §bby §7@GabrielAplok\n', 'message');
-        BroadcastUtils.message('§f- §cMap §bCreating by §7@_Codre_\n', 'message');
-        BroadcastUtils.message('        §bPorting by §7@AzozGamer936', 'message');
+        BroadcastUtils.message('§f- §cSidebar Scoreboard §bby §7@MonkeyChan\n', 'message');
 
         this.base.getState(States.Demolition.Preparation).entry();
     }
