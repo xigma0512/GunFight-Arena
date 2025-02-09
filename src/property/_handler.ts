@@ -10,6 +10,8 @@ import PTeam from "./entity/team";
 import PAlive from "./entity/alive";
 import PMainWeapon from "./entity/main_weapon";
 import PSecondaryWeapon from "./entity/secondary_weapon";
+import PTotalStat from "./entity/total_stat";
+import PTempStat from "./entity/temp_stat";
 
 class WorldProperty {
     private _propertyTable: Record<string, IProperty>;
@@ -24,17 +26,21 @@ class WorldProperty {
 }
 
 class EntityProperty {
-    private propertyTable: Record<string, IProperty>;
+    private _propertyTable: Record<string, IProperty> = {
+
+    };
     constructor(private _entity: Entity) {
-        this.propertyTable = {
+        this._propertyTable = {
             "team": new PTeam(this._entity),
             "alive": new PAlive(this._entity),
             "main_weapon": new PMainWeapon(this._entity),
-            "secondary_weapon": new PSecondaryWeapon(this._entity)
+            "secondary_weapon": new PSecondaryWeapon(this._entity),
+            "temp_stat": new PTempStat(this._entity),
+            "total_stat": new PTotalStat(this._entity)
         }
     }
-    properties = () => this.propertyTable
-    get = (propertyId: keyof typeof this.propertyTable) => this.propertyTable[propertyId]
+    properties = () => this._propertyTable;
+    get = (propertyId: keyof typeof this._propertyTable) => this._propertyTable[propertyId]
 }
 
 export default abstract class Property {
