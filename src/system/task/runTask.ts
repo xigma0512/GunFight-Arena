@@ -137,7 +137,7 @@ export default function runTask() {
 
         [RealTimeTask.HandItemDetect, 1],
         [RealTimeTask.RotateDroppedBomb, 4],
-        [RealTimeTask.UpdateInfoScreen, 1],
+        [RealTimeTask.UpdateInfoScreen, 5],
         [RealTimeTask.StepSound, 6]
     ];
 
