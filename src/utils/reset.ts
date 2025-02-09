@@ -1,8 +1,7 @@
 import Property from "../property/_handler";
 import ModeManager from "../game/modes/_manager";
 import { PlayerUtils } from "./player";
-import { Mode, States, Team } from "../declare/enums";
-import PTeamScore from "../property/world/team_score";
+import { Mode, States } from "../declare/enums";
 
 import { Player, world } from "@minecraft/server";
 
@@ -12,9 +11,8 @@ export abstract class ResetUtils {
             ModeManager.getMode(Property.world().get('game_mode').value as number).removePlayer(player);
         }
         Property.world().get('game_mode').update(Mode.Demolition);
+        Property.world().get('team_score').update();
         ModeManager.getMode(Mode.Demolition).setCurrentState(States.Demolition.Idle);
-        (Property.world().get('team_score') as PTeamScore).updateTeamScore(Team.Blue);
-        (Property.world().get('team_score') as PTeamScore).updateTeamScore(Team.Red);
     }
 
     static playerData(player: Player) {
