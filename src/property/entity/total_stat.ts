@@ -22,11 +22,11 @@ export default class PTotalStat implements IProperty {
     get value() { return this.entity.getDynamicProperty(this.propertyId) as string }
     update = (value: string = JSON.stringify(blank)) => this.entity.setDynamicProperty(this.propertyId, value);
 
-    getTempStat(options: keyof typeof blank): number {
+    getStat(options: keyof typeof blank): number {
         return (JSON.parse(this.value) as ITotalStat)[options];
     }
 
-    updateTempStat(options: keyof typeof blank, value: number) {
+    updateStat(options: keyof typeof blank, value: number) {
         const stat = JSON.parse(this.value) as ITotalStat;
         stat[options] = value;
         this.update(JSON.stringify(stat));
