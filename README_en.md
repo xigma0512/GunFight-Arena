@@ -6,7 +6,7 @@
 
 > [!NOTE] 
 > Supported Minecraft Version: `1.21.51`\
-> Current Addon Version: `v1.0-beta.1`
+> Current Addon Version: `v1.1-beta.1`
 
 **GunFight Arena** is a gunfight game addon for Minecraft Bedrock Edition, supporting multiplayer gameplay with various modes.
 

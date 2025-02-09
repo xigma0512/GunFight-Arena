@@ -6,7 +6,7 @@
 
 > [!NOTE] 
 > 支援 Minecraft 版本: `1.21.51`\
-> 目前 Addon 版本: `v1.0-beta.1`
+> 目前 Addon 版本: `v1.1-beta.1`
 
 **GunFight Arena** 是一款 Minecraft Bedrock Edition 上的槍戰遊戲模組，支援多人遊玩，並提供多種模式。
 
