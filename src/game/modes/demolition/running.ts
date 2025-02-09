@@ -71,8 +71,11 @@ export default class Running implements IState {
             const option = (team === winnerTeam ? 'wins' : 'losts');
             totalStat.updateStat(option, totalStat.getStat(option) + 1);
         });
-        BroadcastUtils.message('§l§a- GAMEOVER -', 'message');
+
+        BroadcastUtils.message('', 'message');
+        BroadcastUtils.message('§l§a-- GAMEOVER --', 'message');
         BroadcastUtils.message(`§l${(winnerTeam == Team.Blue ? "§bBlue Team" : "§cRed Team")} §eis the winner!`, 'message');
+        BroadcastUtils.sound('mob.ravager.celebrate');
         
         this.base.getState(States.Demolition.GameOver).entry();
     }

@@ -49,7 +49,7 @@ export default class BombPlanted implements IState {
 
         location.y += 0.3;
         BroadcastUtils.particle("minecraft:explosion_particle", location);
-        world.getDimension("overworld").playSound("block.click", location, {pitch: 2, volume:5});
+        world.getDimension("overworld").playSound("block.click", location, {pitch: 1.5, volume:5});
     }
 
     exit(winnerTeam: Team) {

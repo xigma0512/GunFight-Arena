@@ -69,7 +69,7 @@ export default abstract class Equipment {
         this.sendWeapon(player, prop.get('main_weapon').value as number, prop.get('secondary_weapon').value as number);
         this.sendArmor(player, prop.get('team').value as Team);
         this.sendTeamEquipment(player, prop.get('team').value as Team)
-        player.sendMessage("Your weapons and gear have been delivered.");
+        player.sendMessage("§aYour weapons and gear have been delivered.");
     }
 
 }

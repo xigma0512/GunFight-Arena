@@ -43,6 +43,6 @@ function defuseBomb(player: Player) {
     tempStat.updateStat('defused', tempStat.getStat('defused') + 1);
 
     BroadcastUtils.message(`§l§aBomb has Been Defused §fBy §e${player.name}.`, 'message');
-    BroadcastUtils.sound('mob.ravager.celebrate');
+    BroadcastUtils.sound('note.bell');
     Demolition.instance.getState(States.Demolition.BombPlanted).exit(Team.Blue);
 }
