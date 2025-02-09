@@ -5,6 +5,11 @@ import config from "../../../config";
 
 import { IState } from "../../../declare/types"
 import { States } from "../../../declare/enums";
+import { Player } from "@minecraft/server";
+import Property from "../../../property/_handler";
+import PTempStat from "../../../property/entity/temp_stat";
+import PTotalStat from "../../../property/entity/total_stat";
+import { BroadcastUtils } from "../../../utils/broadcast";
 
 export default class GameOver implements IState {
 
@@ -25,11 +30,54 @@ export default class GameOver implements IState {
 
     exit() {
         this.base.players.forEach(pl => {
+            updateStat(pl);
             ResetUtils.playerData(pl);
         });
+        broadcastStat(this.base.players);
         ResetUtils.inGameData();
 
         this.base.getState(States.Demolition.Idle).entry();
     }
 
+}
+
+function updateStat(player: Player) {
+    const tempStat = Property.entity(player).get('temp_stat') as PTempStat;
+    const totalStat = Property.entity(player).get('total_stat') as PTotalStat;
+
+    totalStat.updateStat('kills', totalStat.getStat("kills") + tempStat.getStat('kills'));
+    totalStat.updateStat('deaths', totalStat.getStat("deaths") + tempStat.getStat('deaths'));
+    totalStat.updateStat('planted', totalStat.getStat("planted") + tempStat.getStat('planted'));
+    totalStat.updateStat('defused', totalStat.getStat("defused") + tempStat.getStat('defused'));
+}
+
+function broadcastStat(players: Player[]) {
+    BroadcastUtils.message("§l§f-----", 'message');
+    BroadcastUtils.message("§l§o§aPlayer Game Stats§r", 'message');
+
+    for (const player of players) {
+        const tempStat = Property.entity(player).get('temp_stat') as PTempStat;
+        const [kills, deaths, planted, defused] = [
+            tempStat.getStat('kills'), 
+            tempStat.getStat('deaths'),
+            tempStat.getStat('planted'), 
+            tempStat.getStat('defused')
+        ];
+
+        const totalStat = Property.entity(player).get('total_stat') as PTempStat;
+        const [tkills, tdeaths, tplanted, tdefused] = [
+            totalStat.getStat('kills'), 
+            totalStat.getStat('deaths'),
+            totalStat.getStat('planted'), 
+            totalStat.getStat('defused')
+        ];
+
+        let text = `§b- §e${player.name} §f|| `;
+        text += `§bK/D: §6${kills}/${deaths}§7(${tkills}/${tdeaths}) §f|| `
+        text += `§bPlanted: §a${planted}§7(${tplanted}) §f|| `
+        text += `§bDefused: §c${defused}§7(${tdefused}) §f||`;
+
+        BroadcastUtils.message(text, "message");
+    }
+    BroadcastUtils.message("§l§f-----", 'message');
 }

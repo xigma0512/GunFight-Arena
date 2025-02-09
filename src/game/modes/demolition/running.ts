@@ -10,6 +10,7 @@ import { TeamUtils } from "../../../utils/team";
 import config from "../../../config";
 import { IState } from "../../../declare/types";
 import { States, Team } from "../../../declare/enums";
+import PTotalStat from "../../../property/entity/total_stat";
 
 export default class Running implements IState {
 
@@ -64,10 +65,15 @@ export default class Running implements IState {
         this.base.players.forEach(pl => {
             PlayerUtils.clearInventory(pl);
             PlayerUtils.setGameMode(pl, "spectator");
+
+            const team = Property.entity(pl).get('team').value as Team;
+            const totalStat = Property.entity(pl).get('total_stat') as PTotalStat;
+            const option = (team === winnerTeam ? 'wins' : 'losts');
+            totalStat.updateStat(option, totalStat.getStat(option) + 1);
         });
         BroadcastUtils.message('§l§a- GAMEOVER -', 'message');
-        BroadcastUtils.message(`§l${(winnerTeam == Team.Blue ? "§bBlue Team" : "§cRed Team")} §eis the winner!`, 'message')
-
+        BroadcastUtils.message(`§l${(winnerTeam == Team.Blue ? "§bBlue Team" : "§cRed Team")} §eis the winner!`, 'message');
+        
         this.base.getState(States.Demolition.GameOver).entry();
     }
 
