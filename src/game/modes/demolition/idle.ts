@@ -28,7 +28,10 @@ export default class Idle implements IState {
 
     exit() {
         randomTeam(this.base.players);
-        this.base.players.forEach(pl => PlayerUtils.respawn(pl));
+        this.base.players.forEach(pl => {
+            PlayerUtils.respawn(pl);
+            Property.entity(pl).get('temp_stat').update();
+        });
 
         BroadcastUtils.message('§l§oCredits:§r\n', 'message');
         BroadcastUtils.message('§f- §cGame Design §bby §7@xigma0512\n', 'message');
