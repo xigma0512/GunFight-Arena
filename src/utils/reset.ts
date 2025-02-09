@@ -16,9 +16,10 @@ export abstract class ResetUtils {
     }
 
     static playerData(player: Player) {
-        for (const [_, propObject] of Object.entries(Property.entity(player).properties())) {
-            propObject.update();
-        }
+        const prop = Property.entity(player);
+        prop.get('team').update();
+        prop.get('alive').update();
+
         PlayerUtils.clearInventory(player);
         PlayerUtils.setMovement(player, true);
         PlayerUtils.setGameMode(player, 'adventure');
