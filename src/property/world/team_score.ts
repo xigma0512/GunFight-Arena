@@ -18,7 +18,7 @@ export default class PTeamScore implements IProperty {
             world.setDynamicProperty(this.propertyId, JSON.stringify(blank));
     }
     get value() { return world.getDynamicProperty(this.propertyId) as string }
-    update = (value: string) => world.setDynamicProperty(this.propertyId, value);
+    update = (value: string = JSON.stringify(blank)) => world.setDynamicProperty(this.propertyId, value);
 
     getTeamScore(t: Team): number {
         const scoreTable = JSON.parse(this.value) as ITeamScore;
