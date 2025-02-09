@@ -42,7 +42,8 @@ function playerDead(player: Player) {
         if (item === undefined) continue;
         if (item.typeId === "gunfight_arena:c4") return dropBomb(player);
     }
-    player.sendMessage("You've been eliminated. You will Respawn in next round.");
+    player.sendMessage("§7You've been eliminated. You will Respawn in next round.");
+    player.playSound('random.hurt');
 }
 
 function dropBomb(player: Player) {
@@ -51,4 +52,5 @@ function dropBomb(player: Player) {
     if (!result) return;
 
     BroadcastUtils.message("§cThe Bomb Carrier was killed, Bomb Dropped.", 'message');
+    BroadcastUtils.sound("block.turtle_egg.drop", {pitch: 2});
 }
