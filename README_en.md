@@ -4,10 +4,6 @@
 
 ## ℹ️ Information
 
-> [!NOTE] 
-> Supported Minecraft Version: `1.21.51`\
-> Current Addon Version: `v1.1-beta.1`
-
 **GunFight Arena** is a gunfight game addon for Minecraft Bedrock Edition, supporting multiplayer gameplay with various modes.
 
 > [!IMPORTANT]
@@ -24,7 +20,7 @@
 
 1. Go to **Releases**, find the corresponding version, and download the `.mcworld` file.  
 2. Open the `.mcworld` file to import it into the game and load it into a playable world.  
-3. Make sure **Experimental Features** are enabled in the world settings.  
+3. Make sure **Experimental Features - Beta API** are enabled in the world settings.  
 
 > [!WARNING]
 > The current version does not support custom maps yet. However, you can edit the `src/config.ts` file, modify its contents, and install it in other maps—it should work as expected.\
@@ -60,8 +56,8 @@ The attackers' objective is to plant the bomb, while the defenders must prevent 
 
 **👤Author**: [@xigma0512](https://github.com/xigma0512)  
 **🎨AplokGun Addon**: [Aplok Guns](https://mcpedl.com/aplok-guns/), developed by [@GabrielAplok](https://github.com/gabriel-aplok/)  
-**⭐Personal Sidebar Scoreboard**: [@MonkeyChan](https://www.youtube.com/@MonkeyChan118 )  
-**🌍Map**: [CS:GO Dust II](https://mcpedl.com/cs-s-dust-ii/) Created by @Codre & Ported by @AzozGamer936  
+**⭐Personal Sidebar Scoreboard**: [@MonkeyChan](https://www.youtube.com/@MonkeyChan118)  
+
 
 ## 🏛️ License
 This project is licensed under the MIT License. See the LICENSE file for details.

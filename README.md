@@ -4,10 +4,6 @@
 
 ## ℹ️ 資訊
 
-> [!NOTE] 
-> 支援 Minecraft 版本: `1.21.51`\
-> 目前 Addon 版本: `v1.1-beta.1`
-
 **GunFight Arena** 是一款 Minecraft Bedrock Edition 上的槍戰遊戲模組，支援多人遊玩，並提供多種模式。
 
 > [!IMPORTANT]
@@ -24,7 +20,7 @@
 
 1. 在 **Releases** 尋找對應的版本，並下載 `.mcworld` 檔案。
 2. 打開 `.mcworld` 檔案導入遊戲，並導入到至遊玩世界。
-3. 確保該世界有開啟 **實驗性功能**
+3. 確保該世界有開啟 **實驗性功能 - Beta API**
 
 > [!WARNING]
 > 當前版本還未推出自定義地圖的功能。不過您可以編輯 `src/config.ts` 的內容，透過變更裡面的資訊並安裝到其他地圖，照理來說是可以運作的。\
@@ -60,8 +56,7 @@
 
 **👤Author**: [@xigma0512](https://github.com/xigma0512) \
 **🎨AplokGun Addon**: [Aplok Guns](https://mcpedl.com/aplok-guns/), developed by [@GabrielAplok](https://github.com/gabriel-aplok/)\
-**⭐Personal Sidebar Scoreboard**: [@MonkeyChan](https://www.youtube.com/@MonkeyChan118 )\
-**🌍Map**: [CS:GO Dust II](https://mcpedl.com/cs-s-dust-ii/) Creating by @Codre & Porting by @AzozGamer936 
+**⭐Personal Sidebar Scoreboard**: [@MonkeyChan](https://www.youtube.com/@MonkeyChan118 )
 
 ## 🏛️ License
 This project is licensed under the MIT License. See the LICENSE file for details.
