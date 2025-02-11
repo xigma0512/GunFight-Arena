@@ -1,10 +1,16 @@
 export namespace States {
+
     export enum Demolition {
-        Waiting,
-        Preparing,
+        Idle,
+        Preparation,
         Running,
+        BombPlanted,
+        Waiting,
         GameOver,
-        Sleeping
+    }
+
+    export enum DeathMatch {
+
     }
 }
 

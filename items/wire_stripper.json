@@ -1,0 +1,28 @@
+{
+    "format_version": "1.20.80",
+    "minecraft:item": {
+        "description": {
+            "identifier": "gunfight_arena:wire_stripper",
+            "menu_category": {
+                "category": "nature"
+            }
+        },
+        "components": {
+            "minecraft:icon": "wire_stripper",
+            "minecraft:display_name": {
+                "value": "Wire Stripper"
+            },
+            "minecraft:use_modifiers": {
+                "use_duration": 5,
+                "movement_modifier": 0
+            },
+            "minecraft:max_stack_size": {
+                "value": 1
+            },
+            "minecraft:food": {
+                "using_converts_to": "gunfight_arena:wire_stripper"
+            },
+            "minecraft:use_animation": "eat"
+        }
+    }
+}

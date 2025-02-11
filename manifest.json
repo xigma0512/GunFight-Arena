@@ -1,13 +1,13 @@
 {
     "format_version": 2,
     "header": {
-        "description": "",
-        "name": "GunArea",
+        "name": "GunFight-Arena BP",
+        "description": "FPS Game in Minecraft Bedrock Edition",
         "uuid": "6381b69f-665e-4180-a248-3960cb9f2520",
         "version": [
-            0,
-            0,
-            1
+            1,
+            1,
+            0
         ],
         "min_engine_version": [
             1,
@@ -17,14 +17,23 @@
     },
     "modules": [
         {
+            "type": "data",
+            "uuid": "66de9f75-307f-4b7d-aaa9-bead9ee0fa0f",
+            "version": [
+                1,
+                1,
+                0
+            ]
+        },
+        {
             "description": "使用JavaScript編寫 可做為學習之素材",
             "type": "script",
             "language": "javascript",
             "uuid": "760888da-34ae-4ace-9130-9393848ad4cc",
             "version": [
-                0,
-                0,
-                1
+                1,
+                1,
+                0
             ],
             "entry": "scripts/index.js"
         }
@@ -37,6 +46,18 @@
         {
             "module_name": "@minecraft/server-ui",
             "version": "1.4.0-beta"
+        },
+        {
+            "uuid": "e2b29834-9e80-42c1-8604-fde1e5033160",
+            "version": [1,0,0]
+        },
+        {
+            "uuid": "e78d15ce-5911-4e00-8e4c-235c201ddac4",
+            "version": [1,1,5]
+        },
+        {
+            "uuid": "8e9ce81e-2b8c-4223-b47c-4c04e32f8b11",
+            "version": [1,0,0]
         }
     ]
 }
