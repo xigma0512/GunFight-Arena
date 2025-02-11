@@ -1,7 +1,7 @@
 import Property from "../property/_handler";
 import { Team } from "../declare/enums";
-import config from "../config";
-import { Player, ItemStack } from "@minecraft/server";
+
+import { Player, ItemStack, Vector2, Vector3 } from "@minecraft/server";
 import { InputPermissionCategory, EquipmentSlot, GameMode, ItemLockMode } from "@minecraft/server";
 
 export abstract class PlayerUtils {
@@ -36,13 +36,14 @@ export abstract class PlayerUtils {
 
     static tp2Spawn(player: Player) {
         const team = Property.entity(player).get('team').value as Team;
+        const spawns = Property.world().get('spawns');
 
         switch (team) {
-            case Team.Blue: player.teleport(config.demolition.team_spawn_point.blue); break;
-            case Team.Red: player.teleport(config.demolition.team_spawn_point.red); break;
+            case Team.Blue: player.teleport(spawns.get('blue') as Vector3); break;
+            case Team.Red: player.teleport(spawns.get('red') as Vector3); break;
             case Team.None:
             default:
-                player.teleport(config.lobby_spawn);
+                player.teleport(spawns.get('lobby') as Vector3);
                 break;
         }
     }

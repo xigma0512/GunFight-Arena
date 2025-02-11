@@ -1,6 +1,5 @@
 import Demolition from "./_handler";
 import Property from "../../../property/_handler";
-import PTeamScore from "../../../property/world/team_score";
 import { PlantedBombHandler } from "../../bomb/plantedBomb";
 
 import config from "../../../config";
@@ -53,7 +52,7 @@ export default class BombPlanted implements IState {
     }
 
     exit(winnerTeam: Team) {
-        const pteam = Property.world().get("team_score") as PTeamScore;
+        const pteam = Property.world().get("team_score");
         pteam.updateTeamScore(winnerTeam, pteam.getTeamScore(winnerTeam) + 1);
 
         if (pteam.getTeamScore(winnerTeam) >= config.demolition.winningScore)

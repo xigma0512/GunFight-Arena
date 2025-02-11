@@ -5,7 +5,8 @@ import { MathUtils } from "../../utils/math";
 import config from "../../config";
 import { Result } from "../../declare/types";
 
-import { ItemStack, Player, world } from "@minecraft/server";
+import { ItemStack, Player, Vector3, world } from "@minecraft/server";
+import Property from "../../property/_handler";
 
 export class PlantedBombHandler extends BombHandlerBase {
 
@@ -14,9 +15,11 @@ export class PlantedBombHandler extends BombHandlerBase {
 
     override summon(owner: Player): Result {
 
+        const spawns = Property.world().get('spawns');
+
         const [bombPoints, range] = [
-            config.demolition.bomb.bomb_point,
-            config.demolition.bomb.bomb_point_range
+            spawns.get('bomb_targets') as Vector3[],
+            config.demolition.bomb.bomb_target_range
         ];
 
         let inRange = false;

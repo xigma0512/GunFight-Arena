@@ -6,7 +6,6 @@ import { DroppedBombHandler } from "../../game/bomb/droppedBomb";
 
 import { Mode, Team } from "../../declare/enums";
 import { EquipmentSlot, HudElement, world } from "@minecraft/server";
-import PTeamScore from "../../property/world/team_score";
 import { TeamUtils } from "../../utils/team";
 
 namespace PrimaryTask {
@@ -79,7 +78,7 @@ namespace RealTimeTask {
                 'Round end.            ',
                 'GameOver.             '
             ]
-            const pteam = Property.world().get('team_score') as PTeamScore
+            const pteam = Property.world().get('team_score');
             const [blueTeamScore, redTeamScore] = [pteam.getTeamScore(Team.Blue), pteam.getTeamScore(Team.Red)]
             
             const [blueTeamPlayer, redTeamPlayer] = [

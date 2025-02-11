@@ -1,6 +1,5 @@
 import Demolition from "./_handler";
 import Property from "../../../property/_handler";
-import PTeamScore from "../../../property/world/team_score";
 import { DroppedBombHandler } from "../../bomb/droppedBomb";
 
 import { BroadcastUtils } from "../../../utils/broadcast";
@@ -8,9 +7,12 @@ import { PlayerUtils } from "../../../utils/player";
 import { TeamUtils } from "../../../utils/team";
 
 import config from "../../../config";
+
 import { IState } from "../../../declare/types";
 import { States, Team } from "../../../declare/enums";
 import PTotalStat from "../../../property/entity/total_stat";
+
+import { Vector3 } from "@minecraft/server";
 
 export default class Running implements IState {
 
@@ -18,7 +20,8 @@ export default class Running implements IState {
     readonly STATE_ID = States.Demolition.Running;
 
     entry() {
-        DroppedBombHandler.instance.summon(config.demolition.bomb.spawn_point);
+        const spawns = Property.world().get('spawns') ;
+        DroppedBombHandler.instance.summon(spawns.get('bomb') as Vector3);
 
         this.base.setTimer(config.demolition.timer.running);
         this.base.setCurrentState(this.STATE_ID);
@@ -48,7 +51,7 @@ export default class Running implements IState {
     }
 
     private nextRound(winnerTeam: Team) {
-        const pteam = Property.world().get("team_score") as PTeamScore
+        const pteam = Property.world().get("team_score");
         pteam.updateTeamScore(winnerTeam, pteam.getTeamScore(winnerTeam) + 1);
         if (pteam.getTeamScore(winnerTeam) >= config.demolition.winningScore) return this.exit(winnerTeam);
 

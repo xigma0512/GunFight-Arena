@@ -10,7 +10,7 @@ import { ItemLockMode } from "@minecraft/server"
 export default abstract class Equipment {
 
     private static getSpecialItem(slot: number) {
-        const storage = world.getDimension('overworld').getBlock(config.special_item.container_position)
+        const storage = world.getDimension('overworld').getBlock(config.container.position)
         const container = storage?.getComponent('inventory')?.container as Container
         return container.getItem(slot) as ItemStack
     }
@@ -23,7 +23,7 @@ export default abstract class Equipment {
             const [id, amount, slot] = item
             let itemStack = new ItemStack(id, amount)
             if (itemStack.typeId == "gabrielaplok:awp")
-                itemStack = this.getSpecialItem(config.special_item.awp)
+                itemStack = this.getSpecialItem(config.container.awp)
 
             itemStack.lockMode = ItemLockMode.slot
             inventory.container?.setItem(slot, itemStack)
@@ -32,7 +32,7 @@ export default abstract class Equipment {
 
     private static sendArmor(player: Player, team: Team) {
         const equipment = player.getComponent("equippable") as EntityEquippableComponent;
-        const armor = (team == Team.Blue ? config.special_item.blue_armor : config.special_item.red_armor)
+        const armor = (team == Team.Blue ? config.container.blue_armor : config.container.red_armor)
 
         armor.forEach((slot, i) => {
             const itemStack = this.getSpecialItem(slot)
