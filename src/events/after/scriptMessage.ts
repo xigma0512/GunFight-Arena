@@ -24,7 +24,10 @@ export default abstract class ScriptMessage {
                 case "stat": getStat(ev.sourceEntity as Player); break;
 
                 case "set-position": 
-                    if (!ev.sourceEntity.hasTag('admin')) return;
+                    if (!ev.sourceEntity.hasTag('admin')) {
+                        (ev.sourceEntity as Player).sendMessage('§cYou must have the "admin" tag.') 
+                        return;    
+                    }
                     settingSpawn(ev.message, ev.sourceEntity as Player);
                     break;
             }
@@ -65,14 +68,19 @@ function getStat(player: Player) {
 }
 
 function settingSpawn(action: string, sender: Player) {
-    const spawns = Property.world().get('spawns');
+    const positions = Property.world().get('positions');
     switch(action) {
         case 'clear': 
-            spawns.update(); 
+            positions.update(); 
             sender.sendMessage("§3Successfully clear all positions setting.")
             break;
         default: 
-            spawns.set(action as keyof ISpawnConfig, sender.location);
-            sender.sendMessage(`§aSuccessfully set position §e"${action}"§a at §3${JSON.stringify(sender.location)}`);
+            const block = sender.getBlockFromViewDirection()?.block;
+            if (block === undefined) {
+                sender.sendMessage("§cPlease look at the block where you want to set as the position");
+                return;
+            }
+            positions.set(action as keyof ISpawnConfig, block.location);
+            sender.sendMessage(`§aSuccessfully set position §e"${action}"§a at §3${JSON.stringify(block.location)}`);
     }
 }
