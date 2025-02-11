@@ -58,7 +58,7 @@ function getStat(player: Player) {
         
         {text: `§b- §3Wins §f- §7${wins}\n`},
         {text: `§b- §3Losts §f- §7${losts}\n`},
-        {text: `  §b- §dWin Rate §f- §e${(wins/(wins+losts)) * 100}%\n`},
+        {text: `  §b- §dWin Rate §f- §e${Math.round((wins/(wins+losts)) * 100)}\%\n`},
 
         {text: `§b- §3Planted §f- §7${planted}\n`},
         {text: `§b- §3Defused §f- §7${defused}\n`},
