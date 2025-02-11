@@ -63,7 +63,7 @@ The attackers' objective is to plant the bomb, while the defenders must prevent 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## 📌 TODO
-- [ ] Enable custom settings to allow map selection  
+- [x] Enable custom settings to allow map selection  
 - [x] Implement a game statistics tracking system  
 
 ## 🛠️ Known Issues

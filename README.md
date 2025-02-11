@@ -62,7 +62,7 @@
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## 📌 TODO
-- [ ] 開放自訂設定，可以自行選擇地圖
+- [x] 開放自訂設定，可以自行選擇地圖
 - [x] 遊戲戰績紀錄
 
 ## 🛠️ 已知問題
