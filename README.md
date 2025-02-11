@@ -63,7 +63,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## 📌 TODO
 - [ ] 開放自訂設定，可以自行選擇地圖
-- [ ] 遊戲戰績紀錄
+- [x] 遊戲戰績紀錄
 
 ## 🛠️ 已知問題
 - [ ] 炸彈包的Boss bar顯示距離不夠遠，導致有些時候看不到炸彈包

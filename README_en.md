@@ -64,7 +64,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## 📌 TODO
 - [ ] Enable custom settings to allow map selection  
-- [ ] Implement a game statistics tracking system  
+- [x] Implement a game statistics tracking system  
 
 ## 🛠️ Known Issues
 - [ ] The boss bar for the bomb does not display from a far enough distance, making it difficult to see the bomb in some situations.  
