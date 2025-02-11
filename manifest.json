@@ -54,6 +54,10 @@
         {
             "uuid": "bd81a412-fda8-4a1a-a1c9-65df0c082c4e",
             "version": [1,0,0]
+        },
+        {
+            "uuid": "8e9ce81e-2b8c-4223-b47c-4c04e32f8b11",
+            "version": [1,0,0]
         }
     ]
 }
