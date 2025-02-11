@@ -46,5 +46,6 @@ declare interface ISpawnConfig {
     blue: Vector3,
     red: Vector3,
     bomb: Vector3,
+    container: Vector3,
     bomb_targets: Vector3[]
 }

@@ -17,7 +17,7 @@ import PTempStat from "./entity/temp_stat";
 interface IWorldPropertyTable { 
     team_score: PTeamScore;
     game_mode: PGameMode;
-    spawns: PPosition;
+    positions: PPosition;
 }
 
 class WorldProperty {
@@ -26,7 +26,7 @@ class WorldProperty {
         this._propertyTable = {
             team_score: new PTeamScore,
             game_mode: new PGameMode,
-            spawns: new PPosition
+            positions: new PPosition
         };
     }
     properties = () => this._propertyTable

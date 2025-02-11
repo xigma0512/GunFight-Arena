@@ -1,6 +1,5 @@
 export default {
     container: {
-        position: { x: -66, y: 25, z: -538 },
         awp: 0,
         blue_armor: [1, 2, 3, 4],
         red_armor: [5, 6, 7, 8]

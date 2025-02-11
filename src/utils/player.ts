@@ -36,14 +36,14 @@ export abstract class PlayerUtils {
 
     static tp2Spawn(player: Player) {
         const team = Property.entity(player).get('team').value as Team;
-        const spawns = Property.world().get('spawns');
+        const positions = Property.world().get('positions');
 
         switch (team) {
-            case Team.Blue: player.teleport(spawns.get('blue') as Vector3); break;
-            case Team.Red: player.teleport(spawns.get('red') as Vector3); break;
+            case Team.Blue: player.teleport(positions.get('blue') as Vector3); break;
+            case Team.Red: player.teleport(positions.get('red') as Vector3); break;
             case Team.None:
             default:
-                player.teleport(spawns.get('lobby') as Vector3);
+                player.teleport(positions.get('lobby') as Vector3);
                 break;
         }
     }

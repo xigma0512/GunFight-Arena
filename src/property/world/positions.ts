@@ -6,6 +6,7 @@ const blank: ISpawnConfig = {
     blue: { x: 0, y: 0, z: 0 },
     red: { x: 0, y: 0, z: 0 },
     bomb: { x: 0, y: 0, z: 0 },
+    container: { x: 0, y: 0, z: 0 },
     bomb_targets: [
         { x: 0, y: 0, z: 0 },
         { x: 0, y: 0, z: 0 }

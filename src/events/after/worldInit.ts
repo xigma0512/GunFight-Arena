@@ -8,7 +8,7 @@ export default abstract class worldInit {
     static subscribe = () => {
         return world.afterEvents.worldInitialize.subscribe(ev => {
             ResetUtils.inGameData();
-            world.setDefaultSpawnLocation(Property.world().get('spawns').get('lobby') as Vector3);
+            world.setDefaultSpawnLocation(Property.world().get('positions').get('lobby') as Vector3);
             world.gameRules.showDeathMessages = false;
             world.gameRules.showTags = false;
             world.gameRules.keepInventory = true;

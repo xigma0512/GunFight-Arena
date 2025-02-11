@@ -20,8 +20,8 @@ export default class Running implements IState {
     readonly STATE_ID = States.Demolition.Running;
 
     entry() {
-        const spawns = Property.world().get('spawns') ;
-        DroppedBombHandler.instance.summon(spawns.get('bomb') as Vector3);
+        const positions = Property.world().get('positions') ;
+        DroppedBombHandler.instance.summon(positions.get('bomb') as Vector3);
 
         this.base.setTimer(config.demolition.timer.running);
         this.base.setCurrentState(this.STATE_ID);

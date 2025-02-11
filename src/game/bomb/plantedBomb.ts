@@ -15,10 +15,10 @@ export class PlantedBombHandler extends BombHandlerBase {
 
     override summon(owner: Player): Result {
 
-        const spawns = Property.world().get('spawns');
+        const positions = Property.world().get('positions');
 
         const [bombPoints, range] = [
-            spawns.get('bomb_targets') as Vector3[],
+            positions.get('bomb_targets') as Vector3[],
             config.demolition.bomb.bomb_target_range
         ];
 

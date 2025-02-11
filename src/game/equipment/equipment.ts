@@ -3,14 +3,14 @@ import { Team } from "../../declare/enums";
 import Property from "../../property/_handler";
 import { ItemTable } from "./table";
 
-import { ItemStack, Player, world } from "@minecraft/server"
+import { ItemStack, Player, Vector3, world } from "@minecraft/server"
 import { Container, EntityEquippableComponent, EntityInventoryComponent, EnchantmentType, EquipmentSlot, ItemEnchantableComponent } from "@minecraft/server";
 import { ItemLockMode } from "@minecraft/server"
 
 export default abstract class Equipment {
 
     private static getSpecialItem(slot: number) {
-        const storage = world.getDimension('overworld').getBlock(config.container.position)
+        const storage = world.getDimension('overworld').getBlock(Property.world().get('positions').get('container') as Vector3)
         const container = storage?.getComponent('inventory')?.container as Container
         return container.getItem(slot) as ItemStack
     }
