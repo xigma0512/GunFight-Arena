@@ -12,9 +12,9 @@ const blank: ISpawnConfig = {
     ]
 }
 
-export default class PSpawns implements IProperty {
+export default class PPosition implements IProperty {
 
-    readonly propertyId = "spawns"
+    readonly propertyId = "positions"
 
     constructor() {
         if (world.getDynamicProperty(this.propertyId) === undefined)
@@ -36,4 +36,3 @@ export default class PSpawns implements IProperty {
         this.update(JSON.stringify(config));
     }
 }
-export { PSpawns }

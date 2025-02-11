@@ -3,7 +3,7 @@ import { Entity } from "@minecraft/server";
 // World Property
 import PTeamScore from "./world/team_score";
 import PGameMode from "./world/game_mode";
-import PSpawns from "./world/spawns";
+import PPosition from "./world/positions";
 
 // Entity Property
 import PTeam from "./entity/team";
@@ -17,7 +17,7 @@ import PTempStat from "./entity/temp_stat";
 interface IWorldPropertyTable { 
     team_score: PTeamScore;
     game_mode: PGameMode;
-    spawns: PSpawns;
+    spawns: PPosition;
 }
 
 class WorldProperty {
@@ -26,7 +26,7 @@ class WorldProperty {
         this._propertyTable = {
             team_score: new PTeamScore,
             game_mode: new PGameMode,
-            spawns: new PSpawns
+            spawns: new PPosition
         };
     }
     properties = () => this._propertyTable
