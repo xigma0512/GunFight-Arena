@@ -1,5 +1,4 @@
-import { Entity, World } from "@minecraft/server";
-import { IProperty } from "../declare/types";
+import { Entity } from "@minecraft/server";
 
 // World Property
 import PTeamScore from "./world/team_score";
@@ -14,8 +13,15 @@ import PSecondaryWeapon from "./entity/secondary_weapon";
 import PTotalStat from "./entity/total_stat";
 import PTempStat from "./entity/temp_stat";
 
+
+interface IWorldPropertyTable { 
+    team_score: PTeamScore;
+    game_mode: PGameMode;
+    spawns: PSpawns;
+}
+
 class WorldProperty {
-    private _propertyTable: Record<string, IProperty>;
+    private _propertyTable: IWorldPropertyTable;
     constructor() {
         this._propertyTable = {
             team_score: new PTeamScore,
@@ -24,25 +30,33 @@ class WorldProperty {
         };
     }
     properties = () => this._propertyTable
-    get = (propertyId: keyof typeof this._propertyTable) => this._propertyTable[propertyId];
+    get = <K extends keyof IWorldPropertyTable>(propertyId: K) => this._propertyTable[propertyId];
+}
+
+
+interface IEntityPropertyTable { 
+    team: PTeam;
+    alive: PAlive;
+    main_weapon: PMainWeapon;
+    secondary_weapon: PSecondaryWeapon;
+    temp_stat: PTempStat;
+    total_stat: PTotalStat;
 }
 
 class EntityProperty {
-    private _propertyTable: Record<string, IProperty> = {
-
-    };
+    private _propertyTable: IEntityPropertyTable;
     constructor(private _entity: Entity) {
         this._propertyTable = {
-            "team": new PTeam(this._entity),
-            "alive": new PAlive(this._entity),
-            "main_weapon": new PMainWeapon(this._entity),
-            "secondary_weapon": new PSecondaryWeapon(this._entity),
-            "temp_stat": new PTempStat(this._entity),
-            "total_stat": new PTotalStat(this._entity)
+            team: new PTeam(this._entity),
+            alive: new PAlive(this._entity),
+            main_weapon: new PMainWeapon(this._entity),
+            secondary_weapon: new PSecondaryWeapon(this._entity),
+            temp_stat: new PTempStat(this._entity),
+            total_stat: new PTotalStat(this._entity)
         }
     }
     properties = () => this._propertyTable;
-    get = (propertyId: keyof typeof this._propertyTable) => this._propertyTable[propertyId]
+    get = <K extends keyof IEntityPropertyTable>(propertyId: K) => this._propertyTable[propertyId]
 }
 
 export default abstract class Property {
