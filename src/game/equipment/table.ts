@@ -1,18 +1,18 @@
 abstract class ItemTable {
 
     static readonly weaponNameTable: Record<number, string> = {
-        0: "m4a1",
-        1: "ak47",
-        2: "fnfal",
-        3: "ak12",
-        4: "m249",
-        5: "mossberg",
-        6: "awp",
-        7: "mp5a5",
+        0: "M4A1",
+        1: "AK47",
+        2: "Fnfal",
+        3: "AK12",
+        4: "M249",
+        5: "Mossberg",
+        6: "AWP",
+        7: "MP5a5",
 
-        8: "deagle",
-        9: "glock17",
-        10: "glock18c"
+        8: "Deagle",
+        9: "Glock17",
+        10: "Glock18"
     };
 
     // [item_id, amount, hotbar_slotId]
