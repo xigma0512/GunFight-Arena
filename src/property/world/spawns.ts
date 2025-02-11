@@ -28,10 +28,10 @@ export default class PSpawns implements IProperty {
         return config[option];
     }
 
-    set(option: keyof ISpawnConfig, value: Vector3 | Vector3[]) {
+    set(option: keyof ISpawnConfig, value: Vector3) {
         const config = JSON.parse(this.value) as ISpawnConfig;
-        if (option === 'bomb_targets') config.bomb_targets = value as Vector3[];
-        else config[option] = value as Vector3;
+        if (option === 'bomb_targets') config.bomb_targets.push(value);
+        else config[option] = value;
 
         this.update(JSON.stringify(config));
     }
