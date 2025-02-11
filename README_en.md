@@ -54,6 +54,10 @@ There are two methods for installing the game, explained below.
         > The image below is an example. If your teleportation point is above a brick block, please place another block above it and target that block when setting the point, otherwise the teleportation point may be incorrect.  
         > ![setting_position](images/setting_position.png)
 
+3. **Special Storage Container** (setting with `/function gf/setting/container`) must be a container (chest/barrel) located in a loaded chunk; otherwise, an error will occur.
+    - The default item placement is as follows: the first slot must contain an **AWP with a scope**.
+    ![container](images/container.png)
+
 ### 🤖 In-Game Commands
 
 **Commands available to all players:**
