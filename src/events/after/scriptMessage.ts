@@ -1,8 +1,11 @@
-import { Player, ScriptEventCommandMessageAfterEvent, system } from "@minecraft/server";
 import ModeManager from "../../game/modes/_manager";
 import Property from "../../property/_handler";
-import { Mode, States } from "../../declare/enums";
 import PTotalStat from "../../property/entity/total_stat";
+
+import { Mode, States } from "../../declare/enums";
+
+import { Player, ScriptEventCommandMessageAfterEvent, system, Vector3 } from "@minecraft/server";
+import { ISpawnConfig } from "../../declare/types";
 
 export default abstract class ScriptMessage {
     static subscribe = () => {
@@ -19,6 +22,11 @@ export default abstract class ScriptMessage {
                 case "game_start": instance.getState(States.Demolition.Idle).exit(); break;
 
                 case "stat": getStat(ev.sourceEntity as Player); break;
+
+                case "set-position": 
+                    if (!ev.sourceEntity.hasTag('admin')) return;
+                    settingSpawn(ev.message, ev.sourceEntity as Player);
+                    break;
             }
         })
     }
@@ -54,4 +62,17 @@ function getStat(player: Player) {
 
         {text: "§l§f-------"}
     ]});
+}
+
+function settingSpawn(action: string, sender: Player) {
+    const spawns = Property.world().get('spawns');
+    switch(action) {
+        case 'clear': 
+            spawns.update(); 
+            sender.sendMessage("§3Successfully clear all positions setting.")
+            break;
+        default: 
+            spawns.set(action as keyof ISpawnConfig, sender.location);
+            sender.sendMessage(`§aSuccessfully set position §e"${action}"§a at §3${JSON.stringify(sender.location)}`);
+    }
 }
