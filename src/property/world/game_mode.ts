@@ -13,4 +13,3 @@ export default class PGameMode implements IProperty {
     get value() { return world.getDynamicProperty(this.propertyId) as Mode }
     update = (value = Mode.Demolition) => world.setDynamicProperty(this.propertyId, value);
 }
-export { PGameMode }
