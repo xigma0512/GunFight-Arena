@@ -4,6 +4,7 @@ import { IProperty } from "../declare/types";
 // World Property
 import PTeamScore from "./world/team_score";
 import PGameMode from "./world/game_mode";
+import PSpawns from "./world/spawns";
 
 // Entity Property
 import PTeam from "./entity/team";
@@ -17,8 +18,9 @@ class WorldProperty {
     private _propertyTable: Record<string, IProperty>;
     constructor() {
         this._propertyTable = {
-            "team_score": new PTeamScore,
-            "game_mode": new PGameMode
+            team_score: new PTeamScore,
+            game_mode: new PGameMode,
+            spawns: new PSpawns
         };
     }
     properties = () => this._propertyTable

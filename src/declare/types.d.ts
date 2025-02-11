@@ -40,3 +40,11 @@ declare interface ITotalStat {
     wins: number;
     losts: number;
 }
+
+declare interface ISpawnConfig {
+    lobby: Vector3,
+    blue: Vector3,
+    red: Vector3,
+    bomb: Vector3,
+    bomb_targets: Vector3[]
+}
