@@ -2,6 +2,7 @@ import { Player, ScriptEventCommandMessageAfterEvent, system } from "@minecraft/
 import ModeManager from "../../game/modes/_manager";
 import Property from "../../property/_handler";
 import { Mode, States } from "../../declare/enums";
+import PTotalStat from "../../property/entity/total_stat";
 
 export default abstract class ScriptMessage {
     static subscribe = () => {
@@ -16,8 +17,41 @@ export default abstract class ScriptMessage {
                 case "join_queue": instance.addPlayer(ev.sourceEntity as Player); break;
                 case "left_queue": instance.removePlayer(ev.sourceEntity as Player); break;
                 case "game_start": instance.getState(States.Demolition.Idle).exit(); break;
+
+                case "stat": getStat(ev.sourceEntity as Player); break;
             }
         })
     }
     static unsubscribe = (ev: (args: ScriptEventCommandMessageAfterEvent) => void) => system.afterEvents.scriptEventReceive.unsubscribe(ev);
+}
+
+function getStat(player: Player) {
+
+    const totalStat = Property.entity(player).get('total_stat') as PTotalStat;
+
+    const [kills, deaths, planted, defused, wins, losts] = [
+        totalStat.getStat('kills'), 
+        totalStat.getStat('deaths'),
+        totalStat.getStat('planted'), 
+        totalStat.getStat('defused'),
+        totalStat.getStat('wins'),
+        totalStat.getStat('losts')
+    ];
+
+    player.sendMessage({rawtext:[
+        {text: `§l§f--- §l§o§e${player.name} §aStats§r§l§f ---\n`},
+
+        {text: `§b- §3Kills §f- §7${kills}\n`},
+        {text: `§b- §3Deaths §f- §7${deaths}\n`},
+        {text: `  §b- §dK/D §f- §e${kills/(deaths == 0 ? 1 : deaths)}\n`},
+        
+        {text: `§b- §3Wins §f- §7${wins}\n`},
+        {text: `§b- §3Losts §f- §7${losts}\n`},
+        {text: `  §b- §dWin Rate §f- §e${(wins/(wins+losts)) * 100}%\n`},
+
+        {text: `§b- §3Planted §f- §7${planted}\n`},
+        {text: `§b- §3Defused §f- §7${defused}\n`},
+
+        {text: "§l§f-------"}
+    ]});
 }

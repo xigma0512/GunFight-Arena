@@ -52,8 +52,7 @@ function updateStat(player: Player) {
 }
 
 function broadcastStat(players: Player[]) {
-    BroadcastUtils.message("§l§f-----", 'message');
-    BroadcastUtils.message("§l§o§aPlayer Game Stats§r", 'message');
+    BroadcastUtils.message("§l§f--- §l§o§aPlayer Game Stats§r§l§f ---", 'message');
 
     for (const player of players) {
         const tempStat = Property.entity(player).get('temp_stat') as PTempStat;
@@ -64,20 +63,12 @@ function broadcastStat(players: Player[]) {
             tempStat.getStat('defused')
         ];
 
-        const totalStat = Property.entity(player).get('total_stat') as PTempStat;
-        const [tkills, tdeaths, tplanted, tdefused] = [
-            totalStat.getStat('kills'), 
-            totalStat.getStat('deaths'),
-            totalStat.getStat('planted'), 
-            totalStat.getStat('defused')
-        ];
-
         let text = `§b- §e${player.name} §f|| `;
-        text += `§bK/D: §6${kills}/${deaths}§7(${tkills}/${tdeaths}) §f|| `
-        text += `§bPlanted: §a${planted}§7(${tplanted}) §f|| `
-        text += `§bDefused: §c${defused}§7(${tdefused}) §f||`;
+        text += `§bK/D: §6${kills}/${deaths} §f|| `
+        text += `§bPlanted: §a${planted} §f|| `
+        text += `§bDefused: §c${defused} §f||`;
 
         BroadcastUtils.message(text, "message");
     }
-    BroadcastUtils.message("§l§f-----", 'message');
+    BroadcastUtils.message("§l§f-------", 'message');
 }
