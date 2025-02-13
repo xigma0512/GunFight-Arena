@@ -1,9 +1,10 @@
 const fs = require('fs');
 const path = require('path');
+const config = require('./config.json')
 
 const source = "./BP"
-const destination = "";
-const pack_name = "GunFight_Arena_BP"
+const destination = config.destination
+const pack_name = config.pack_name
 
 function copyFolder(src, dest) {
 
