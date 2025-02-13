@@ -1,9 +1,11 @@
-import { ItemStack, Player, Vector3, world } from "@minecraft/server";
 import { BombHandlerBase } from "./baseHandler";
 import { ConsoleUtils } from "../../utils/console";
 import { Result } from "../../declare/types";
 import Property from "../../property/_handler";
 import { Team } from "../../declare/enums";
+
+import { ItemStack, Player, Vector3, world } from "@minecraft/server";
+import { EntityInventoryComponent } from "@minecraft/server";
 
 export class DroppedBombHandler extends BombHandlerBase {
 
@@ -38,7 +40,7 @@ export class DroppedBombHandler extends BombHandlerBase {
         this._bomb.remove();
         this._bomb = undefined;
 
-        owner.getComponent('inventory')?.container?.addItem(new ItemStack("gunfight_arena:c4"));
+        (owner.getComponent('inventory') as EntityInventoryComponent).container?.addItem(new ItemStack("gunfight_arena:c4"));
 
         ConsoleUtils.success("Successfully REMOVE dropped bomb.");
         return [true, ""];

@@ -1,5 +1,3 @@
-import { Container, world } from "@minecraft/server";
-import { EntityHealthChangedAfterEvent, Player } from "@minecraft/server"
 import { DroppedBombHandler } from "../../../game/bomb/droppedBomb";
 
 import Property from "../../../property/_handler";
@@ -7,6 +5,9 @@ import { PlayerUtils } from "../../../utils/player";
 import { BroadcastUtils } from "../../../utils/broadcast";
 import { States } from "../../../declare/enums";
 import Demolition from "../../../game/modes/demolition/_handler";
+
+import { Container, Player, world } from "@minecraft/server";
+import { EntityHealthChangedAfterEvent, EntityInventoryComponent } from "@minecraft/server"
 
 export default abstract class entityHealthChange {
     static subscribe = () => {
@@ -36,7 +37,7 @@ function playerDead(player: Player) {
     PlayerUtils.setGameMode(player, 'spectator');
     Property.entity(player).get('alive').update(false);
 
-    const container = player.getComponent('inventory')?.container as Container;
+    const container = (player.getComponent('inventory') as EntityInventoryComponent).container as Container;
     for (let slotIndex = 0; slotIndex < container.size; slotIndex++) {
         const item = container.getItem(slotIndex);
         if (item === undefined) continue;
