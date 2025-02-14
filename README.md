@@ -1,6 +1,6 @@
 # GunFight Arena
 
-[**中文** | [English](README_en.md)]
+[**中文** | [English](assets/README_en.md)]
 
 ## ℹ️ 資訊
 
