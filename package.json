@@ -1,6 +1,9 @@
 {
+    "scripts": {
+        "compile": "tsc && node copy.js"
+    },
     "dependencies": {
-        "@minecraft/server": "^1.17.0-beta.1.21.51-stable",
-        "@minecraft/server-ui": "^1.4.0-beta.1.21.51-stable"
+        "@minecraft/server": "^1.17.0",
+        "@minecraft/server-ui": "^1.4.0-beta.1.21.60-stable"
     }
 }

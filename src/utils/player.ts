@@ -1,7 +1,8 @@
 import Property from "../property/_handler";
 import { Team } from "../declare/enums";
 
-import { Player, ItemStack, Vector2, Vector3 } from "@minecraft/server";
+import { Player, ItemStack, Vector3 } from "@minecraft/server";
+import { EntityInventoryComponent, EntityEquippableComponent } from "@minecraft/server";
 import { InputPermissionCategory, EquipmentSlot, GameMode, ItemLockMode } from "@minecraft/server";
 
 export abstract class PlayerUtils {
@@ -15,14 +16,15 @@ export abstract class PlayerUtils {
     }
 
     static clearInventory(player: Player) {
-        player.getComponent('inventory')?.container?.clearAll();
+        (player.getComponent('inventory') as EntityInventoryComponent).container?.clearAll();
         const equipmentSlot = [
             EquipmentSlot.Head,
             EquipmentSlot.Chest,
             EquipmentSlot.Legs,
             EquipmentSlot.Feet
         ];
-        for (const slot of equipmentSlot) player.getComponent('equippable')?.setEquipment(slot, undefined);
+        for (const slot of equipmentSlot) 
+            (player.getComponent('equippable')  as EntityEquippableComponent).setEquipment(slot, undefined);
     }
 
     static setGameMode(player: Player, mode: 'creative' | 'survival' | 'adventure' | 'spectator') {
@@ -63,6 +65,6 @@ export abstract class PlayerUtils {
 
         const item = new ItemStack('feather');
         item.lockMode = ItemLockMode.slot;
-        player.getComponent('inventory')?.container?.setItem(8, item);
+        (player.getComponent('inventory') as EntityInventoryComponent).container?.setItem(8, item);
     }
 }

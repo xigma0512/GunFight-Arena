@@ -1,6 +1,6 @@
 # GunFight Arena
 
-[**中文** | [English](README_en.md)]
+[**中文** | [English](assets/README_en.md)]
 
 ## ℹ️ 資訊
 
@@ -31,11 +31,11 @@
 3. 下載對應版本的 ***Aplok Guns*** 和 ***Personal Sidebar Scoreboard*** (你可以在 **貢獻** 找到連結)
 4. 創建您的世界，並且將行為包和資源包按照以下順序導入
     - 行為包 Behavior Pack
-    ![behavior_pack](images/bp.png)
+    ![behavior_pack](assets/images/bp.png)
     - 資源包 Resource Pack
-    ![resource_pack](images/rp.png) 
+    ![resource_pack](assets/images/rp.png) 
 5. 開啟 `Experiments` -> `Beta APIs`
-    ![Beta APIs](images/beta_api.png) 
+    ![Beta APIs](assets/images/beta_api.png) 
 
 ---
 
@@ -52,10 +52,10 @@
     - 輸入指令後，系統會紀錄玩家的準星對準的方塊座標進行設定
     - 設定 `blue`/`red`/`bomb`/`lobby` 等傳送點座標時，請在預期的位置多放上一格方塊，並用準星對準後，再輸入指令來設定。
         > 下圖是範例，如果你的傳送點是在磚塊上方，請在磚塊上方放上另一個方塊，並將準星對準該方塊來設定，否則傳送點將會出現錯誤。 \
-        > ![setting_position](images/setting_position.png)
+        > ![setting_position](assets/images/setting_position.png)
 3. 特殊儲存箱 (透過指令`/function gf/setting/container` 設置) 的位置必須為一個容器 (箱子/木桶)，這個箱子必須在**能夠被加載的區塊**，否則會出現錯誤。
     - 預設的物品擺放位置如下，第一格必須為**已安裝瞄準鏡的AWP**。
-    ![container](images/container.png)
+    ![container](assets/images/container.png)
 
 ### 🤖 遊戲內指令
 

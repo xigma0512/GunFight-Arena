@@ -15,7 +15,7 @@
         "noImplicitReturns": false,
         "noImplicitUseStrict": false,
         "rootDir": "./src",
-        "outDir": "./scripts",
+        "outDir": "./BP/scripts",
         "listFiles": false,
         "stripInternal": true,
         "noEmitHelpers": true

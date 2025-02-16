@@ -6,6 +6,7 @@ import config from "../../config";
 import { Result } from "../../declare/types";
 
 import { ItemStack, Player, Vector3, world } from "@minecraft/server";
+import { EntityInventoryComponent } from "@minecraft/server";
 import Property from "../../property/_handler";
 
 export class PlantedBombHandler extends BombHandlerBase {
@@ -28,7 +29,7 @@ export class PlantedBombHandler extends BombHandlerBase {
             inRange = true;
         }
         if (!inRange) {
-            owner.getComponent("inventory")?.container?.addItem(new ItemStack("gunfight_arena:c4"));
+            (owner.getComponent("inventory") as EntityInventoryComponent).container?.addItem(new ItemStack("gunfight_arena:c4"));
 
             return [false, "You are not in bomb position."];
         }

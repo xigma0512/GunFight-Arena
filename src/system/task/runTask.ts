@@ -5,7 +5,7 @@ import ModeManager from "../../game/modes/_manager";
 import { DroppedBombHandler } from "../../game/bomb/droppedBomb";
 
 import { Mode, Team } from "../../declare/enums";
-import { EquipmentSlot, HudElement, world } from "@minecraft/server";
+import { EntityEquippableComponent, EquipmentSlot, HudElement, world } from "@minecraft/server";
 import { TeamUtils } from "../../utils/team";
 
 namespace PrimaryTask {
@@ -24,7 +24,7 @@ namespace PrimaryTask {
 namespace RealTimeTask {
     export function HandItemDetect() {
         for (const player of world.getAllPlayers()) {
-            const handItem = player.getComponent('equippable')?.getEquipment(EquipmentSlot.Mainhand)
+            const handItem = (player.getComponent('equippable') as EntityEquippableComponent).getEquipment(EquipmentSlot.Mainhand)
 
             if (handItem === undefined) continue;
 
