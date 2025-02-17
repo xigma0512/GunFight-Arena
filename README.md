@@ -34,7 +34,9 @@
     ![behavior_pack](assets/images/bp.png)
     - 資源包 Resource Pack
     ![resource_pack](assets/images/rp.png) 
-    
+5. 開啟 `Experiments` -> `Beta APIs`
+    ![Beta APIs](assets/images/beta_api.png) 
+
 ---
 
 ## 📘 遊戲內使用

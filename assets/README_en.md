@@ -34,6 +34,9 @@ There are two methods for installing the game, explained below.
       ![behavior_pack](images/bp.png)
     - **Resource Pack**
       ![resource_pack](images/rp.png)
+5. Enable `Experiments` -> `Beta APIs`
+    ![Beta APIs](images/beta_api.png)
+
 ---
 
 ## 📘 In-Game Usage
